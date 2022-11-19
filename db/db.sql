@@ -82,8 +82,8 @@ ALTER TABLE post ADD CONSTRAINT post_groupID_fkey FOREIGN KEY (groupID) REFERENC
 ALTER TABLE groups ADD CONSTRAINT groups_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
 ALTER TABLE event ADD CONSTRAINT event_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
 ALTER TABLE event ADD CONSTRAINT event_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
-ALTER TABLE usergroups ADD CONSTRAINT usergroups_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
-ALTER TABLE usergroups ADD CONSTRAINT usergroups_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
+ALTER TABLE usergroups ADD CONSTRAINT usergroups_userID_fkey FOREIGN KEY (id_user) REFERENCES users(id);
+ALTER TABLE usergroups ADD CONSTRAINT usergroups_groupID_fkey FOREIGN KEY (id_group) REFERENCES groups(id);
 ALTER TABLE attending ADD CONSTRAINT attending_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
 ALTER TABLE attending ADD CONSTRAINT attending_id_event_fkey FOREIGN KEY (id_event) REFERENCES event(id);
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
