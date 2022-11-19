@@ -24,10 +24,6 @@ pool.connect((err, client, release) => {
       console.log('populate database complete')
       process.exit(0);
     });
-<<<<<<< Updated upstream
-=======
-    process.exit(0);
->>>>>>> Stashed changes
   });
   console.log(`connected to '${client.database}' on port ${client.port}`)
 })
