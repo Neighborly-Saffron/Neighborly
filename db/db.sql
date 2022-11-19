@@ -44,8 +44,8 @@ ALTER TABLE event ADD CONSTRAINT event_pkey PRIMARY KEY (id);
 
 CREATE TABLE usergroups (
  id BIGSERIAL,
- userID INTEGER,
- groupID INTEGER
+ id_user INTEGER,
+ id_group INTEGER
 );
 
 
