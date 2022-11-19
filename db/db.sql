@@ -2,6 +2,7 @@ DROP TABLE IF EXISTS users cascade;
 
 CREATE TABLE users (
  id BIGSERIAL,
+ authId VARCHAR,
  name VARCHAR,
  bio VARCHAR,
  pictureURL VARCHAR
@@ -26,6 +27,7 @@ DROP TABLE IF EXISTS groups cascade;
 CREATE TABLE groups (
  id BIGSERIAL,
  name VARCHAR,
+ description VARCHAR,
  pictureURL VARCHAR,
  adminID INTEGER
 );
@@ -88,3 +90,4 @@ ALTER TABLE attending ADD CONSTRAINT attending_id_user_fkey FOREIGN KEY (id_user
 ALTER TABLE attending ADD CONSTRAINT attending_id_event_fkey FOREIGN KEY (id_event) REFERENCES event(id);
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_group_fkey FOREIGN KEY (id_group) REFERENCES groups(id);
+
