@@ -1,4 +1,4 @@
-CREATE TABLE user (
+CREATE TABLE users (
  id BIGSERIAL,
  name VARCHAR,
  bio VARCHAR,
@@ -6,7 +6,7 @@ CREATE TABLE user (
 );
 
 
-ALTER TABLE user ADD CONSTRAINT user_pkey PRIMARY KEY (id);
+ALTER TABLE users ADD CONSTRAINT users_pkey PRIMARY KEY (id);
 
 CREATE TABLE post (
  id BIGSERIAL,
@@ -19,7 +19,7 @@ CREATE TABLE post (
 
 ALTER TABLE post ADD CONSTRAINT post_pkey PRIMARY KEY (id);
 
-CREATE TABLE group (
+CREATE TABLE groups (
  id BIGSERIAL,
  name VARCHAR,
  pictureURL VARCHAR,
@@ -27,7 +27,7 @@ CREATE TABLE group (
 );
 
 
-ALTER TABLE group ADD CONSTRAINT group_pkey PRIMARY KEY (id);
+ALTER TABLE groups ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
 
 CREATE TABLE event (
  id BIGSERIAL,
@@ -42,14 +42,14 @@ CREATE TABLE event (
 
 ALTER TABLE event ADD CONSTRAINT event_pkey PRIMARY KEY (id);
 
-CREATE TABLE user-group (
+CREATE TABLE usergroups (
  id BIGSERIAL,
  userID INTEGER,
  groupID INTEGER
 );
 
 
-ALTER TABLE user-group ADD CONSTRAINT user-group_pkey PRIMARY KEY (id);
+ALTER TABLE usergroups ADD CONSTRAINT usergroups_pkey PRIMARY KEY (id);
 
 CREATE TABLE attending (
  id BIGSERIAL,
@@ -69,14 +69,14 @@ CREATE TABLE requestJoin (
 
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_pkey PRIMARY KEY (id);
 
-ALTER TABLE post ADD CONSTRAINT post_userID_fkey FOREIGN KEY (userID) REFERENCES user(id);
-ALTER TABLE post ADD CONSTRAINT post_groupID_fkey FOREIGN KEY (groupID) REFERENCES group(id);
-ALTER TABLE group ADD CONSTRAINT group_adminID_fkey FOREIGN KEY (adminID) REFERENCES user(id);
-ALTER TABLE event ADD CONSTRAINT event_groupID_fkey FOREIGN KEY (groupID) REFERENCES group(id);
-ALTER TABLE event ADD CONSTRAINT event_adminID_fkey FOREIGN KEY (adminID) REFERENCES user(id);
-ALTER TABLE user-group ADD CONSTRAINT user-group_userID_fkey FOREIGN KEY (userID) REFERENCES user(id);
-ALTER TABLE user-group ADD CONSTRAINT user-group_groupID_fkey FOREIGN KEY (groupID) REFERENCES group(id);
-ALTER TABLE attending ADD CONSTRAINT attending_id_user_fkey FOREIGN KEY (id_user) REFERENCES user(id);
+ALTER TABLE post ADD CONSTRAINT post_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
+ALTER TABLE post ADD CONSTRAINT post_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
+ALTER TABLE groups ADD CONSTRAINT groups_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
+ALTER TABLE event ADD CONSTRAINT event_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
+ALTER TABLE event ADD CONSTRAINT event_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
+ALTER TABLE usergroups ADD CONSTRAINT usergroups_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
+ALTER TABLE usergroups ADD CONSTRAINT usergroups_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
+ALTER TABLE attending ADD CONSTRAINT attending_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
 ALTER TABLE attending ADD CONSTRAINT attending_id_event_fkey FOREIGN KEY (id_event) REFERENCES event(id);
-ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_user_fkey FOREIGN KEY (id_user) REFERENCES user(id);
-ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_group_fkey FOREIGN KEY (id_group) REFERENCES group(id);
+ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
+ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_group_fkey FOREIGN KEY (id_group) REFERENCES groups(id);
