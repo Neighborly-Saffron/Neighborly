@@ -1,3 +1,5 @@
+DROP TABLE IF EXISTS users cascade;
+
 CREATE TABLE users (
  id BIGSERIAL,
  name VARCHAR,
@@ -5,8 +7,9 @@ CREATE TABLE users (
  pictureURL VARCHAR
 );
 
-
 ALTER TABLE users ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS post cascade;
 
 CREATE TABLE post (
  id BIGSERIAL,
@@ -16,8 +19,9 @@ CREATE TABLE post (
  groupID INTEGER
 );
 
-
 ALTER TABLE post ADD CONSTRAINT post_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS groups cascade;
 
 CREATE TABLE groups (
  id BIGSERIAL,
@@ -26,8 +30,9 @@ CREATE TABLE groups (
  adminID INTEGER
 );
 
-
 ALTER TABLE groups ADD CONSTRAINT groups_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS event cascade;
 
 CREATE TABLE event (
  id BIGSERIAL,
@@ -39,8 +44,9 @@ CREATE TABLE event (
  adminID INTEGER
 );
 
-
 ALTER TABLE event ADD CONSTRAINT event_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS usergroups cascade;
 
 CREATE TABLE usergroups (
  id BIGSERIAL,
@@ -48,8 +54,9 @@ CREATE TABLE usergroups (
  id_group INTEGER
 );
 
-
 ALTER TABLE usergroups ADD CONSTRAINT usergroups_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS attending cascade;
 
 CREATE TABLE attending (
  id BIGSERIAL,
@@ -57,8 +64,9 @@ CREATE TABLE attending (
  id_event INTEGER
 );
 
-
 ALTER TABLE attending ADD CONSTRAINT attending_pkey PRIMARY KEY (id);
+
+DROP TABLE IF EXISTS requestJoin cascade;
 
 CREATE TABLE requestJoin (
  id BIGSERIAL,
