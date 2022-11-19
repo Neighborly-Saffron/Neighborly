@@ -9,7 +9,7 @@ import Login from './components/Login/Login.jsx'
 const { useState, useEffect } = React;
 
 function App () {
-  return (<div>
+  return (<div className="m-5">
     <h2 className="text-purple-900 text-3xl">
       BASE LAYER APP
     </h2>
