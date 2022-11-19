@@ -16,15 +16,14 @@ pool.connect((err, client, release) => {
         process.exit(1);
     }
     console.log('created tables in database')
-    process.exit(0);
-  });
-  pool.query(populate, function(err, result){
-    if(err){
-        console.log('error: ', err);
-        process.exit(1);
-    }
-    console.log('populate database complete')
-    process.exit(0);
+    pool.query(populate, function(err, result){
+      if(err){
+          console.log('error: ', err);
+          process.exit(1);
+      }
+      console.log('populate database complete')
+      process.exit(0);
+    });
   });
   console.log(`connected to '${client.database}' on port ${client.port}`)
 })
