@@ -1,14 +1,23 @@
 const fs = require('fs')
 const pool = require('./pool.js')
 
-const populate = fs.readFileSync('./db/db.sql').toString();
+const createTables = fs.readFileSync('./db/db.sql').toString();
+const populate = fs.readFileSync('./db/etl.sql').toString();
 
 //queries go here
 pool.connect((err, client, release) => {
   if (err) {
     return console.error('Error acquiring client', err.stack)
   }
-  console.log('creating tables and importing csv...')
+  console.log('creating tables')
+  pool.query(createTables, function(err, result){
+    if(err){
+        console.log('error: ', err);
+        process.exit(1);
+    }
+    console.log('created tables in database')
+    process.exit(0);
+  });
   pool.query(populate, function(err, result){
     if(err){
         console.log('error: ', err);
