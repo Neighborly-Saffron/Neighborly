@@ -6,7 +6,7 @@ COPY groups(id, name, description, pictureURL, adminID) FROM '/Users/huongnguyen
 DELIMITER ','
 CSV HEADER;
 
-COPY post(id, message, likes, userID, groupID) FROM '/Users/huongnguyen/Documents/hr/blue-ocean/Neighborly/exampleData/post.csv'
+COPY post(id, message, likes, posted_at, userID, groupID) FROM '/Users/huongnguyen/Documents/hr/blue-ocean/Neighborly/exampleData/post.csv'
 DELIMITER ','
 CSV HEADER;
 

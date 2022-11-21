@@ -1,9 +1,11 @@
 import React from 'react';
 import axios from 'axios';
+import ReactTimeAgo from 'react-time-ago'
 
 const { useState, useEffect } = React;
 
 function Post({ postData }) {
+  console.log(postData)
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(false)
 
@@ -25,6 +27,7 @@ function Post({ postData }) {
         <div className="flex flex-col p-3">
           <h3 className="font-bold text-lg">{postData.groupname}</h3>
           <h3 className="italic font-bold">{postData.username}</h3>
+          <ReactTimeAgo date={postData.postedat} locale="en-US"/>
           <p>{postData.message}</p>
         </div>
       </div>
