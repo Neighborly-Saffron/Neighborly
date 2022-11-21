@@ -20,14 +20,23 @@ const getInitialGroups = (req, res) => {
 };
 
 const searchGroups = (req, res) => {
-
-  let query = `SELECT json_build_object(
+	let searchTerm = req.body.query;
+	let query = `SELECT json_build_object(
     'group_id', id,
     'name', name,
     'description', description,
     'pictureurl', pictureurl,
     'admin', (SELECT name from users where id = adminid)
-  ) FROM groups WHERE name LIKE '%${req.body}`
-}
+  ) FROM groups WHERE name LIKE '%${req.body.query}%'`;
 
-module.exports = { getInitialGroups };
+	connectionPool
+		.query(query)
+		.then((data) => {
+			res.send(data.rows);
+		})
+		.catch((err) => {
+			res.status(500).send(err);
+		});
+};
+
+module.exports = { getInitialGroups, searchGroups};
