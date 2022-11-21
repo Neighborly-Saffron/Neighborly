@@ -1,8 +1,9 @@
 import React from 'react';
-import UserGroupList from './UserGroupList.jsx'
-import Map from './Map.jsx'
-import Header from './Header.jsx'
-import GroupAdmin from './GroupAdmin.jsx'
+import GroupAdmin from './GroupAdmin.jsx';
+import Header from './Header.jsx';
+import Map from './Map.jsx';
+import UserGroupList from './UserGroupList.jsx';
+import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
 
@@ -11,10 +12,10 @@ function Home () {
     <h2>
       HOME
     </h2>
-    <Header />
     <UserGroupList />
     <Map />
     <GroupAdmin />
+    <Feed path={'home'}/>
   </div>)
 }
 

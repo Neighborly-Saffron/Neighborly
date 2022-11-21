@@ -20,7 +20,7 @@ function UserGroupList () {
   let groups;
   if (userGroups && userGroups.length > 0) {
     groups = userGroups.map((group, index) =>
-      <IndividualGroupInGroupList group={group} key={index}/>
+      <IndividualGroupInGroupList group={group.json_build_object} key={index}/>
     )
   }
 

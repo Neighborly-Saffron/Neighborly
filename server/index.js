@@ -1,4 +1,5 @@
 const groups = require('../controllers/group/groups.js')
+const groupSearch = require('../controllers/group/groupSearch.js')
 const feed = require('../controllers/feed/feed.js')
 const path = require("path");
 
@@ -13,8 +14,14 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
-app.get('/posts', feed.getHomeFeed);
+app.get('/posts/home', feed.getHomeFeed);
+app.get('/posts/profile', feed.getProfileFeed);
+app.get('/posts/group', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
+
+//detailed group list/search routes
+app.get('/getGroups', groupSearch.getInitialGroups)
+// app.post('/searchGroups', groupSearch.searchGroups);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

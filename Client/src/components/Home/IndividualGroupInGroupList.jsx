@@ -4,11 +4,9 @@ import axios from 'axios';
 function IndividualGroupInGroupList ({ group }) {
   return (
     <>
-      <div className='grid grid-cols-10'>
-        <div className='w-20'>
-          <img className='object-scale-down' src={group.pictureurl} alt={group.name}></img>
-        </div>
-        <div className='col-span-9 text-left'>
+      <div className='flex'>
+          <img className='object-scale-down h-20 m-1' src={group.pictureURL} alt={group.name}></img>
+        <div className='flex flex-col p-3'>
           <div className='font-bold'>
             {group.name}
           </div>
