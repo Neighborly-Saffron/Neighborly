@@ -4,7 +4,6 @@ import ProfileImage from './ProfileImage.jsx'
 import axios from 'axios';
 
 const { useState, useEffect } = React;
-
 function Profile () {
   const [userId, setUserId] = useState('5');
   const [userProfile, setUserProfile] = useState({})
@@ -30,5 +29,4 @@ function Profile () {
     <ProfileImage></ProfileImage>
   </div>)
 }
-
 export default Profile;

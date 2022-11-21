@@ -41,7 +41,7 @@ function GroupList() {
 	}, []);
 	return (
 		<div>
-			<form onSubmit={handleSubmit} className="border-b-2 mb-3">
+			<form onSubmit={handleSubmit}>
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
@@ -50,7 +50,7 @@ function GroupList() {
 					placeholder="Search for a group..."
 				/>
 			</form>
-			<div className="flex flex-col gap-4 items-center mb-3">
+			<div className="flex flex-col gap-4 items-center mb-3 p-1">
 				{groups.map((group, i) => {
 					return <GroupListItem key={i} group={group.json_build_object} />;
 				})}
