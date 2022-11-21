@@ -1,11 +1,9 @@
 import React from 'react'
 import axios from 'axios'
 import Post from './Post.jsx'
+import AddGroup from '../AddGroup/AddGroup.jsx'
 
 const { useState, useEffect } = React;
-
-const date = new Date()
-console.log(date)
 
 function Feed ({ path }) {
   const [posts, setPosts] = useState([])
@@ -13,7 +11,6 @@ function Feed ({ path }) {
   const getPosts = () => {
     axios.get(`/posts/${path}`)
       .then((res) => {
-        // console.log('post data:', res.data);
         setPosts(res.data);
       })
       .catch((err) => console.log('error getting feed post data'))
@@ -22,10 +19,11 @@ function Feed ({ path }) {
   useEffect(getPosts, []);
 
   return (<div className="border-2 m-5 p-1 bg-white">
-    <h2>FEED</h2>
+    <h2>{`${path} FEED`}</h2>
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
     })}
+    <AddGroup />
   </div>)
 }
 
