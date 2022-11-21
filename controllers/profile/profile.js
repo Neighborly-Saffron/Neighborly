@@ -1,29 +1,35 @@
 const connectionPool = require('../../db/pool.js')
 
 const getUserProfile = (req, res) => {
-  const query = `SELECT name FROM users WHERE authId = `
+  console.log('it got in getUserProfile')
+  console.log('req.params:', req.params)
+  var userId = request.params.userId;
+  // console.log('userId: ', userId)
+  // const userId = request.params.userID;
+  // console.log('it got in getUserProfile')
+  // console.log('userID: ', userID)
+  // res.sendStatus(201)
+
+  // console.log('userId: ', userId)
+  var query = `
+    SELECT json_build_object
+      (
+        'name', name,
+        'bio', bio,
+        'pictureURL', pictureURL,
+      )
+      FROM users WHERE users.id = $1
+  `
+
+  connectionPool
+    .query(query, [userId])
+      .then(res => res.send(res.rows))
+      .catch(err => {
+        console.error('db failed to fetch users data', err);
+        res.status(500);
+        throw err;
+      });
 }
 
-// const getUserGroups = (request, response) => {
-//   var userId = request.params.userId;
-//   // console.log('userId: ', userId)
-//   var query = `
-//     SELECT json_build_object
-//       (
-//         'name', name,
-//         'description', description,
-//         'pictureURL', pictureURL,
-//         'adminId', adminId
-//       )
-//       FROM groups WHERE groups.id = ANY (SELECT id_group FROM usergroups WHERE id_user = $1)
-//   `
 
-//   connectionPool
-//     .query(query, [userId])
-//     .then(res => response.send(res.rows))
-//     .catch(err => {
-//       console.error('Error executing to get related products', err.stack);
-//       response.status(500);
-//     });
-// }
-
+module.exports = { getUserProfile };

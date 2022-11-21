@@ -1,20 +1,23 @@
 import React from 'react';
 import Bio from './Bio.jsx'
 import ProfileImage from './ProfileImage.jsx'
+import axios from 'axios';
 
 const { useState, useEffect } = React;
 
 function Profile () {
-  const [userID, setUserID] = useState(4);
+  const [userId, setUserId] = useState('5');
+  const [userProfile, setUserProfile] = useState({})
+  console.log('pls print this line')
 
   useEffect(() => {
-    axios.get('/getGroups')
+    axios.get(`/usergroups/${userId}`)
     .then(res => {
-      console.log(res.data);
-      setGroups(res.data);
+      console.log('client success receiving data from db');
+      setUserProfile(res.data)
     })
     .catch(err => {
-      console.log(err);
+      console.log('client failed to receive data from db', err);
     })
   },[])
 
@@ -22,6 +25,7 @@ function Profile () {
     <h2>
       PROFILE
     </h2>
+    <p>hello world</p>
     <Bio />
     <ProfileImage></ProfileImage>
   </div>)

@@ -1,6 +1,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faPlus } from '@fortawesome/free-solid-svg-icons';
+import axios from 'axios';
 const { useState, useEffect } = React;
 
 function ProfileImage () {
@@ -8,18 +9,6 @@ function ProfileImage () {
   //set this aside for now, it was intended to cloudinary
   const handleAddImage = () => {
   }
-
-  useEffect(() => {
-    axios.get('/profiles/image')
-    .then(res => {
-      console.log(res.data);
-      setBio(res.data);
-    })
-    .catch(err => {
-      console.log(err);
-    })
-  },[])
-
 
 
 
