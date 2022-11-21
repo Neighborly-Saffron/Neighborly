@@ -1,5 +1,6 @@
 const groups = require('../controllers/group/groups.js')
 const groupSearch = require('../controllers/group/groupSearch.js')
+const groupPage = require('../controllers/group/groupPage.js')
 const feed = require('../controllers/feed/feed.js')
 const path = require("path");
 
@@ -22,6 +23,9 @@ app.put('/posts', feed.likePost);
 //detailed group list/search routes
 app.get('/getGroups', groupSearch.getInitialGroups)
 // app.post('/searchGroups', groupSearch.searchGroups);
+
+// individual group page routes
+app.post('/addPost', groupPage.addPost)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
