@@ -1,4 +1,5 @@
 const path = require("path");
+const Dotenv = require("dotenv-webpack");
 
 module.exports = {
   mode: "development",
@@ -29,6 +30,10 @@ module.exports = {
 			},
 		],
 	},
+	plugins: [
+    new Dotenv({
+    systemvars: true}),
+  ],
   // [devtool] this is an additional source map that will let the browser know what files are running our code.
   // Helps with error tracing. Without it we will not know where our errors are coming from because it will state that everything inside the bundle file.
   devtool: "eval-cheap-module-source-map",
