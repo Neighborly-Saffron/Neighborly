@@ -4,7 +4,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "start": "webpack --mode=development",
+    "start": "webpack --mode=development --watch",
     "build": "webpack --mode=production",
     "dev": "webpack serve --open",
     "seed": "node db/seed.js",
@@ -21,6 +21,7 @@
   },
   "homepage": "https://github.com/Neighborly-Saffron/Neighborly#readme",
   "dependencies": {
+    "@auth0/auth0-react": "^1.12.0",
     "axios": "^1.1.3",
     "dotenv": "^16.0.3",
     "dotenv-webpack": "^8.0.1",
@@ -29,7 +30,7 @@
     "pg": "^8.8.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-router-dom": "^5.3.4"
+    "react-router-dom": "^6.4.0"
   },
   "devDependencies": {
     "@babel/core": "^7.20.2",
