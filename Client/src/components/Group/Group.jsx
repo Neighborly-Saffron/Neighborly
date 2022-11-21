@@ -2,6 +2,7 @@ import React from 'react';
 import GroupEventMap from './GroupEventMap.jsx'
 import GroupEventList from './GroupEventList.jsx'
 import CreateEventModal from './CreateEventModal.jsx'
+import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
 
@@ -13,6 +14,7 @@ function Group () {
     <GroupEventMap />
     <GroupEventList />
     <CreateEventModal />
+    <Feed path={'group'} />
   </div>)
 }
 

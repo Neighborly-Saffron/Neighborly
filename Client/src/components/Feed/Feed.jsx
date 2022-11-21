@@ -7,11 +7,11 @@ const { useState, useEffect } = React;
 const date = new Date()
 console.log(date)
 
-function Feed () {
+function Feed ({ path }) {
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
-    axios.get(`/posts`)
+    axios.get(`/posts/${path}`)
       .then((res) => {
         // console.log('post data:', res.data);
         setPosts(res.data);
