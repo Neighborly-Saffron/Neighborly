@@ -2,10 +2,12 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faMapPin } from '@fortawesome/free-solid-svg-icons';
 const { useState, useEffect } = React;
-function Marker () {
+function Marker (props) {
   return (
-
-    <FontAwesomeIcon icon={faMapPin}></FontAwesomeIcon>
+    <>
+      <h2>{props.name}</h2>
+      <FontAwesomeIcon style={{color:'red'}}icon={faMapPin}></FontAwesomeIcon>
+    </>
   )
 }
 
