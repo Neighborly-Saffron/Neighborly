@@ -1,8 +1,12 @@
 import React from 'react';
 import axios from 'axios';
 import Post from './Post.jsx'
+import ReactTimeAgo from 'react-time-ago'
 
 const { useState, useEffect } = React;
+
+const date = new Date()
+console.log(date)
 
 function Feed () {
   const [posts, setPosts] = useState([])
@@ -18,8 +22,9 @@ function Feed () {
 
   useEffect(getPosts, []);
 
-  return (<div className="border-2 m-5 p-1 bg-darkerblue">
+  return (<div className="border-2 m-5 p-1 bg-white">
     <h2>FEED</h2>
+    <ReactTimeAgo date={'2022-11-21 11:58:11'} locale="en-US"/>
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
     })}
