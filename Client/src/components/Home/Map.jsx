@@ -7,7 +7,7 @@ function Map () {
   return (
   <div className="map" style={{width:'30vw', height:'30vh'}}>
       <GoogleMap
-        apiKey={''}
+        apiKey={'AIzaSyCBpmexDTMCXHUkqpE81DRHdfUbI4I31BA'}
         center= {[40.757901544177926, -73.98546651170592]}
         zoom= {9}>
       </GoogleMap>
