@@ -7,6 +7,7 @@ import Header from './components/Home/Header.jsx';
 import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
+import AddGroup from './components/AddGroup/AddGroup.jsx'
 const { useState, useEffect } = React;
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
       <Route path="/profile" element={<Profile />}/>
       </Routes>
 			<Feed path={'home'}/>
+			<AddGroup />
       <Group />
 		</>
 	);
