@@ -1,5 +1,6 @@
 const connectionPool = require('../../db/pool.js')
 
+//Will show the most recent posts from all of the user’s various groups- so we need recent posts where groupid = userid
 const getHomeFeed = (request, response) => {
   var query = `SELECT json_build_object(
                     'postid', id,
@@ -9,8 +10,8 @@ const getHomeFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post`;
-
+                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4)`;
+//USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
     .then(res => response.send(res.rows))
