@@ -18,7 +18,7 @@ function Feed () {
 
   useEffect(getPosts, []);
 
-  return (<div className="border-2 m-5 p-1 bg-darkerblue">
+  return (<div className="border-2 m-5 p-1 bg-white">
     <h2>FEED</h2>
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
