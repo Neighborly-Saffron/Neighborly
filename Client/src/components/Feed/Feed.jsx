@@ -18,7 +18,7 @@ function Feed () {
 
   useEffect(getPosts, []);
 
-  return (<div className="border-2 border-red-900 m-5 p-1">
+  return (<div className="border-2 m-5 p-1 bg-darkerblue">
     <h2>FEED</h2>
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
@@ -35,7 +35,7 @@ groupIDs are equal to the user's group ids. So we'll pass in the user's id, chec
 ids associated with that user's id and then return recent posts from the post table
 
 To populate a post we need the following
-From post: message
+From post: id, message
 From users: name & pictureurl where userid from post = id from users
 From groups: name where groupid from post = id from groups
 */
