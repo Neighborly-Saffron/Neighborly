@@ -19,7 +19,7 @@ function App() {
       <Route path="/groups" element={<Groups />}/>
       <Route path="/profile" element={<Profile />}/>
       </Routes>
-			<Feed />
+			<Feed path={'home'}/>
       <Group />
 		</>
 	);
