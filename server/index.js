@@ -14,7 +14,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
-app.get('/posts', feed.getHomeFeed);
+app.get('/posts/home', feed.getHomeFeed);
+app.get('/posts/profile', feed.getProfileFeed);
+app.get('/posts/group', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 
 //detailed group list/search routes
