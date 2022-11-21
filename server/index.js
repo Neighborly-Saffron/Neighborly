@@ -18,7 +18,8 @@ app.get('/posts', feed.getHomeFeed);
 app.put('/posts', feed.likePost);
 
 //detailed group list/search routes
-app.get('/groups', groupSearch.getInitialGroups)
+app.get('/getGroups', groupSearch.getInitialGroups)
+// app.post('/searchGroups', groupSearch.searchGroups);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

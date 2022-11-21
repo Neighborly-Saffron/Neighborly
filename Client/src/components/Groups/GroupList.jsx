@@ -8,7 +8,7 @@ function GroupList() {
   const [groups, setGroups] = useState([]);
 
   useEffect(() => {
-    axios.get('/groups')
+    axios.get('/getGroups')
     .then(res => {
       console.log(res.data);
       setGroups(res.data);
@@ -19,8 +19,10 @@ function GroupList() {
   },[])
 	return (
 		<div>
-			<h3 className="italic">Group List</h3>
-      <div className="flex flex-col gap-4">
+			<form className="border-b-2 mb-3">
+        <input type="text" className="w-full h-5 p-5 mx-2 outline-none" placeholder="Search for a group..." />
+      </form>
+      <div className="flex flex-col gap-4 items-center mb-3">
       {groups.map((group, i) => {
         return <GroupListItem key={i} group={group.json_build_object} />
       })}
