@@ -5,6 +5,7 @@ const getHomeFeed = (request, response) => {
                     'postid', id,
                     'message', message,
                     'likes', likes,
+                    'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
