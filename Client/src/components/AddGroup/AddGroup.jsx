@@ -10,10 +10,10 @@ function AddGroup() {
 
   const newGroupSubmit = (e) => {
     e.preventDefault()
-    axios.post('/newGroup', { name, description, picURL }).then(() => {
+    axios.post('/newGroup', { name, description, picURL, adminid: 4 }).then(() => {
       console.log('sent to db')
     }).catch((err) => {
-      console.log('error sending question', err)
+      console.log('error adding group', err)
     })
   }
 

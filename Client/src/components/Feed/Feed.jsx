@@ -1,7 +1,6 @@
 import React from 'react'
 import axios from 'axios'
 import Post from './Post.jsx'
-import AddGroup from '../AddGroup/AddGroup.jsx'
 
 const { useState, useEffect } = React;
 
@@ -23,7 +22,6 @@ function Feed ({ path }) {
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
     })}
-    <AddGroup />
   </div>)
 }
 
