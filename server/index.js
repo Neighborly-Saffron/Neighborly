@@ -12,13 +12,16 @@ const port = 3001
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err)
-    }
-  })
-})
+
+//Don't uncomment this, it's some devil sh*t
+
+// app.get('/*', function(req, res) {
+//   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+//     if (err) {
+//       res.status(500).send(err)
+//     }
+//   })
+// })
 
 app.get('/usergroups/:userId', groups.getUserGroups);
 
