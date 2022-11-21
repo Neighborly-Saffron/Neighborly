@@ -12,6 +12,14 @@ const port = 3001
 
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
@@ -21,8 +29,9 @@ app.get('/posts/group', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 
 //detailed group list/search routes
-app.get('/getGroups', groupSearch.getInitialGroups)
+app.get('/getGroups', groupSearch.getInitialGroups);
 app.post('/searchGroups', groupSearch.searchGroups);
+app.post('/requestJoin', groupSearch.requestGroup);
 
 //profile routes
 app.get('/profile/bio',profile.getUserProfile)

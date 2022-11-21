@@ -3,6 +3,9 @@ import React from 'react';
 const { useState, useEffect } = React;
 
 function GroupListItem({ group }) {
+  const handleRequest = () => {
+    console.log('request sent')
+  }
 	return (
 		<div className="w-full bg-lighterblue border-2 ">
 			<div className="flex">
@@ -12,13 +15,13 @@ function GroupListItem({ group }) {
 					alt={group.name}
 				/>
 				<ul className="flex flex-col">
-					<li>{group.name}</li>
+					<li className="">{group.name}</li>
 					<li>{group.admin}</li>
 					<li>{group.description}</li>
 				</ul>
 			</div>
-			<div className="flex justify-end">
-				<button type="button" className=" relative bottom-0 right-0">
+			<div className="flex justify-end mr-2 mb-2">
+				<button onClick={handleRequest} type="button" className="border-2 bg-white p-2 rounded-md">
 					Request to Join
 				</button>
 			</div>
