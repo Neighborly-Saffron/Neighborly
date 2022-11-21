@@ -5,9 +5,22 @@ const { useState, useEffect } = React;
 
 function ProfileImage () {
 
+  //set this aside for now, it was intended to cloudinary
   const handleAddImage = () => {
-
   }
+
+  useEffect(() => {
+    axios.get('/profiles/image')
+    .then(res => {
+      console.log(res.data);
+      setBio(res.data);
+    })
+    .catch(err => {
+      console.log(err);
+    })
+  },[])
+
+
 
 
   return (<div>

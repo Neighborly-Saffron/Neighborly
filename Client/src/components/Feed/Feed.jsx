@@ -1,14 +1,17 @@
-import React from 'react';
-import axios from 'axios';
+import React from 'react'
+import axios from 'axios'
 import Post from './Post.jsx'
 
 const { useState, useEffect } = React;
 
-function Feed () {
+const date = new Date()
+console.log(date)
+
+function Feed ({ path }) {
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
-    axios.get(`/posts`)
+    axios.get(`/posts/${path}`)
       .then((res) => {
         // console.log('post data:', res.data);
         setPosts(res.data);
@@ -18,7 +21,7 @@ function Feed () {
 
   useEffect(getPosts, []);
 
-  return (<div className="border-2 m-5 p-1 bg-darkerblue">
+  return (<div className="border-2 m-5 p-1 bg-white">
     <h2>FEED</h2>
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object}/>
