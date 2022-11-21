@@ -1,5 +1,6 @@
 import React from 'react';
 import Bio from './Bio.jsx'
+import ProfileImage from './ProfileImage.jsx'
 
 const { useState, useEffect } = React;
 
@@ -9,6 +10,7 @@ function Profile () {
       PROFILE
     </h2>
     <Bio />
+    <ProfileImage></ProfileImage>
   </div>)
 }
 

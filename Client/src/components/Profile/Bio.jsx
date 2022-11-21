@@ -7,6 +7,7 @@ function Bio () {
     <h3 className="italic">
       Bio
     </h3>
+    
   </div>)
 }
 
