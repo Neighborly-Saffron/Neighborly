@@ -10,7 +10,7 @@ const getHomeFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4)`;
+                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4) ORDER BY posted_at DESC`;
 //USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
@@ -31,7 +31,7 @@ const getGroupFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = 1`;
+                                        )FROM post WHERE groupid = 1 ORDER BY posted_at DESC`;
 //GROUP ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
@@ -52,7 +52,7 @@ const getProfileFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE userid = 1`;
+                                        )FROM post WHERE userid = 1 ORDER BY posted_at DESC`;
 //USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
