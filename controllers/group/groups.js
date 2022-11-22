@@ -6,6 +6,7 @@ const getUserGroups = (request, response) => {
   var query = `
     SELECT json_build_object
       (
+        'groupId', id,
         'name', name,
         'description', description,
         'pictureURL', pictureURL,

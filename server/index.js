@@ -37,10 +37,15 @@ app.post('/requestJoin', groupSearch.requestGroup);
 app.get('/profile/bio', profile.getUserProfile)
 
 //admin group route
-app.get('/GroupAdmin',adminGroup.getAdminGroups )
+app.get('/GroupAdmin',adminGroup.getAdminGroups)
+
+//request-to-join groups route
+app.get('/requestedGroups', adminGroup.getRequestedGroups)
 
 // individual group page routes
+app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
+
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
