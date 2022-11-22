@@ -8,7 +8,7 @@ const AdminGroup = ({group}) => {
   // console.log('group.groupPic:', group.groupPic)
   const [showModal, setShowModal] = useState(false);
 
-  
+
 
 
   return (
