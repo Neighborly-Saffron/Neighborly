@@ -11,11 +11,11 @@ function Map (props) {
   return (
   <div className="map" style={{width:'30vw', height:'30vh'}}>
       <GoogleMap
-        apiKey={[process.env.googleAPI]}
+        bootstrapURLKeys={{key:process.env.googleAPI}}
         center= {props.mapStart.latlng}
         zoom= {9}>
-          {props.eventList.events.map((event)=> {
-            return <Marker name={event.name} lat={event.lat} lng={event.lng}></Marker>
+          {props.eventList.events.map((event, i)=> {
+            return <Marker key = {i} name={event.name} lat={event.lat} lng={event.lng}></Marker>
           })}
       </GoogleMap>
   </div>

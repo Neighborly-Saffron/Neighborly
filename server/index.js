@@ -5,6 +5,7 @@ const feed = require('../controllers/feed/feed.js')
 const profile = require('../controllers/profile/profile.js')
 const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
+const addNewUser = require('../controllers/user/user.js')
 const path = require("path");
 
 const express = require('express')
@@ -44,6 +45,7 @@ app.post('/addPost', groupPage.addPost)
 //group event
 app.get('/events', groupEvent.getGroupEvents)
 
+<<<<<<< HEAD
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {
@@ -51,6 +53,10 @@ app.get('/*', function(req, res) {
     }
   })
 })
+=======
+//add new user
+app.post('/user', addNewUser.addNewUser);
+>>>>>>> d32e255c05e1d80a1b20893b0dfa780ddfdbaa82
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
