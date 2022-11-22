@@ -7,8 +7,6 @@ const { useState, useEffect } = React;
 function Feed ({ userId, path }) {
   const [posts, setPosts] = useState([])
 
-  console.log("FEED USERID", userId)
-
   const getPosts = () => {
     axios.get(`/posts/${path}/${userId}`)
       .then((res) => {
