@@ -16,15 +16,8 @@ const port = 3001
 app.use(express.static(path.join(__dirname, '../public')));
 
 
-//Don't uncomment this, it's some devil sh*t
 
-// app.get('/*', function(req, res) {
-//   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
-//     if (err) {
-//       res.status(500).send(err)
-//     }
-//   })
-// })
+
 
 app.get('/usergroups/:userId', groups.getUserGroups);
 
@@ -50,6 +43,14 @@ app.post('/addPost', groupPage.addPost)
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
