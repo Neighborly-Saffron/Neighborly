@@ -3,7 +3,7 @@ import React from 'react';
 import GroupListItem from './GroupListItem.jsx';
 const { useState, useEffect, useRef } = React;
 
-function GroupList() {
+function GroupList({userId}) {
 	const [groups, setGroups] = useState([]);
 	const [query, setQuery] = useState('');
 	const handleSubmit = (e) => {

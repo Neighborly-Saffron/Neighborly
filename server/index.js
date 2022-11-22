@@ -17,10 +17,6 @@ const port = 3001
 
 app.use(express.static(path.join(__dirname, '../public')));
 
-
-
-
-
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
@@ -49,7 +45,7 @@ app.post('/addPost', groupPage.addPost)
 //group event
 app.get('/events', groupEvent.getGroupEvents)
 
-<<<<<<< HEAD
+
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {
@@ -57,14 +53,12 @@ app.get('/*', function(req, res) {
     }
   })
 })
-=======
+
 //add new user
 app.post('/user', addNewUser.addNewUser);
-<<<<<<< HEAD
->>>>>>> d32e255c05e1d80a1b20893b0dfa780ddfdbaa82
-=======
+
 app.get('/user', addNewUser.getNewUser);
->>>>>>> bf8ad87ff2629e7bb3a0b1800bcff44ddda31329
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

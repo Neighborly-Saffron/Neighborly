@@ -1,10 +1,19 @@
 import React from 'react';
-
+import axios from 'axios';
 const { useState, useEffect } = React;
 
-function GroupListItem({ group }) {
+function GroupListItem({ group, userId }) {
   const handleRequest = () => {
-    console.log('request sent')
+    axios.post('/requestJoin', {info: {
+			user: userId,
+			group: group.group_id
+		}})
+		.then(res => {
+			console.log(res.data);
+		})
+		.catch(err => {
+			console.log(err);
+		})
   }
 	return (
 		<div className="w-full bg-lighterblue border-2 ">

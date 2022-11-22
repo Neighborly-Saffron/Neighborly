@@ -1,6 +1,5 @@
 const connectionPool = require('../../db/pool.js')
 
-
 const getInitialGroups = (req, res) => {
 	let query = `SELECT json_build_object(
     'group_id', id,
@@ -46,6 +45,7 @@ const requestGroup = (req, res) => {
   let query =`INSERT INTO requestjoin (id_user, id_group) VALUES ($1, $2)`
   connectionPool.query(query, [requestInfo.user, requestInfo.group])
   .then(data => {
+    console.log('inserted')
     res.send(data.rows);
   })
   .catch(err => {
