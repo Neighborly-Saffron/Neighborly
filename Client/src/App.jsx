@@ -43,7 +43,7 @@ function App() {
 			<Header />
       <Routes>
       <Route path="/" element={<Home />}/>
-      <Route path="/groups" element={<Groups />}/>
+      <Route path="/groups" element={<Groups userId={userId} />}/>
       <Route path="/profile" element={<Profile />}/>
       </Routes>
 			<Feed path={'home'}/>
