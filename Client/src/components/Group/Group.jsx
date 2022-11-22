@@ -7,7 +7,7 @@ import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
 
-function Group () {
+function Group ({ userId }) {
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
       <h2>
@@ -16,7 +16,7 @@ function Group () {
       <div className='flex'>
         <div className='flex-auto flex-col'>
           <CreateGroupPost />
-          <Feed path={'group'} />
+          <Feed userId={userId} path={'group'} />
         </div>
         <div className='flex flex-col'>
           <GroupEventMap />
