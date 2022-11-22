@@ -62,10 +62,10 @@ function App() {
 			<>
 			{isLoading &&
 				<div className="h-full">
-					<div class="flex items-center justify-center">
-						<div class="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
+					<div className="flex items-center justify-center">
+						<div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
 						</div>
-					<span class="visually-hidden">Loading...</span>
+					<span className="visually-hidden">Loading...</span>
 				</div>
 			</div>}
 			{!isLoading && <Login onAuth={onAuth}/>}
