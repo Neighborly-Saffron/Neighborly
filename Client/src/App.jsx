@@ -70,7 +70,7 @@ function App() {
       <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
       </Routes>
 			{/* <Feed path={'home'} user/> */}
-			<AddGroup />
+
 			</>}
 			{!isAuthenticated &&
 			<>
