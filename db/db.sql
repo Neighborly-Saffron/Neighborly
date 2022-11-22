@@ -2,7 +2,7 @@ DROP TABLE IF EXISTS users cascade;
 
 CREATE TABLE users (
  id BIGSERIAL,
- authId VARCHAR,
+ authId VARCHAR UNIQUE,
  name VARCHAR,
  bio VARCHAR,
  pictureURL VARCHAR
