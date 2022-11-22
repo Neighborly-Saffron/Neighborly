@@ -7,8 +7,9 @@ const getAdminGroups = (req, res) => {
 
   const query = `SELECT json_agg (
 		              json_build_object(
-                    'groupName', name
-                  ) 
+                    'groupName', name,
+                    'groupPic', pictureURL
+                  )
 	              )AS admingroup
               FROM groups WHERE groups.adminID = 5`
 
