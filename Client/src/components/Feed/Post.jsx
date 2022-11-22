@@ -20,7 +20,7 @@ function Post({ postData }) {
   }
 
   return (
-    <div className="border-2 m-2 border-black bg-lighterblue">
+    <div className="border-2 m-2 border-black rounded bg-lighterblue">
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1' src={postData.pictureurl} alt={postData.name}></img>
         <div className="flex flex-col p-3">
