@@ -7,7 +7,8 @@ const getGroupEvents = (request, response) => {
         'name', name,
         'location', location,
         'description', description,
-        'pictureURL', pictureURL
+        'pictureURL', pictureURL,
+        'eventid', id
       )
       FROM event
   `
@@ -21,4 +22,21 @@ const getGroupEvents = (request, response) => {
     });
 }
 
-module.exports = { getGroupEvents };
+const checkAttending = (request, response) => {
+  let userID = request.params.userid
+  let eventID = request.params.eventid
+
+  var query = `
+    SELECT EXISTS(SELECT 1 FROM attending WHERE id_user=$1 AND id_event=$2)
+  `
+//WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
+  connectionPool
+    .query(query, [userID, eventID])
+    .then(res => response.send(res.rows))
+    .catch(err => {
+      console.error('Error checking attending', err.stack);
+      response.status(500);
+    });
+}
+
+module.exports = { getGroupEvents, checkAttending };

@@ -43,6 +43,7 @@ app.post('/addPost', groupPage.addPost)
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
+app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 
 //add new user
 app.post('/user', addNewUser.addNewUser);
