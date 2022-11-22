@@ -36,6 +36,9 @@ app.get('/profile/bio',profile.getUserProfile)
 // individual group page routes
 app.post('/addPost', groupPage.addPost)
 
+//group event
+app.get('/events', groupEvent.getGroupEvents)
+
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })

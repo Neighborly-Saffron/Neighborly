@@ -13,7 +13,7 @@ const getGroupEvents = (request, response) => {
   `
 //WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool
-    .query(query, [userId])
+    .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error executing to get related products', err.stack);

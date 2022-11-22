@@ -5,7 +5,7 @@ import EventItem from './EventItem.jsx'
 const { useState, useEffect } = React;
 
 function GroupEventList () {
-  const [events, setEvents] = useState([])
+  const [events, setEvents] = useState([1, 2, 3])
 
   const getEvents = () => {
     axios.get(`/events`)
@@ -22,7 +22,7 @@ function GroupEventList () {
       Group Event List
     </h3>
     {events.map((event, index) => {
-      return <EventItem />
+      return <EventItem key={index} />
     })}
   </div>)
 }
