@@ -1,8 +1,14 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import { useAuth0 } from '@auth0/auth0-react';
 
-const LoginButton = () => {
-  const { loginWithPopup, user, user_metadata } = useAuth0();
+const LoginButton = ({ onAuth }) => {
+  const { loginWithPopup, user, isAuthenticated } = useAuth0();
+
+  useEffect(() => {
+    if(isAuthenticated) {
+      onAuth(user)
+    }
+  }, [isAuthenticated])
 
   return (
     <button

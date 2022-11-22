@@ -13,13 +13,15 @@ function GroupPost () {
   const [tempMessage, setTempMessage] = useState('')
   const [user, setUser] = useState('4');
 
-  console.log('message: ', message)
-
-  const onFormSubmit = () => {
-    axios.post('/addPost', {user: user, post: message})
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err))
+  const postMessage = () => {
+    if (message.length > 0) {
+      axios.post('/addPost', {post: message, likes: 0, userId: user, groupId: 1})
+        .then((res) => console.log(res.data))
+        .catch((err) => console.log(err))
+    }
   }
+
+  useEffect(postMessage, [message]);
 
   return (
     <>
@@ -33,7 +35,7 @@ function GroupPost () {
         <form onSubmit={(e) => {
           e.preventDefault();
           setMessage(tempMessage);
-          onFormSubmit();
+          setTempMessage('')
           }}>
           <textarea className='w-full rounded border-2 border-gray-200' rows='3' type='text' placeholder='Write something...' value={tempMessage} onChange={(e) => setTempMessage(e.target.value)}></textarea>
           <input className='rounded border-2 px-1' type='submit' value='Post'></input>
