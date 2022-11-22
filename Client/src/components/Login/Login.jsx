@@ -9,11 +9,10 @@ const { useState, useEffect } = React;
 
 function Login ({onAuth}) {
   return (
-    <div className="border-2 border-cyan-800 m-5 p-1">
+    <div className="border-2 border-cyan-800 p-1">
       <h2>LOGIN</h2>
       <LoginButton onAuth={onAuth}/>
       <SignUpButton onAuth={onAuth}/>
-      <LogoutButton />
     </div>
   )
 }

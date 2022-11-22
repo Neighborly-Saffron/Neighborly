@@ -27,7 +27,7 @@ const getUserProfile = (req, res) => {
   connectionPool
     .query(query, [userId])
       .then(result => {
-        console.log('result:', result)
+        // console.log('result:', result)
         res.send(result.rows[0].profile)
       })
       .catch(err => {
