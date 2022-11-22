@@ -16,8 +16,8 @@ const { useState, useEffect } = React;
 function App() {
 
 	const [userData, setUserData] = useState({});
-	const [userId, setUserId] = useState();
-
+	const [userId, setUserId] = useState(0);
+	const [loading, setLoading] = useState(true);
 	const onAuth = (data) => {
 		setUserData(data);
 	};
@@ -34,6 +34,9 @@ function App() {
 				axios.get(`/user?authId=${userData.sub}`)
 				.then((data) => setUserId(data.data.rows[0].id))
 			})
+			.then(() => {
+				setLoading(false);
+			})
 			.catch((err) => console.log(err));
 		}
 	}, [userData])
@@ -41,6 +44,8 @@ function App() {
 	return (
 		<>
 			<Login onAuth={onAuth}/>
+			{loading ? null :
+			<>
 			<Header />
       <Routes>
       <Route path="/" element={<Home userId={userId} />}/>
@@ -50,6 +55,7 @@ function App() {
 			<Feed path={'home'}/>
 			<AddGroup />
       <Group />
+			</>}
 		</>
 	);
 }
