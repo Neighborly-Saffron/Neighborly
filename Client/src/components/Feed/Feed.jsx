@@ -4,7 +4,7 @@ import Post from './Post.jsx'
 
 const { useState, useEffect } = React;
 
-function Feed ({ path }) {
+function Feed ({ userId ,path }) {
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
