@@ -22,7 +22,7 @@ app.get('/usergroups/:userId', groups.getUserGroups);
 //feed routes
 app.get('/posts/home/:userId', feed.getHomeFeed);
 app.get('/posts/profile/:userId', feed.getProfileFeed);
-app.get('/posts/group/:userId', feed.getGroupFeed);
+app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 
 //add group

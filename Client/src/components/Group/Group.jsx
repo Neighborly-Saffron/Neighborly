@@ -16,7 +16,7 @@ function Group ({ userId }) {
       <div className='flex'>
         <div className='flex-auto flex-col'>
           <CreateGroupPost />
-          <Feed userId={userId} path={'group'} />
+          <Feed userId={1} path={'group'} />
         </div>
         <div className='flex flex-col'>
           <GroupEventMap />

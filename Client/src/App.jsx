@@ -48,6 +48,17 @@ function App() {
 		<>
 			<Login onAuth={onAuth} />
 			{loading ? null :
+			<>
+			<Header />
+      <Routes>
+      <Route path="/" element={<Home userId={userId} />}/>
+      <Route path="/groups" element={<Groups />}/>
+      <Route path="/profile" element={<Profile userId={userId} />}/>
+      </Routes>
+			{/* <Feed path={'home'} user/> */}
+			<AddGroup />
+      <Group userId={userId} />
+			</>}
 				<>
 					<Header />
 					<Routes>
