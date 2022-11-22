@@ -1,15 +1,22 @@
-import React from 'react';
+import React from 'react'
 import GoogleMap from 'google-map-react'
-
+import Marker from './Marker.jsx'
 const { useState, useEffect } = React;
 
-function Map () {
+function Map (props) {
+
+  let [mapLng, setMapLng] = useState()
+  let [mapLat, setMapLat] = useState()
+
   return (
   <div className="map" style={{width:'30vw', height:'30vh'}}>
       <GoogleMap
-        apiKey={''}
-        center= {[40.757901544177926, -73.98546651170592]}
+        apiKey={[process.env.googleAPI]}
+        center= {props.mapStart.latlng}
         zoom= {9}>
+          {props.eventList.events.map((event)=> {
+            return <Marker name={event.name} lat={event.lat} lng={event.lng}></Marker>
+          })}
       </GoogleMap>
   </div>
   )
