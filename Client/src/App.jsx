@@ -18,6 +18,8 @@ function App() {
 	const [userData, setUserData] = useState({});
 	const [userId, setUserId] = useState(0);
 	const [loading, setLoading] = useState(true);
+	const [userGroups, setUserGroups] = useState([]);
+
 	const onAuth = (data) => {
 		setUserData(data);
 	};
@@ -38,6 +40,17 @@ function App() {
 		}
 	}, [userData])
 
+	useEffect (() => {
+		if (userId) {
+			axios.get(`/usergroups/${userId}`)
+			.then((res) => {
+				setUserGroups(res.data);
+			})
+			.then((res) => setLoading(false))
+			.catch((err) => console.log('error getting user groups data'))
+		}
+	}, [userId])
+
 	useEffect(() => {
     if(isAuthenticated) {
       onAuth(user)
@@ -48,17 +61,16 @@ function App() {
 		<>
 			{isAuthenticated &&
 			<>
-				<Header />
-				<Routes>
-				<Route path="/" element={<Home userId={userId} />}/>
-				<Route path="/groups" element={<Groups userId={userId} />}/>
-				<Route path="/profile" element={<Profile userId={userId} />}/>
-				<Route path="/group/:id" element={<Group userId={userId} />}/>
-        <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
-				</Routes>
-				{/* <Feed path={'home'} user/> */}
-				<AddGroup />
-				<Group />
+			<Header />
+      <Routes>
+      <Route path="/" element={<Home userId={userId} userGroups={userGroups} />}/>
+      <Route path="/groups" element={<Groups userGroups={userGroups} />}/>
+      <Route path="/profile" element={<Profile userId={userId} />}/>
+      <Route path="/group/:id" element={<Group userId={userId} />}/>
+      <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
+      </Routes>
+			{/* <Feed path={'home'} user/> */}
+			<AddGroup />
 			</>}
 			{!isAuthenticated &&
 			<>
