@@ -1,6 +1,7 @@
 import React from 'react'
 import GoogleMap from 'google-map-react'
 import Marker from './Marker.jsx'
+import Calendar from './Calendar.jsx'
 const { useState, useEffect } = React;
 
 function Map (props) {

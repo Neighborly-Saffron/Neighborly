@@ -53,6 +53,8 @@ function App() {
 				<Route path="/" element={<Home userId={userId} />}/>
 				<Route path="/groups" element={<Groups userId={userId} />}/>
 				<Route path="/profile" element={<Profile userId={userId} />}/>
+				<Route path="/group/:id" element={<Group userId={userId} />}/>
+        <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
 				</Routes>
 				{/* <Feed path={'home'} user/> */}
 				<AddGroup />
