@@ -1,9 +1,12 @@
 const connectionPool = require('../../db/pool.js')
+console.log('it got in profile.js')
+
 
 const getUserProfile = (req, res) => {
   console.log('it got in getUserProfile')
+  console.log('req.query:', req.query)
   console.log('req.params:', req.params)
-  var userId = request.params.userId;
+  const userId = req.query.userId;
   // console.log('userId: ', userId)
   // const userId = request.params.userID;
   // console.log('it got in getUserProfile')
@@ -16,14 +19,17 @@ const getUserProfile = (req, res) => {
       (
         'name', name,
         'bio', bio,
-        'pictureURL', pictureURL,
-      )
+        'pictureURL', pictureURL
+      ) AS profile
       FROM users WHERE users.id = $1
   `
 
   connectionPool
     .query(query, [userId])
-      .then(res => res.send(res.rows))
+      .then(result => {
+        console.log('result:', result)
+        res.send(result.rows[0].profile)
+      })
       .catch(err => {
         console.error('db failed to fetch users data', err);
         res.status(500);
@@ -32,4 +38,6 @@ const getUserProfile = (req, res) => {
 }
 
 
-module.exports = { getUserProfile };
+module.exports = {
+  getUserProfile
+ };

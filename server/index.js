@@ -25,7 +25,7 @@ app.get('/getGroups', groupSearch.getInitialGroups)
 app.post('/searchGroups', groupSearch.searchGroups);
 
 //profile routes
-app.get('/profile/bio',profile.getUserProfile)
+app.get('/profile/bio', profile.getUserProfile)
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
