@@ -29,8 +29,9 @@ app.put('/posts', feed.likePost);
 app.post('/newGroup', addGroup.insertGroup)
 
 //detailed group list/search routes
-app.get('/getGroups', groupSearch.getInitialGroups)
+app.get('/getGroups', groupSearch.getInitialGroups);
 app.post('/searchGroups', groupSearch.searchGroups);
+app.post('/requestJoin', groupSearch.requestGroup);
 
 //profile route
 app.get('/profile/bio', profile.getUserProfile)
@@ -45,9 +46,20 @@ app.post('/addPost', groupPage.addPost)
 app.get('/events', groupEvent.getGroupEvents)
 app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 
+
+app.get('/*', function(req, res) {
+  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
+    if (err) {
+      res.status(500).send(err)
+    }
+  })
+})
+
 //add new user
 app.post('/user', addNewUser.addNewUser);
+
 app.get('/user', addNewUser.getNewUser);
+
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

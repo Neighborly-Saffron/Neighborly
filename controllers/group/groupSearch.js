@@ -1,6 +1,5 @@
 const connectionPool = require('../../db/pool.js')
 
-
 const getInitialGroups = (req, res) => {
 	let query = `SELECT json_build_object(
     'group_id', id,
@@ -27,7 +26,7 @@ const searchGroups = (req, res) => {
     'description', description,
     'pictureurl', pictureurl,
     'admin', (SELECT name from users where id = adminid)
-  ) FROM groups WHERE name LIKE '%${req.body.query}%'`;
+  ) FROM groups WHERE name LIKE '%${searchTerm}%'`;
 
 	connectionPool
 		.query(query)
@@ -35,8 +34,24 @@ const searchGroups = (req, res) => {
 			res.send(data.rows);
 		})
 		.catch((err) => {
+      console.log(err);
 			res.status(500).send(err);
 		});
 };
 
-module.exports = { getInitialGroups, searchGroups};
+const requestGroup = (req, res) => {
+  let requestInfo = req.body.info;
+
+  let query =`INSERT INTO requestjoin (id_user, id_group) VALUES ($1, $2)`
+  connectionPool.query(query, [requestInfo.user, requestInfo.group])
+  .then(data => {
+    console.log('inserted')
+    res.send(data.rows);
+  })
+  .catch(err => {
+    console.log(err);
+    res.status(500).send(err)
+  })
+}
+
+module.exports = { getInitialGroups, searchGroups, requestGroup};

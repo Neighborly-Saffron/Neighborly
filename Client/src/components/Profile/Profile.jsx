@@ -4,7 +4,6 @@ import ProfileImage from './ProfileImage.jsx'
 import axios from 'axios';
 
 const { useState, useEffect } = React;
-
 function Profile () {
 
   return (<div className="border-2 border-orange-600 m-5 p-1">
@@ -15,5 +14,4 @@ function Profile () {
     {/* <ProfileImage></ProfileImage> */}
   </div>)
 }
-
 export default Profile;
