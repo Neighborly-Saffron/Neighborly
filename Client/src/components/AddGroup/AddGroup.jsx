@@ -35,7 +35,7 @@ function AddGroup() {
             <label className="mb-2 font-bold text-lg text-grey-darkest">Photo URL</label>
             <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={picURL} onChange={(e) => { setPicURL(e.target.value) }} />
           </div>
-          <button className="block bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 uppercase text-lg mx-auto p-4 rounded" type="submit">Create Group</button>
+          <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white uppercase text-lg mx-auto p-4 rounded-full" type="submit">Create Group</button>
         </form>
       </div>
     </div>

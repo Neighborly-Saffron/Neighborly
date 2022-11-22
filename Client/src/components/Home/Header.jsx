@@ -1,4 +1,5 @@
 import React from 'react';
+import LogoutButton from '../Login/LogoutButton.jsx';
 import { Link } from 'react-router-dom';
 const { useState, useEffect } = React;
 
@@ -17,7 +18,9 @@ function Header() {
 				<li className="hover:text-darkerblue">
 					<Link to="profile">Profile</Link>
 				</li>
-				<li>Search</li>
+				<li>
+					<LogoutButton />
+				</li>
 			</ul>
 		</div>
 	);

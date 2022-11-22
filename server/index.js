@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
-app.get('/posts/home', feed.getHomeFeed);
-app.get('/posts/profile', feed.getProfileFeed);
-app.get('/posts/group', feed.getGroupFeed);
+app.get('/posts/home/:userId', feed.getHomeFeed);
+app.get('/posts/profile/:userId', feed.getProfileFeed);
+app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 
 //add group
@@ -37,10 +37,15 @@ app.post('/requestJoin', groupSearch.requestGroup);
 app.get('/profile/bio', profile.getUserProfile)
 
 //admin group route
-app.get('/GroupAdmin',adminGroup.getAdminGroups )
+app.get('/GroupAdmin',adminGroup.getAdminGroups)
+
+//request-to-join groups route
+app.get('/requestedGroups', adminGroup.getRequestedGroups)
 
 // individual group page routes
+app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
+
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
@@ -48,6 +53,11 @@ app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 app.post('/events/attend', groupEvent.attendEvent)
 app.post('/events/cancel', groupEvent.cancelAttend)
 
+//add new user
+app.post('/user', addNewUser.addNewUser);
+app.get('/user', addNewUser.getNewUser);
+
+//MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {
@@ -55,12 +65,6 @@ app.get('/*', function(req, res) {
     }
   })
 })
-
-//add new user
-app.post('/user', addNewUser.addNewUser);
-
-app.get('/user', addNewUser.getNewUser);
-
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
