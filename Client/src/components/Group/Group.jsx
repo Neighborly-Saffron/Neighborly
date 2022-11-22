@@ -3,6 +3,7 @@ import GroupEventMap from './GroupEventMap.jsx'
 import GroupEventList from './GroupEventList.jsx'
 import CreateEventModal from './CreateEventModal.jsx'
 import CreateGroupPost from './CreateGroupPost.jsx'
+import GroupChat from './GroupChat.jsx'
 import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
@@ -22,6 +23,7 @@ function Group () {
           <GroupEventMap />
           <CreateEventModal />
           <GroupEventList />
+          <GroupChat />
         </div>
       </div>
     </div>
