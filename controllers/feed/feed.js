@@ -2,6 +2,8 @@ const connectionPool = require('../../db/pool.js')
 
 //the most recent posts from all of the user’s various groups
 const getHomeFeed = (request, response) => {
+  let userId = request.params.userId
+
   var query = `SELECT json_build_object(
                     'postid', id,
                     'message', message,
@@ -23,6 +25,8 @@ const getHomeFeed = (request, response) => {
 
 //returns the most recent posts from that group
 const getGroupFeed = (request, response) => {
+  let userId = request.params.userId
+
   var query = `SELECT json_build_object(
                     'postid', id,
                     'message', message,
@@ -44,6 +48,8 @@ const getGroupFeed = (request, response) => {
 
 //the most recent posts from all of the user’s various groups
 const getProfileFeed = (request, response) => {
+  let userId = request.params.userId
+
   var query = `SELECT json_build_object(
                     'postid', id,
                     'message', message,
