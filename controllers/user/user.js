@@ -2,9 +2,10 @@ const connectionPool = require('../../db/pool.js')
 
 const addNewUser = (req, res) => {
 
-  let query = `INSERT into users (authId, name, bio, pictureUrl)
-  SELECT '${req.body.authId}', '${req.body.name}', '${req.body.bio}', '${req.body.pictureUrl}'
-  WHERE NOT EXISTS (SELECT authId FROM users WHERE authId = '${req.body.authId}');`
+  let query = `INSERT INTO users (authid, name, bio, pictureurl)
+  VALUES ('${req.body.authId}', '${req.body.name}', '${req.body.bio}', '${req.body.pictureUrl}')
+  ON CONFLICT (authid) DO NOTHING;
+  `
 
   connectionPool.query(query)
     .then((data) => res.status(200).end())

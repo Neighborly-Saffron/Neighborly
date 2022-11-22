@@ -27,9 +27,11 @@ function App() {
 			axios.post('/user', {
 				authId: userData.sub,
 				name: `${userData.given_name} ${userData.family_name}`,
-				bio: '',
+				bio: 'howdy',
 				pictureUrl: userData.picture
 			})
+			.then((response) => console.log(response))
+			.catch((err) => console.log(err));
 		}
 
 	}, [userData])
