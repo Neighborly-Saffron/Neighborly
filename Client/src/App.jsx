@@ -34,12 +34,15 @@ function App() {
 				axios.get(`/user?authId=${userData.sub}`)
 				.then((data) => setUserId(data.data.rows[0].id))
 			})
-			.then(() => {
-				setLoading(false);
-			})
 			.catch((err) => console.log(err));
 		}
 	}, [userData])
+
+	useEffect (() => {
+		if (userId) {
+			setLoading(false)
+		}
+	}, [userId])
 
 	return (
 		<>
