@@ -59,7 +59,7 @@ const cancelAttend = (request, response) => {
   let userID = request.body.userID
   let eventID = request.body.eventID
 
-  var query = `INSERT FROM attending WHERE id_user = $1 AND id_event = $2`
+  var query = `DELETE FROM attending WHERE id_user = $1 AND id_event = $2`
 
 //WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool

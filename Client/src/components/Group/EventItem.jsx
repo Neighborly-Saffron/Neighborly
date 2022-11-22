@@ -45,9 +45,9 @@ function EventItem({ event }) {
       <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
       {
       attending ?
-      <button className="bg-darkerblue hover:bg-lighterblue hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2">Cancel</button>
+      <button className="bg-darkerblue hover:bg-lighterblue hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{cancelAttend()}}>Cancel</button>
       :
-      <button className="bg-darkerblue hover:bg-lighterblue hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2">Attend</button>
+      <button className="bg-darkerblue hover:bg-lighterblue hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{attendEvent()}}>Attend</button>
       }
     </div>
 
