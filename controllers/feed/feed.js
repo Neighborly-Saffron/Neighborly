@@ -3,7 +3,7 @@ const connectionPool = require('../../db/pool.js')
 //the most recent posts from all of the user’s various groups
 const getHomeFeed = (request, response) => {
   let userId = request.params.userId
-console.log(userId);
+
   var query = `SELECT json_build_object(
                     'postid', id,
                     'message', message,
@@ -12,10 +12,10 @@ console.log(userId);
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4) ORDER BY posted_at DESC`;
-//USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
+                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = $1) ORDER BY posted_at DESC`;
+
   connectionPool
-    .query(query)
+    .query(query, [userId])
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error getting home feed', err.stack);
@@ -25,7 +25,7 @@ console.log(userId);
 
 //returns the most recent posts from that group
 const getGroupFeed = (request, response) => {
-  let userId = request.params.userId
+  let groupId = request.params.groupId
 
   var query = `SELECT json_build_object(
                     'postid', id,
@@ -35,10 +35,10 @@ const getGroupFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = 1 ORDER BY posted_at DESC`;
-//GROUP ID IS HARDCODED AND WILL NEED TO BE UPDATED
+                                        )FROM post WHERE groupid = $1 ORDER BY posted_at DESC`;
+//GROUP ID IS WRITTEN AS ONE AS A PROP, WILL NEED TO BE UPDATED WHEN IT IS PASSED TO GROUP
   connectionPool
-    .query(query)
+    .query(query, [groupId])
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error getting group feed', err.stack);
@@ -49,6 +49,7 @@ const getGroupFeed = (request, response) => {
 //the most recent posts from all of the user’s various groups
 const getProfileFeed = (request, response) => {
   let userId = request.params.userId
+  console.log("profile feed", userId)
 
   var query = `SELECT json_build_object(
                     'postid', id,
@@ -58,10 +59,10 @@ const getProfileFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE userid = 1 ORDER BY posted_at DESC`;
-//USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
+                                        )FROM post WHERE userid = $1 ORDER BY posted_at DESC`;
+
   connectionPool
-    .query(query)
+    .query(query, [userId])
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error getting profile feed', err.stack);
