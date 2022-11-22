@@ -37,7 +37,7 @@ const getGroupFeed = (request, response) => {
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error getting home feed', err.stack);
+      console.error('Error getting group feed', err.stack);
       response.status(500);
     });
 }
@@ -58,7 +58,7 @@ const getProfileFeed = (request, response) => {
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error getting home feed', err.stack);
+      console.error('Error getting profile feed', err.stack);
       response.status(500);
     });
 }
@@ -72,7 +72,7 @@ const likePost = (request, response) => {
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error liking post', err.stack);
+      console.error('Error liking post in feed', err.stack);
       response.status(500);
     });
 }
