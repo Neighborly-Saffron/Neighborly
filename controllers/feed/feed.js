@@ -3,7 +3,7 @@ const connectionPool = require('../../db/pool.js')
 //the most recent posts from all of the user’s various groups
 const getHomeFeed = (request, response) => {
   let userId = request.params.userId
-
+console.log(userId);
   var query = `SELECT json_build_object(
                     'postid', id,
                     'message', message,
