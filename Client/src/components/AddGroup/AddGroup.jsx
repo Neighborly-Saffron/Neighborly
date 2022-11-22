@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const { useState, useEffect } = React;
 
-function AddGroup() {
+function AddGroup({ switchModal }) {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [picURL, setPicURL] = useState('')
@@ -13,13 +13,15 @@ function AddGroup() {
     e.preventDefault()
     axios.post('/newGroup', { name, description, picURL, adminid: 4 }).then(() => {
       console.log('sent to db')
+      switchModal()
     }).catch((err) => {
       console.log('error adding group', err)
+      switchModal()
     })
   }
 
   return (
-    <div className="flex items-center h-screen w-full">
+    <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
         <h1 className="block w-full text-center text-2xl mx-auto p-4">Create Group</h1>
         <form className="mb-4" onSubmit={(e) => { newGroupSubmit(e) }}>
@@ -29,7 +31,7 @@ function AddGroup() {
           </div>
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Group Description</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={description} onChange={(e) => { setDescription(e.target.value) }} />
+            <textarea className="border py-2 px-3 text-grey-darkest" required={"required"} value={description} onChange={(e) => { setDescription(e.target.value) }} />
           </div>
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Photo URL</label>
