@@ -40,13 +40,21 @@ app.get('/profile/bio', profile.getUserProfile)
 app.get('/GroupAdmin',adminGroup.getAdminGroups )
 
 // individual group page routes
+app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
+
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
 app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 app.post('/events/attend', groupEvent.attendEvent)
 app.post('/events/cancel', groupEvent.cancelAttend)
+
+
+//add new user
+app.post('/user', addNewUser.addNewUser);
+
+app.get('/user', addNewUser.getNewUser);
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
@@ -55,12 +63,6 @@ app.get('/*', function(req, res) {
     }
   })
 })
-
-//add new user
-app.post('/user', addNewUser.addNewUser);
-
-app.get('/user', addNewUser.getNewUser);
-
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)

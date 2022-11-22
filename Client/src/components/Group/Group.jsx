@@ -3,6 +3,7 @@ import GroupEventMap from './GroupEventMap.jsx'
 import GroupEventList from './GroupEventList.jsx'
 import CreateEventModal from './CreateEventModal.jsx'
 import CreateGroupPost from './CreateGroupPost.jsx'
+import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
@@ -13,6 +14,7 @@ function Group () {
       <h2>
         GROUP
       </h2>
+      <GroupDescription />
       <div className='flex'>
         <div className='flex-auto flex-col'>
           <CreateGroupPost />
