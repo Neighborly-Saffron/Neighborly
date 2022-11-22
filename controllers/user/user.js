@@ -8,8 +8,14 @@ const addNewUser = (req, res) => {
   `
 
   connectionPool.query(query)
-    .then((data) => res.status(200).end())
+    .then((data) => res.send(data))
     .catch((err) => console.log(err))
 }
 
-module.exports = { addNewUser }
+const getNewUser = (req, res) => {
+  connectionPool.query(`SELECT id from users WHERE authid = '${req.query.authId}'`)
+  .then((data) => res.send(data))
+  .catch((err) => console.log(err))
+}
+
+module.exports = { addNewUser, getNewUser }
