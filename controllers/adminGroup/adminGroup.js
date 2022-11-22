@@ -24,6 +24,30 @@ const getAdminGroups = (req, res) => {
             });
 }
 
+const getRequestedGroups = (req, res) => {
+
+  // console.log('it got in Controller>getAdminGroups')
+  // console.log('req.query inside Controller>getAdminGroups:', req.query)
+
+  const query = `SELECT json_agg (
+		             id_group
+	              )
+              FROM requestjoin`
+
+  return connectionPool.query(query)
+            .then(result => {
+              // console.log('result in getAdminGroups:', result)
+              res.send(result.rows[0].admingroup)
+            })
+            .catch(err => {
+              console.error('Error executing to add group', err.message);
+              res.status(500);
+            });
+}
+
+
+
 module.exports = {
-  getAdminGroups
+  getAdminGroups,
+  getRequestedGroups
  }
