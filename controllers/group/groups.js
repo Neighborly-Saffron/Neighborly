@@ -18,7 +18,7 @@ const getUserGroups = (request, response) => {
     .query(query, [userId])
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error executing to get related products', err.stack);
+      console.error('Error executing to get users groups', err.stack);
       response.status(500);
     });
 }
