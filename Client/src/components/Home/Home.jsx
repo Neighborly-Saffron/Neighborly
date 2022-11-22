@@ -3,6 +3,7 @@ import Feed from '../Feed/Feed.jsx';
 import GroupAdmin from './GroupAdmin.jsx';
 import Map from './Map.jsx';
 import UserGroupList from './UserGroupList.jsx';
+import Calendar from './Calendar.jsx';
 
 const { useState, useEffect } = React;
 
@@ -15,6 +16,7 @@ function Home ({ userId }) {
       HOME
     </h2>
     <UserGroupList />
+    <Calendar/>
     <Map mapStart={mapStart}eventList={eventList}/>
     <GroupAdmin />
     <Feed userId={userId} path={'home'}/>
