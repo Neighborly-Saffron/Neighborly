@@ -6,6 +6,7 @@ const profile = require('../controllers/profile/profile.js')
 const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
+const adminGroup = require('../controllers/adminGroup/adminGroup.js')
 const path = require("path");
 
 const express = require('express')
@@ -36,8 +37,11 @@ app.get('/getGroups', groupSearch.getInitialGroups);
 app.post('/searchGroups', groupSearch.searchGroups);
 app.post('/requestJoin', groupSearch.requestGroup);
 
-//profile routes
-app.get('/profile/bio',profile.getUserProfile)
+//profile route
+app.get('/profile/bio', profile.getUserProfile)
+
+//admin group route
+app.get('/GroupAdmin',adminGroup.getAdminGroups )
 
 // individual group page routes
 app.post('/addPost', groupPage.addPost)
@@ -56,7 +60,11 @@ app.get('/*', function(req, res) {
 =======
 //add new user
 app.post('/user', addNewUser.addNewUser);
+<<<<<<< HEAD
 >>>>>>> d32e255c05e1d80a1b20893b0dfa780ddfdbaa82
+=======
+app.get('/user', addNewUser.getNewUser);
+>>>>>>> bf8ad87ff2629e7bb3a0b1800bcff44ddda31329
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
