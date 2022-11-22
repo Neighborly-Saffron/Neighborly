@@ -32,16 +32,17 @@ function App() {
 			})
 			.then((response) => {
 				axios.get(`/user?authId=${userData.sub}`)
-				.then((data) => setUserId(data.data.rows[0].id))
+				.then((data) => {console.log(data); setUserId(data.data.rows[0].id) })
 			})
 			.catch((err) => console.log(err));
 		}
 	}, [userData])
 
 	console.log(userData)
+	console.log(userId)
 	return (
 		<>
-			<Login onAuth={onAuth}/>
+			<Login path="/login" onAuth={onAuth}/>
 			<Header />
       <Routes>
       <Route path="/" element={<Home userId={userId} />}/>
