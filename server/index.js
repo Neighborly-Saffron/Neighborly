@@ -45,7 +45,8 @@ app.post('/addPost', groupPage.addPost)
 //group event
 app.get('/events', groupEvent.getGroupEvents)
 app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
-
+app.post('/events/attend', groupEvent.attendEvent)
+app.post('/events/cancel', groupEvent.cancelAttend)
 
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {

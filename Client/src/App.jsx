@@ -10,6 +10,7 @@ import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import AddGroup from './components/AddGroup/AddGroup.jsx'
+import ModalTemplate from './components/Modals/ModalTemplate.jsx'
 const { useState, useEffect } = React;
 
 function App() {
@@ -43,9 +44,9 @@ function App() {
 			<Login onAuth={onAuth}/>
 			<Header />
       <Routes>
-      <Route path="/" element={<Home />}/>
+      <Route path="/" element={<Home userId={userId} />}/>
       <Route path="/groups" element={<Groups userId={userId} />}/>
-      <Route path="/profile" element={<Profile />}/>
+      <Route path="/profile" element={<Profile userId={userId} />}/>
       </Routes>
 			<Feed path={'home'}/>
 			<AddGroup />
