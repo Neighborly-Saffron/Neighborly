@@ -8,7 +8,7 @@ const getGroupEvents = (request, response) => {
         'location', location,
         'description', description,
         'pictureURL', pictureURL,
-        'event', id
+        'eventid', id
       )
       FROM event
   `
@@ -23,18 +23,18 @@ const getGroupEvents = (request, response) => {
 }
 
 const checkAttending = (request, response) => {
-  let userID = request.query.userid
-  let groupID = requer.query.groupid
+  let userID = request.params.userid
+  let eventID = request.params.eventid
 
   var query = `
-    SELECT EXISTS(SELECT 1 FROM attending WHERE id_user=4 AND id_event=1)
+    SELECT EXISTS(SELECT 1 FROM attending WHERE id_user=$1 AND id_event=$2)
   `
 //WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool
-    .query(query)
+    .query(query, [userID, eventID])
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error executing to get related products', err.stack);
+      console.error('Error checking attending', err.stack);
       response.status(500);
     });
 }
