@@ -20,9 +20,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
-app.get('/posts/home', feed.getHomeFeed);
-app.get('/posts/profile', feed.getProfileFeed);
-app.get('/posts/group', feed.getGroupFeed);
+app.get('/posts/home/:userId', feed.getHomeFeed);
+app.get('/posts/profile/:userId', feed.getProfileFeed);
+app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 
 //add group
@@ -50,12 +50,11 @@ app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 app.post('/events/attend', groupEvent.attendEvent)
 app.post('/events/cancel', groupEvent.cancelAttend)
 
-
 //add new user
 app.post('/user', addNewUser.addNewUser);
-
 app.get('/user', addNewUser.getNewUser);
 
+//MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {

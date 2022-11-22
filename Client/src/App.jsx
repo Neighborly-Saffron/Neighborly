@@ -10,13 +10,14 @@ import Home from './components/Home/Home.jsx';
 import Login from './components/Login/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import AddGroup from './components/AddGroup/AddGroup.jsx'
+import ModalTemplate from './components/Modals/ModalTemplate.jsx'
 const { useState, useEffect } = React;
 
 function App() {
 
 	const [userData, setUserData] = useState({});
-	const [userId, setUserId] = useState();
-
+	const [userId, setUserId] = useState(0);
+	const [loading, setLoading] = useState(true);
 	const onAuth = (data) => {
 		setUserData(data);
 	};
@@ -37,18 +38,27 @@ function App() {
 		}
 	}, [userData])
 
+	useEffect (() => {
+		if (userId) {
+			setLoading(false)
+		}
+	}, [userId])
+
 	return (
 		<>
 			<Login onAuth={onAuth}/>
+			{loading ? null :
+			<>
 			<Header />
       <Routes>
-      <Route path="/" element={<Home />}/>
-      <Route path="/groups" element={<Groups userId={userId} />}/>
-      <Route path="/profile" element={<Profile />}/>
+      <Route path="/" element={<Home userId={userId} />}/>
+      <Route path="/groups" element={<Groups />}/>
+      <Route path="/profile" element={<Profile userId={userId} />}/>
       </Routes>
-			<Feed path={'home'}/>
+			{/* <Feed path={'home'} user/> */}
 			<AddGroup />
-      <Group />
+      <Group userId={userId} />
+			</>}
 		</>
 	);
 }
