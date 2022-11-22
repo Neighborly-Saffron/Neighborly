@@ -10,7 +10,7 @@ function IndividualGroupInGroupList ({ group }) {
         <div className='flex flex-col p-3'>
           <div className='font-bold hover:text-darkerblue'>
             {/* Change this to {`/group/${groupId}} */}
-            <Link to="/group/1">{group.name}</Link>
+            <Link to={`/group/${group.groupId}`}>{group.name}</Link>
           </div>
           <div className='text-xs'>
             {group.description}
