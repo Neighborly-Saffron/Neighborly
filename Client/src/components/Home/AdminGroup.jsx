@@ -1,9 +1,16 @@
 import React from 'react';
 import axios from 'axios'
 const { useState, useEffect } = React;
+import ModalTemplate from '../Modals/ModalTemplate.jsx'
+
 
 const AdminGroup = ({group}) => {
-  console.log('group.groupPic:', group.groupPic)
+  // console.log('group.groupPic:', group.groupPic)
+  const [showModal, setShowModal] = useState(false);
+
+  
+
+
   return (
     <>
     {/* <div>
@@ -11,17 +18,17 @@ const AdminGroup = ({group}) => {
     </div>
     <img className='w-20 h-20' src=
       {group.groupPic}></img> */}
-<div class="my-6 inline-flex relative w-fit">
+
+
+
+
+
+{/* <div class="my-6 inline-flex relative w-fit">
   <div class="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-500 text-white rounded-full z-10">writing…</div>
   <div class="w-24 h-24">
     <img src="https://mdbootstrap.com/img/new/avatars/8.jpg" class="h-full w-full max-w-full object-cover rounded-lg"/>
   </div>
-</div>
-
-<div class="inline-flex relative w-fit">
-  <div class="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-indigo-700 text-white rounded-full z-10">99+</div>
-    <button type="button" class="inline-block px-7 py-3 bg-blue-600 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-blue-700 hover:shadow-lg focus:bg-blue-700 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-blue-800 active:shadow-lg transition duration-150 ease-in-out">E-mails</button>
-</div>
+</div> */}
 
 
 
@@ -43,10 +50,7 @@ const AdminGroup = ({group}) => {
 
 
 
-
-
-
-
+<ModalTemplate></ModalTemplate>
 
 <div class="flex justify-center">
   <div class="bg-white rounded-lg border border-gray-200 w-96 text-gray-900">
@@ -54,7 +58,7 @@ const AdminGroup = ({group}) => {
 
 
 <div class="my-6 inline-flex relative w-fit">
-  <div class="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-blue-500 text-white rounded-full z-10">writing…</div>
+  <div class="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2 rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap align-baseline font-bold bg-red-500 text-red rounded-full z-10">writing…</div>
   <div class="w-24 h-24">
     <img src={group.groupPic} class="h-full w-full max-w-full object-cover rounded-lg"/>
   </div>
