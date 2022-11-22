@@ -30,7 +30,9 @@ function App() {
 				bio: 'howdy',
 				pictureUrl: userData.picture
 			})
-			.then((response) => console.log(response))
+			.then((response) => {
+				axios.get(`/user?authId=${userData.sub}`).then((data) => console.log(data))
+			})
 			.catch((err) => console.log(err));
 		}
 

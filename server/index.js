@@ -42,6 +42,7 @@ app.get('/events', groupEvent.getGroupEvents)
 
 //add new user
 app.post('/user', addNewUser.addNewUser);
+app.get('/user', addNewUser.getNewUser);
 
 app.listen(port, () => {
   console.log(`App running on port ${port}.`)
