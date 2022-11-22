@@ -18,6 +18,8 @@ function App() {
 	const [userData, setUserData] = useState({});
 	const [userId, setUserId] = useState(0);
 	const [loading, setLoading] = useState(true);
+	const [userGroups, setUserGroups] = useState([]);
+
 	const onAuth = (data) => {
 		setUserData(data);
 	};
@@ -40,7 +42,12 @@ function App() {
 
 	useEffect (() => {
 		if (userId) {
-			setLoading(false)
+			axios.get(`/usergroups/${userId}`)
+			.then((res) => {
+				setUserGroups(res.data);
+			})
+			.then((res) => setLoading(false))
+			.catch((err) => console.log('error getting user groups data'))
 		}
 	}, [userId])
 
@@ -51,8 +58,8 @@ function App() {
 			<>
 			<Header />
       <Routes>
-      <Route path="/" element={<Home userId={userId} />}/>
-      <Route path="/groups" element={<Groups />}/>
+      <Route path="/" element={<Home userId={userId} userGroups={userGroups} />}/>
+      <Route path="/groups" element={<Groups userGroups={userGroups} />}/>
       <Route path="/profile" element={<Profile userId={userId} />}/>
       <Route path="/group/:id" element={<Group userId={userId} />}/>
       <Route path="/groups/group/:id" element={<Group userId={userId} />}/>

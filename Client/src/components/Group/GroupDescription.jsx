@@ -3,8 +3,7 @@ import axios from 'axios';
 
 const { useState, useEffect } = React;
 
-function GroupDescription () {
-  const [groupId, setGroupId] = useState('1');
+function GroupDescription ( { groupId }) {
   const [groupDescription, setGroupDescription] = useState()
 
   const getGroupDescription = () => {

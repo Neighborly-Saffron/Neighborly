@@ -2,20 +2,7 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import IndividualGroupInGroupList from './IndividualGroupInGroupList.jsx';
 
-function UserGroupList () {
-  const [userId, setUserId] = useState('4');
-  const [userGroups, setUserGroups] = useState([]);
-
-  const getUserGroups = () => {
-    axios.get(`/usergroups/${userId}`)
-      .then((res) => {
-        // console.log('res.data: ', res.data);
-        setUserGroups(res.data);
-      })
-      .catch((err) => console.log('error getting user groups data'))
-  }
-
-  useEffect(getUserGroups, []);
+function UserGroupList ({ userId, userGroups }) {
 
   let groups;
   if (userGroups && userGroups.length > 0) {
