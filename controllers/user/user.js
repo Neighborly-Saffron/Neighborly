@@ -13,7 +13,7 @@ const addNewUser = (req, res) => {
 }
 
 const getNewUser = (req, res) => {
-  connectionPool.query(`SELECT 'id' from users WHERE authid = '${req.query.authId}'`)
+  connectionPool.query(`SELECT id from users WHERE authid = '${req.query.authId}'`)
   .then((data) => res.send(data))
   .catch((err) => console.log(err))
 }

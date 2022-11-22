@@ -15,15 +15,14 @@ const { useState, useEffect } = React;
 function App() {
 
 	const [userData, setUserData] = useState({});
+	const [userId, setUserId] = useState();
 
 	const onAuth = (data) => {
 		setUserData(data);
 	};
 
   useEffect(() => {
-
 		if (Object.keys(userData).length) {
-			console.log(userData)
 			axios.post('/user', {
 				authId: userData.sub,
 				name: `${userData.given_name} ${userData.family_name}`,
@@ -31,11 +30,11 @@ function App() {
 				pictureUrl: userData.picture
 			})
 			.then((response) => {
-				axios.get(`/user?authId=${userData.sub}`).then((data) => console.log(data))
+				axios.get(`/user?authId=${userData.sub}`)
+				.then((data) => setUserId(data.data.rows[0].id))
 			})
 			.catch((err) => console.log(err));
 		}
-
 	}, [userData])
 
 	return (
