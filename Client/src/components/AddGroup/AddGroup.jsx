@@ -8,6 +8,7 @@ function AddGroup() {
   const [description, setDescription] = useState('')
   const [picURL, setPicURL] = useState('')
 
+  //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
   const newGroupSubmit = (e) => {
     e.preventDefault()
     axios.post('/newGroup', { name, description, picURL, adminid: 4 }).then(() => {
