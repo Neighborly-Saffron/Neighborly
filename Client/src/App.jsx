@@ -37,6 +37,7 @@ function App() {
 		}
 	}, [userData])
 
+	console.log(userData)
 	return (
 		<>
 			<Login onAuth={onAuth}/>
