@@ -4,8 +4,8 @@ import EventItem from './EventItem.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupEventList () {
-  const [events, setEvents] = useState([1, 2, 3])
+function GroupEventList() {
+  const [events, setEvents] = useState([])
 
   const getEvents = () => {
     axios.get(`/events`)
@@ -21,9 +21,11 @@ function GroupEventList () {
     <h3 className="italic">
       Group Event List
     </h3>
-    {events.map((event, index) => {
-      return <EventItem key={index} />
-    })}
+    <div className="max-h-screen/2 border-2 border-black rounded">
+      {events.map((event, index) => {
+        return <EventItem event={event.json_build_object} key={index} />
+      })}
+    </div>
   </div>)
 }
 
