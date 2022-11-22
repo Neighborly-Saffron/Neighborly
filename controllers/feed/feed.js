@@ -10,7 +10,7 @@ const getHomeFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4)`;
+                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = 4) ORDER BY posted_at DESC`;
 //USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
@@ -31,13 +31,13 @@ const getGroupFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE groupid = 1`;
+                                        )FROM post WHERE groupid = 1 ORDER BY posted_at DESC`;
 //GROUP ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error getting home feed', err.stack);
+      console.error('Error getting group feed', err.stack);
       response.status(500);
     });
 }
@@ -52,13 +52,13 @@ const getProfileFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
-                                        )FROM post WHERE userid = 1`;
+                                        )FROM post WHERE userid = 1 ORDER BY posted_at DESC`;
 //USER ID IS HARDCODED AND WILL NEED TO BE UPDATED
   connectionPool
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error getting home feed', err.stack);
+      console.error('Error getting profile feed', err.stack);
       response.status(500);
     });
 }
@@ -72,7 +72,7 @@ const likePost = (request, response) => {
     .query(query)
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error liking post', err.stack);
+      console.error('Error liking post in feed', err.stack);
       response.status(500);
     });
 }

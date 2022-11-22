@@ -2,14 +2,12 @@ import React from 'react';
 
 const { useState, useEffect } = React;
 
-function GroupEventMap () {
-  return (
-  <>
+function EventItem () {
+  return (<div>
     <h3 className="italic">
-      Group Event Map
+      Event Item
     </h3>
-  </>
-  )
+  </div>)
 }
 
-export default GroupEventMap;
+export default EventItem;
