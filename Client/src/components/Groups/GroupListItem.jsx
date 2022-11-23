@@ -16,7 +16,7 @@ function GroupListItem({ group, userId }) {
 		})
   }
 	return (
-		<div className="w-full bg-lighterblue border-2 ">
+		<div className="w-full bg-lighterblue rounded-lg ">
 			<div className="flex gap-3 p-2 items-center">
 				<img
 					className="object-scale-down h-40 w-40 "

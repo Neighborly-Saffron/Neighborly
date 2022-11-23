@@ -16,7 +16,7 @@ function UserGroupList ({ userId, userGroups }) {
       <h3 className="italic">
         User Group List
       </h3>
-      <div className=" h-full">
+      <div className=" h-full flex flex-col items-center gap-5">
         {userGroups && groups}
       </div>
 
