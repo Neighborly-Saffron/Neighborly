@@ -49,7 +49,6 @@ function Group ({ userId }) {
           <GroupDescription groupId={id} />
           <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
-
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
           <div className="">

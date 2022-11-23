@@ -6,6 +6,7 @@ const { useState, useEffect } = React;
 
 function GroupEventList({ userId, eventList }) {
 
+
   return (<div>
     <h3 className="italic">
       Group Event List
