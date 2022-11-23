@@ -12,7 +12,6 @@ const chat = require('./chat.js')
 const socketIo = require('socket.io')
 const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
-const path = require("path");
 
 const express = require('express')
 const app = express()
