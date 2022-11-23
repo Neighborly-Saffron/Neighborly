@@ -16,13 +16,13 @@ function Group ({ userId }) {
       <h2>
         GROUP
       </h2>
-      <GroupDescription groupId={id} />
       <div className='flex'>
-        <div className='flex-auto flex-col'>
+        <div className='flex w-2/3 flex-col'>
           <CreateGroupPost userId={userId} groupId={id} />
           <Feed userId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
+          <GroupDescription groupId={id} />
           <GroupEventMap />
           <CreateEventModal />
           <GroupEventList />
