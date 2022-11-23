@@ -24,9 +24,10 @@ function Post({ postData, userId }) {
 
   const submitComment =() => {
     axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postId })
-      .then(res) => {
+      .then((res) => {
         console.log('posted a comment')
-      }
+        setCommentText('')
+      })
       .catch((err) => console.log('error posting comment'))
   }
 
