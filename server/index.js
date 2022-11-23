@@ -41,9 +41,11 @@ app.get('/posts/profile/:userId', feed.getProfileFeed);
 app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 app.get('/comments/:postId', comments.getComments);
+app.post('/comment', comments.addComment);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
+app.post('/addtoGroup', addGroup.addToGroup)
 
 //detailed group list/search routes
 app.get('/getGroups', groupSearch.getInitialGroups);
