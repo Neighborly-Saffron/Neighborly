@@ -31,7 +31,6 @@ function App() {
 				name: `${userData.given_name} ${userData.family_name}`,
 				bio: 'howdy',
 				pictureUrl: userData.picture
-				console.log('userData.sub:', userData.sub)
 			})
 			.then((response) => {
 				axios.get(`/user?authId=${userData.sub}`)
