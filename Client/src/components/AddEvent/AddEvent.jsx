@@ -6,8 +6,11 @@ const AddEvent = () => {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
+    const [address, setAddress] = useState('')
+    const [city, setCity] = useState('')
+    const [state, setState] = useState('')
+    const [zipCode, setZipCode] = useState('')
     const [picURL, setPicURL] = useState('')
-    const [location, setLocation] = useState('')
 
     //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
     // const newGroupSubmit = (e) => {
@@ -36,25 +39,26 @@ const AddEvent = () => {
             <label className="mb-2 font-bold text-lg text-grey-darkest">Event Description</label>
             <textarea className="border py-2 px-3 text-grey-darkest" required={"required"} value={description} onChange={(e) => { setDescription(e.target.value) }} />
           </div>
-          <h2>Location</h2>
+          <h2>Location:</h2>
+          <br/>
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Street Address</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={address} onChange={(e) => { setAddress(e.target.value) }} />
           </div>
 
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">City/Township</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={city} onChange={(e) => { setCity(e.target.value) }} />
           </div>
 
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">State</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={state} onChange={(e) => { setState(e.target.value) }} />
           </div>
 
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Zip Code</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={zipCode} onChange={(e) => { setZipCode(e.target.value) }} />
           </div>
 
           <div className="flex flex-col mb-4">
