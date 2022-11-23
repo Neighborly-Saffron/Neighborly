@@ -8,10 +8,9 @@ function GroupEventMap (props) {
 const [eventList, setEvents] = useState({events:[]})
 const [mapStart, setMapStart] = useState({latlng:[]})
 const getEvents = () => {
-  axios.get(`/mapEvents/${props.userId}`)
+  axios.get(`/mapEvents/${props.userId}/${props.groupId}`)
     .then((res) => {
       setEvents({events:res.data});
-      console.log('mapEvents', res.data);
     })
     .catch((err) => console.log('error getting group event data'))
 }
@@ -21,9 +20,6 @@ useEffect(()=>{
   }
 },[eventList])
 
-useEffect(()=>{
-  console.log(mapStart);
-},[mapStart])
 useEffect(getEvents, [])
   return (
   <>

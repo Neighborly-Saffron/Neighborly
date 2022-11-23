@@ -23,7 +23,7 @@ function Group ({ userId, groupId }) {
           <Feed userId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
-          <GroupEventMap userId={userId}/>
+          <GroupEventMap userId={userId} groupId={id}/>
           <CreateEventModal />
           <GroupEventList />
         </div>
