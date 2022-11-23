@@ -59,7 +59,7 @@ function App() {
 
 	return (
 		<>
-			{isAuthenticated &&
+			{userId && isAuthenticated &&
 			<>
 			<Header />
       <Routes>
@@ -69,8 +69,6 @@ function App() {
       <Route path="/group/:id" element={<Group userId={userId} />}/>
       <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
       </Routes>
-			{/* <Feed path={'home'} user/> */}
-
 			</>}
 			{!isAuthenticated &&
 			<>
