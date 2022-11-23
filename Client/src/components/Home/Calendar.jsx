@@ -12,7 +12,7 @@ function CalendarComponent (props) {
     setDate(dateClicked);
   }
   return (
-  <div className="map" style={{width:'50vw', height:'50vh'}}>
+  <div>
       <Calendar
         onChange={onChange}
         value= {date}
