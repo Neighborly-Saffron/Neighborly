@@ -2,7 +2,7 @@ import React from 'react';
 import axios from 'axios';
 const { useState, useEffect } = React;
 
-function GroupListItem({ group, userId }) {
+function GroupListItem({ group, userId, groupIds }) {
   const handleRequest = () => {
     axios.post('/requestJoin', {info: {
 			user: userId,
@@ -30,9 +30,11 @@ function GroupListItem({ group, userId }) {
 				</ul>
 			</div>
 			<div className="flex justify-end mr-2 mb-2">
-				<button onClick={handleRequest} type="button" className="border-2 bg-white p-2 rounded-md">
+				{groupIds.indexOf(group.group_id) < 0 ? <button onClick={handleRequest} type="button" className="border-2 bg-white p-2 rounded-md">
 					Request to Join
-				</button>
+				</button> : <span className="border-2 bg-white p-2 rounded-md">
+					Member
+				</span>}
 			</div>
 		</div>
 	);
