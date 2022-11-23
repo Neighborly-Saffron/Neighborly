@@ -3,7 +3,7 @@ import Bio from './Bio.jsx'
 import ProfileImage from './ProfileImage.jsx'
 import axios from 'axios';
 import Feed from '../Feed/Feed.jsx';
-import UserGroupList from '../home/UserGroupList.jsx';
+import UserGroupList from '../Home/UserGroupList.jsx';
 
 const { useState, useEffect } = React;
 function Profile ({ userId, userGroups }) {
@@ -13,7 +13,7 @@ function Profile ({ userId, userGroups }) {
       PROFILE
     </h2>
     <div className='flex'>
-      <div className='flex flex-col'>
+      <div className='flex  w-1/3 flex-col'>
         <UserGroupList userId={userId} userGroups={userGroups}/>
       </div>
       <div className='flex w-2/3 flex-col'>
