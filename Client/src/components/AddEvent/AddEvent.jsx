@@ -36,9 +36,24 @@ const AddEvent = () => {
             <label className="mb-2 font-bold text-lg text-grey-darkest">Event Description</label>
             <textarea className="border py-2 px-3 text-grey-darkest" required={"required"} value={description} onChange={(e) => { setDescription(e.target.value) }} />
           </div>
+          <h2>Location</h2>
+          <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest">Street Address</label>
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+          </div>
 
           <div className="flex flex-col mb-4">
-            <label className="mb-2 font-bold text-lg text-grey-darkest">Location</label>
+            <label className="mb-2 font-bold text-lg text-grey-darkest">City/Township</label>
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+          </div>
+
+          <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest">State</label>
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
+          </div>
+
+          <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest">Zip Code</label>
             <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={name} onChange={(e) => { setLocation(e.target.value) }} />
           </div>
 
