@@ -11,14 +11,18 @@ function Map (props) {
 
   return (
   <div className="w-full h-72">
+  <div className="map" style={{width:'30vw', height:'30vh'}}>
+    {
+      props.mapStart.latlng.length ?
       <GoogleMap
         bootstrapURLKeys={{key:process.env.googleAPI}}
         center= {props.mapStart.latlng}
         zoom= {9}>
           {props.eventList.events.map((event, i)=> {
-            return <Marker key = {i} name={event.name} lat={event.lat} lng={event.lng}></Marker>
+            return <Marker key = {i} name={event.json_build_object.name} lat={event.json_build_object.lat} lng={event.json_build_object.lng}></Marker>
           })}
-      </GoogleMap>
+      </GoogleMap> : null
+
   </div>
   )
 }
