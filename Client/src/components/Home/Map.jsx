@@ -11,7 +11,6 @@ function Map (props) {
 
   let maplatlng = props.mapStart.latlng.length ? props.mapStart.latlng : [40.7487658,-73.9857248];
 
-  console.log(maplatlng);
 
   return (
   <div className="w-full h-96">
