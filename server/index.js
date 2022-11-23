@@ -7,15 +7,29 @@ const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
+const path = require('path');
+const chat = require('./chat.js')
+const socketIo = require('socket.io')
+const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
 const comments = require('../controllers/feed/comment.js')
-const path = require("path");
 
 const express = require('express')
 const app = express()
+const server = http.createServer(app)
+
 app.use(express.json())
 
 const port = 3001
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+}) //in case server and client run on different urls
+
+chat(io);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -50,8 +64,7 @@ app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
 
 //map routes
-app.get('/mapEvents',mapEvents.getEvents);
-// app.get('/groupEvents', mapEvents.getGroupEvents);
+app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
@@ -63,6 +76,9 @@ app.post('/events/cancel', groupEvent.cancelAttend)
 app.post('/user', addNewUser.addNewUser);
 app.get('/user', addNewUser.getNewUser);
 
+//add event
+app.post('/newEvent', mapEvents.addEvent);
+
 //MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
@@ -72,6 +88,6 @@ app.get('/*', function(req, res) {
   })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
