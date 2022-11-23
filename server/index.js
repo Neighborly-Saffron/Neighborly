@@ -45,6 +45,7 @@ app.post('/comment', comments.addComment);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
+app.post('/addtoGroup', addGroup.addToGroup)
 
 //detailed group list/search routes
 app.get('/getGroups', groupSearch.getInitialGroups);

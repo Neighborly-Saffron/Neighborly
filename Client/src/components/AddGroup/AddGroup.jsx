@@ -12,7 +12,7 @@ function AddGroup({ switchModal, userId }) {
     e.preventDefault()
     axios.post('/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
       let newGroupId = data.data[0].id
-      addUserToGroup(userId, newGroupId)
+      addCreatorToGroup(userId, newGroupId)
       switchModal()
     }).catch((err) => {
       console.log('error adding group', err)
@@ -20,8 +20,14 @@ function AddGroup({ switchModal, userId }) {
     })
   }
 
-  const addUserToGroup = () => {
-
+  const addCreatorToGroup = (userId, newGroupId) => {
+    axios.post('/addtoGroup', {userId, newGroupId})
+      .then(() =>{
+        console.log('added to new group')
+      })
+      .catch(() => {
+        console.log('error adding creator to new group')
+      })
   }
 
   return (

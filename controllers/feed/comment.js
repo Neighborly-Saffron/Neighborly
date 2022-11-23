@@ -27,13 +27,10 @@ const getComments = (request, response) => {
 
 //{ commentText, likes: 0, userId, postId: postData.postId }
 const addComment = (request, response) => {
-  console.log(request.body)
   let message = request.body.commentText
   let likes = request.body.likes
   let userId = request.body.userId
   let postId = request.body.postId
-
-  console.log(message, likes, userId, postId)
 
   var query = 'INSERT INTO comment (message, likes, userid, postid) VALUES ($1, $2, $3, $4)'
 

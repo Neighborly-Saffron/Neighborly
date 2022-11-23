@@ -12,4 +12,16 @@ const insertGroup = (request, response) => {
     });
 }
 
-module.exports = { insertGroup };
+const addToGroup = (request, response) => {
+  var query = `INSERT INTO usergroups (id_user, id_group) VALUES ($1, $2)`
+
+  connectionPool
+    .query(query, [request.body.userId, request.body.newGroupId])
+    .then(res => response.send())
+    .catch(err => {
+      console.error('Error adding user to new group', err.stack);
+      response.status(500);
+    });
+}
+
+module.exports = { insertGroup, addToGroup };
