@@ -4,4 +4,4 @@ public/bundle.js
 etl.sql
 .DS_Store
 
-exampleData/users.csv
+users.csv
