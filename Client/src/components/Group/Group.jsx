@@ -37,7 +37,7 @@ function Group ({ userId }) {
           <GroupEventMap userId={userId} groupId={id}/>
           <CreateEventModal userId={userId} groupId={id}/>
 
-          <GroupEventList userId={userId} />
+          <GroupEventList userId={userId} groupId={id} />
           { socket ? (
           <div className="">
             <GroupChat socket={socket} />
