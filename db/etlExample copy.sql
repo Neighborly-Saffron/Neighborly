@@ -11,7 +11,7 @@ DELIMITER ','
 CSV HEADER;
 
 
-COPY event(id, name, location, description, pictureURL, groupID, adminID) FROM '/Users/huongnguyen/Documents/hr/blue-ocean/Neighborly/exampleData/event.csv'
+COPY event(id, name, location, lat, lng, date, time, description, pictureURL, groupID, adminID) FROM '/Users/huongnguyen/Documents/hr/blue-ocean/Neighborly/exampleData/event.csv'
 DELIMITER ','
 CSV HEADER;
 
