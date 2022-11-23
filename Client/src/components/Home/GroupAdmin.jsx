@@ -13,7 +13,7 @@ function GroupAdmin () {
   }
 
   return (
-  <div>
+  <div className="flex flex-col items-center gap-5">
     <h3 className="italic">
       GroupAdmin
     </h3>
