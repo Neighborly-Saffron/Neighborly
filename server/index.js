@@ -64,12 +64,7 @@ app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
 
 //map routes
-<<<<<<< HEAD
-app.get('/mapEvents',mapEvents.getEvents);
-// app.get('/groupEvents', mapEvents.getGroupEvents);
-=======
 app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
->>>>>>> fe5e60aaab8e6b61de14846b86a19dd53a8a8907
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
