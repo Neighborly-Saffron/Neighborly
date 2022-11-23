@@ -21,7 +21,7 @@ function Home({ userId, userGroups }) {
 	});
 	return (
 		<div className="border-2 m-5 grid grid-cols-4  p-5 ">
-			<div className="col-span-1 border-r-2 p-2">
+			<div className="col-span-1 border-r-2 p-2 bg-lighterblue">
 				<UserGroupList userId={userId} userGroups={userGroups} />
 			</div>
 			<div className="col-start-2  col-span-2 ">

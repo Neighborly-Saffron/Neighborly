@@ -5,11 +5,10 @@ import axios from 'axios';
 function IndividualGroupInGroupList ({ group }) {
   return (
     <>
-      <div className='flex'>
-          <img className='object-scale-down h-20 m-1' src={group.pictureURL} alt={group.name}></img>
+      <div className='flex items-center'>
+          <img className='object-scale-down w-40 h-40 m-1' src={group.pictureURL} alt={group.name}></img>
         <div className='flex flex-col p-3'>
-          <div className='font-bold hover:text-darkerblue'>
-            {/* Change this to {`/group/${groupId}} */}
+          <div className='font-bold text-2xl hover:text-darkerblue'>
             <Link to={`/group/${group.groupId}`}>{group.name}</Link>
           </div>
           <div className='text-xs'>
