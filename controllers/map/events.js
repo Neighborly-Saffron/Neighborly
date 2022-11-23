@@ -1,6 +1,7 @@
 const connectionPool = require('../../db/pool.js')
 
 const getEvents = (request, response) => {
+  let userId = request.params.userId
   var query = `
     SELECT json_build_object
       (
@@ -15,11 +16,11 @@ const getEvents = (request, response) => {
         'eventid', id,
         'groupID', groupID
       )
-      FROM event
+      FROM event WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = $1)
   `
 //WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool
-    .query(query)
+  .query(query, [userId])
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error executing to get related products', err.stack);

@@ -4,11 +4,11 @@ import axios from 'axios';
 
 const { useState, useEffect } = React;
 
-function GroupEventMap () {
+function GroupEventMap (props) {
 const [eventList, setEvents] = useState({events:[]})
 const [mapStart, setMapStart] = useState({latlng:[]})
 const getEvents = () => {
-  axios.get(`/mapEvents`)
+  axios.get(`/mapEvents/${props.userId}`)
     .then((res) => {
       setEvents({events:res.data});
       console.log('mapEvents', res.data);
