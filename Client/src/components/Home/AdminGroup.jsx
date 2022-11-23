@@ -7,15 +7,32 @@ import AdminModal from '../Modals/AdminModal.jsx'
 const AdminGroup = ({group}) => {
   // console.log('group.groupPic:', group.groupPic)
   const [showModal, setShowModal] = useState(false);
-  const [noficationCount, setNotificationCount] = useState(0);
+  const [notificationCount, setNotificationCount] = useState(0);
 
+  console.log('group:', group)
   const handleNotificationClick = (e) =>{
     setShowModal(true)
   }
 
   const getRequestedGroups = () => {
 
+    return axios.get('/requestedGroups')
+      .then((res)=>{
+        // console.log('res.data in getRequestedGroups', res.data)
+        res.data.forEach(requestObj => {
+          // console.log('here!!!!', requestObj)
+          if (requestObj.groupName === group.groupName) {
+            // console.log('requestObj.groupName:', requestObj.groupName)
+            // console.log('group.groupName:', group.groupName)
+            setNotificationCount(notificationCount+1)
+          }
+        })
+      })
+      .catch(err=>{
+        console.log('err in getRequestedGroups:', err)
+      })
   }
+
 
   //when the page first loads, get notification counts
   useEffect(()=>{
@@ -34,10 +51,10 @@ const AdminGroup = ({group}) => {
 
 
 <div className="my-6 inline-flex relative w-fit">
-  <div className="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2
+  {notificationCount > 0 ? <div className="absolute inline-block top-0 right-0 bottom-auto left-auto translate-x-2/4 -translate-y-1/2
    rotate-0 skew-x-0 skew-y-0 scale-x-100 scale-y-100 py-1 px-2.5 text-xs leading-none text-center whitespace-nowrap
-    align-baseline font-bold bg-red-500 text-red rounded-full z-10 border-solid"
-    onClick={handleNotificationClick}>3</div>
+    align-baseline font-bold bg-lightergreen text- rounded-full z-10 border-solid"
+    onClick={handleNotificationClick}>{notificationCount}</div>: null}
   <div className="w-24 h-24">
     <img src={group.groupPic} className="h-full w-full max-w-full object-cover rounded-lg"/>
   </div>

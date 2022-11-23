@@ -30,14 +30,21 @@ const getRequestedGroups = (req, res) => {
   // console.log('req.query inside Controller>getAdminGroups:', req.query)
 
   const query = `SELECT json_agg (
-		             id_group
-	              )
-              FROM requestjoin`
+    json_build_object(
+      'requestedUser', id_user,
+      'requestedGroup', id_group,
+'userName',
+(select name from users where users.id=id_user),
+'groupName', (select name from groups where groups.id=id_group),
+'userProfile', (select pictureURL from users where users.id=id_user )
+    )
+   )AS request
+  FROM requestjoin`
 
   return connectionPool.query(query)
             .then(result => {
-              // console.log('result in getAdminGroups:', result)
-              res.send(result.rows[0].admingroup)
+              console.log('result in big query:', result)
+              res.send(result.rows[0].request)
             })
             .catch(err => {
               console.error('Error executing to add group', err.message);
