@@ -36,7 +36,7 @@ useEffect(getEvents, [])
 			<div className="col-start-4 flex flex-col gap-5 items-center">
 				<Map mapStart={mapStart} eventList={eventList} />
 				<Calendar />
-				<GroupAdmin />
+				<GroupAdmin userId={userId}/>
 			</div>
 		</div>
 	);
