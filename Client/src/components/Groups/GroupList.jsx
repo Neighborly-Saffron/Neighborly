@@ -52,7 +52,7 @@ function GroupList({userId}) {
 			</form>
 			<div className="flex flex-col gap-4 items-center mb-3 p-2">
 				{groups.map((group, i) => {
-					return <GroupListItem key={i} group={group.json_build_object} />;
+					return <GroupListItem  userId={userId} key={i} group={group.json_build_object} />;
 				})}
 			</div>
 		</div>

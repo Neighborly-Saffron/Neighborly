@@ -41,6 +41,10 @@ CREATE TABLE event (
  id BIGSERIAL,
  name VARCHAR,
  location VARCHAR,
+ lat DECIMAL,
+ lng DECIMAL,
+ date DATE,
+ time TIME,
  description VARCHAR,
  pictureURL VARCHAR,
  groupID INTEGER,
@@ -76,7 +80,6 @@ CREATE TABLE requestJoin (
  id_user INTEGER,
  id_group INTEGER
 );
-
 
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_pkey PRIMARY KEY (id);
 

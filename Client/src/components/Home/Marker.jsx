@@ -7,7 +7,7 @@ function Marker (props) {
     <>
 
       <FontAwesomeIcon style={{top:0, left:0, transform:'translate(-50%,-100%)', color:'red'}}icon={faMapPin}></FontAwesomeIcon>
-      <h2 style={{top:0, left:0, transform:'translate(-200%,-300%)'}}>{props.name}</h2>
+      <h2 style={{top:0, left:0, transform:'translate(-200%,-150%)'}}>{props.name}</h2>
     </>
   )
 }

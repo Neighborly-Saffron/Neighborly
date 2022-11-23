@@ -3,7 +3,7 @@ import axios from 'axios'
 
 const { useState, useEffect } = React;
 
-function AddGroup({ switchModal }) {
+function AddGroup({ switchModal, userId }) {
   const [name, setName] = useState('')
   const [description, setDescription] = useState('')
   const [picURL, setPicURL] = useState('')
@@ -11,7 +11,7 @@ function AddGroup({ switchModal }) {
   //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
   const newGroupSubmit = (e) => {
     e.preventDefault()
-    axios.post('/newGroup', { name, description, picURL, adminid: 4 }).then(() => {
+    axios.post('/newGroup', { name, description, picURL, adminid: userId }).then(() => {
       console.log('sent to db')
       switchModal()
     }).catch((err) => {

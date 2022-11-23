@@ -10,6 +10,7 @@ const getHomeFeed = (request, response) => {
                     'likes', likes,
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
+                    'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
                                         )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = $1) ORDER BY posted_at DESC`;
@@ -33,6 +34,7 @@ const getGroupFeed = (request, response) => {
                     'likes', likes,
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
+                    'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
                                         )FROM post WHERE groupid = $1 ORDER BY posted_at DESC`;
@@ -49,7 +51,6 @@ const getGroupFeed = (request, response) => {
 //the most recent posts from all of the user’s various groups
 const getProfileFeed = (request, response) => {
   let userId = request.params.userId
-  console.log("profile feed", userId)
 
   var query = `SELECT json_build_object(
                     'postid', id,
@@ -57,6 +58,7 @@ const getProfileFeed = (request, response) => {
                     'likes', likes,
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
+                    'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
                                         )FROM post WHERE userid = $1 ORDER BY posted_at DESC`;
