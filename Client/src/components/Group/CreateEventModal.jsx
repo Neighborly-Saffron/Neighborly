@@ -3,7 +3,7 @@ import EventModal from '../Modals/EventModal.jsx'
 
 const { useState, useEffect } = React;
 
-function CreateEventModal ({ userId }) {
+function CreateEventModal ({ userId, groupId }) {
 
   const [showModal, setShowModal] = useState(false);
 
@@ -23,7 +23,7 @@ function CreateEventModal ({ userId }) {
         mx-auto p-4 rounded-full" type="button">
         Create Event
       </button>
-      {showModal && <EventModal toggleModal={toggleModal} userId={userId}/>}
+      {showModal && <EventModal toggleModal={toggleModal} userId={userId} groupId={groupId}/>}
     </>
   )
 }

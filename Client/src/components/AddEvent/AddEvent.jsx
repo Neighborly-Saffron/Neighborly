@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AddEvent = ({ toggleModal, userId }) => {
+const AddEvent = ({ toggleModal, userId, groupId }) => {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -12,8 +12,6 @@ const AddEvent = ({ toggleModal, userId }) => {
     const [picURL, setPicURL] = useState('')
     const [date, setDate] = useState(new Date())
     const [time, setTime] = useState('12:00')
-console.log(time)
-console.log(date)
 
     //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
     // const newGroupSubmit = (e) => {
@@ -26,7 +24,7 @@ console.log(date)
     //     switchModal()
     //   })
     // }
-
+console.log(userId, "IN EVENT MODAL")
     const newEventSubmit = (e) => {
       e.preventDefault()
 
@@ -40,15 +38,24 @@ console.log(date)
         state,
         zip,
         pictureUrl,
-        adminId: userId
+        groupId,
+        adminId: userId,
+      })
+      .then(() => {
+        console.log('Event added to db')
+        toggleModal()
+      })
+      .catch(() => {
+        console.log('error adding event')
+        toggleModal()
       })
     }
-  console.log(date)
+  console.log("IN ADD EVENT", groupId)
   return (
     <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
         <h1 className="block w-full text-center text-2xl mx-auto p-4">Create Event</h1>
-        <form className="mb-4" onSubmit={(e) => { newGroupSubmit(e) }}>
+        <form className="mb-4" onSubmit={(e) => { newEventSubmit(e) }}>
 
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Event Name</label>

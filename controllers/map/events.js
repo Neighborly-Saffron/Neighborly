@@ -52,4 +52,8 @@ const getUserGroups = (request, response) => {
     });
 }
 
+const addEvent = (req, res) => {
+  console.log(req.body)
+}
+
 module.exports = { getEvents, getUserGroups};
