@@ -10,7 +10,7 @@ function Map (props) {
   let [mapLat, setMapLat] = useState()
 
   return (
-  <div className="map" style={{width:'30vw', height:'30vh'}}>
+  <div className="w-full h-72">
       <GoogleMap
         bootstrapURLKeys={{key:process.env.googleAPI}}
         center= {props.mapStart.latlng}
