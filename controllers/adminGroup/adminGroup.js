@@ -48,19 +48,32 @@ const getRequestedGroups = (req, res) => {
             });
 }
 const approveJoin = (req, res) => {
-  var query = `INSERT INTO usergroups (id_user, id_group) VALUES ($1, $2)`
+  var queryUserGroups = `INSERT INTO usergroups (id_user, id_group) VALUES ($1, $2)`
+  console.log('req.body:', req.body)
+  console.log('req.body.userId:', req.body.userId)
+  console.log('req.body.groupId:', req.body.groupId)
 
   return connectionPool
-    .query(query, [req.body.userId, req.body.groupId])
-      .then(res => response.send())
+    .query(queryUserGroups, [req.body.userId, req.body.groupId])
+      .then(result =>
+        res.send())
       .catch(err => {
         console.error('controller failed to post approval to db', err.message);
-        response.status(500);
+        res.status(500);
       });
 }
+
+const removeJoinRequest = (req, res) => {
+  console.log('req.body in removeJoin:', req.body)
+  console.log('req.header.params in removeJoin:', req.params)
+  const query = `DELETE FROM requestjoin WHERE id_user=${req.params.userId} and id_group=${req.params.groupId}`
+  res.send()
+}
+
 
 module.exports = {
   getAdminGroups,
   getRequestedGroups,
-  approveJoin
+  approveJoin,
+  removeJoinRequest
  }

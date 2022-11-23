@@ -11,21 +11,22 @@ const AdminGroup = ({group}) => {
   const [requestedUsers, setRequestedUsers] = useState([])
 
   console.log('group:', group)
+
   const handleNotificationClick = (e) =>{
-    setShowModal(true)
+    setShowModal(!showModal)
   }
 
   const getRequestedGroups = () => {
 
     return axios.get('/requestedGroups')
       .then((res)=>{
-        console.log('res.data in getRequestedGroups', res.data)
+        // console.log('res.data in getRequestedGroups', res.data)
         res.data.forEach(requestObj => {
-          console.log('requestObj', requestObj)
+          // console.log('requestObj', requestObj)
            setRequestedUsers([...requestedUsers,requestObj])
           if (requestObj.groupName === group.groupName) {
-            console.log('requestObj.groupName:', requestObj.groupName)
-            console.log('group.groupName:', group.groupName)
+            // console.log('requestObj.groupName:', requestObj.groupName)
+            // console.log('group.groupName:', group.groupName)
 
             setNotificationCount(notificationCount+1)
           }

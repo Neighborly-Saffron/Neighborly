@@ -43,7 +43,10 @@ app.get('/GroupAdmin',adminGroup.getAdminGroups)
 //request-to-join groups route
 app.get('/requestedGroups', adminGroup.getRequestedGroups)
 //approve-to-join groups route
-app.post('/newGroup', adminGroup.approveJoin)
+app.post('/groupApproved', adminGroup.approveJoin)
+//remove a user from requestjoin
+app.delete('/groupApproved', adminGroup.removeJoinRequest)
+
 
 
 // individual group page routes

@@ -1,18 +1,20 @@
 import React from 'react';
 import axios from 'axios'
-const Request = ({group, requestedUser, handleNotificationClick, requestedUsers}) => {
+const Request = ({group, requestedUser, handleNotificationClick, requestedUsers, userData}) => {
 
+  const newUserGroup = {
+    userId: requestedUser.requestedUserId,
+    groupId: requestedUser.requestedGroupId
+  }
   const handleApprove = (e) => {
-    const newUserGroup = {
-      userId: requestedUser.requestedUserId,
-      groupId: requestedUser.requestedGroupId
-    }
+    console.log('it got in handleApprove')
 
-   return axios.post('/newGroup', newUserGroup)
+    axios.post('/groupApproved', newUserGroup)
      .then((result)=>{
       console.log('client side: succeeded to post to db')
      //remove modal
      handleLastRequest()
+     return handleDeleteRequest()
      })
      .catch((err)=>{
       console.log('client side: failed to post to db', err)
@@ -25,6 +27,12 @@ const Request = ({group, requestedUser, handleNotificationClick, requestedUsers}
     }
   }
 
+  const handleDeleteRequest = () => {
+    return axios.delete('/groupApproved',   { params: newUserGroup } )
+      .then(()=>{
+        console.log('client side: db successfully ')
+      })
+  }
 
   return (
     <div>
