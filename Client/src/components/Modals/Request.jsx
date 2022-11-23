@@ -32,6 +32,9 @@ const Request = ({group, requestedUser, handleNotificationClick, requestedUsers,
       .then(()=>{
         console.log('client side: db successfully ')
       })
+      .catch((err)=>{
+        console.log('client side: error deleting requestjoin table')
+      })
   }
 
   return (

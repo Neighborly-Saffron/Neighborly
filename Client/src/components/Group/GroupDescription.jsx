@@ -22,12 +22,15 @@ function GroupDescription ( { groupId }) {
         <div className='flex justify-center items-center'>
           <div className='w-96 flex flex-col p-5'>
             <img className='object-scale-down' src={groupDescription.pictureURL}></img>
-          </div>
-          <div className='flex flex-col'>
-            <div className='font-bold text-4xl'>
+            <div className='font-bold text-lg'>
               {groupDescription.name}
             </div>
-            {groupDescription.description}
+            <div>
+              {groupDescription.description}
+            </div>
+
+          </div>
+          <div className='flex flex-col'>
           </div>
 
         </div>

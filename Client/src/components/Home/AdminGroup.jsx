@@ -20,7 +20,7 @@ const AdminGroup = ({group}) => {
 
     return axios.get('/requestedGroups')
       .then((res)=>{
-        // console.log('res.data in getRequestedGroups', res.data)
+        console.log('res.data in getRequestedGroups', res.data)
         res.data.forEach(requestObj => {
           // console.log('requestObj', requestObj)
            setRequestedUsers([...requestedUsers,requestObj])
