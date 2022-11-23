@@ -27,7 +27,6 @@ const AdminGroup = ({group}) => {
           if (requestObj.groupName === group.groupName) {
             // console.log('requestObj.groupName:', requestObj.groupName)
             // console.log('group.groupName:', group.groupName)
-
             setNotificationCount(notificationCount+1)
           }
         })

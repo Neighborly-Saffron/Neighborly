@@ -15,7 +15,7 @@ function AdminGroups ({userId}) {
     axios.get(`/GroupAdmin/?userId=${userId}` )
     .then(res => {
       console.log('AdminGroups client success receiving data from db');
-      // console.log('res.data client received:', res.data)
+      console.log('res.data client received:', res.data)
       // console.log('userProfile.pictureurl: ', res.data.pictureURL)
       setGroups(res.data)
     })
