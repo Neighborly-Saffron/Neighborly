@@ -34,9 +34,10 @@ function Group ({ userId, groupId }) {
           <Feed userId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
-          <GroupEventMap />
+          <GroupEventMap userId={userId} groupId={id}/>
           <CreateEventModal />
-          <GroupEventList />
+
+          <GroupEventList userId={userId} />
           { socket ? (
           <div className="">
             <GroupChat socket={socket} />
@@ -45,6 +46,7 @@ function Group ({ userId, groupId }) {
           ) : (
             <div>Not Connected</div>
           )}
+
         </div>
       </div>
     </div>

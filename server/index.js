@@ -12,6 +12,7 @@ const chat = require('./chat.js')
 const socketIo = require('socket.io')
 const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
+const comments = require('../controllers/feed/comment.js')
 
 const express = require('express')
 const app = express()
@@ -39,6 +40,7 @@ app.get('/posts/home/:userId', feed.getHomeFeed);
 app.get('/posts/profile/:userId', feed.getProfileFeed);
 app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
+app.get('/comments/:postId', comments.getComments);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
@@ -62,8 +64,7 @@ app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
 
 //map routes
-app.get('/mapEvents',mapEvents.getEvents);
-// app.get('/groupEvents', mapEvents.getGroupEvents);
+app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
