@@ -6,6 +6,7 @@ import ReactTimeAgo from 'react-time-ago'
 const { useState, useEffect } = React;
 
 function Post({ postData }) {
+  console.log(postData)
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(false)
 
@@ -25,8 +26,7 @@ function Post({ postData }) {
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1' src={postData.pictureurl} alt={postData.name}></img>
         <div className="flex flex-col p-3">
-          <Link to={`/group/${postData.groupId}`}>{postData.name}</Link>
-          <h3 className="font-bold text-lg">{postData.groupname}</h3>
+          <Link className="font-bold text-lg" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
           <h3 className="italic font-bold">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US"/>
           <p>{postData.message}</p>
