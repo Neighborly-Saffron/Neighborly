@@ -10,8 +10,7 @@ function Map (props) {
   let [mapLat, setMapLat] = useState()
 
   return (
-  <div className="w-full h-72">
-  <div className="map" style={{width:'30vw', height:'30vh'}}>
+  <div className="w-full h-96">
     {
       props.mapStart.latlng.length ?
       <GoogleMap
@@ -22,7 +21,7 @@ function Map (props) {
             return <Marker key = {i} name={event.json_build_object.name} lat={event.json_build_object.lat} lng={event.json_build_object.lng}></Marker>
           })}
       </GoogleMap> : null
-
+    }
   </div>
   )
 }

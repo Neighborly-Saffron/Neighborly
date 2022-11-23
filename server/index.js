@@ -49,7 +49,7 @@ app.post('/addPost', groupPage.addPost)
 
 //map routes
 app.get('/mapEvents',mapEvents.getEvents);
-app.get('/groupEvents', mapEvents.getGroupEvents);
+// app.get('/groupEvents', mapEvents.getGroupEvents);
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
