@@ -7,14 +7,28 @@ const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
+const path = require('path');
+const chat = require('./chat.js')
+const socketIo = require('socket.io')
+const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
-const path = require("path");
 
 const express = require('express')
 const app = express()
+const server = http.createServer(app)
+
 app.use(express.json())
 
 const port = 3001
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+}) //in case server and client run on different urls
+
+chat(io);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -70,6 +84,6 @@ app.get('/*', function(req, res) {
   })
 })
 
-app.listen(port, () => {
+server.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
