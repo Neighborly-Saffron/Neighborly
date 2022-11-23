@@ -9,18 +9,31 @@ import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
 import { useParams } from 'react-router-dom'
 import socketClient  from "socket.io-client";
+import axios from 'axios';
 
 const { useState, useEffect } = React;
 
 function Group ({ userId, userData }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
+  const [eventList, setEventList] = useState({events:[]});
 
 	useEffect(() => {
     const newSocket = socketClient(`http://${window.location.hostname}:3001`, userData && {name: `${userData.given_name} ${userData.family_name}`});
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
+
+  const getEvents = () => {
+    axios.get(`/mapEvents/${userId}/${id}`)
+      .then((res) => {
+        console.log(res)
+        setEventList({events:res.data});
+      })
+      .catch((err) => console.log('error getting group event data'))
+  }
+
+  useEffect(getEvents, []);
 
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
@@ -34,16 +47,17 @@ function Group ({ userId, userData }) {
         </div>
         <div className='flex flex-col'>
           <GroupDescription groupId={id} />
-          <GroupEventMap userId={userId} groupId={id}/>
-          <CreateEventModal userId={userId} groupId={id}/>
-          <GroupEventList userId={userId} />
-          { socket ?
-            <div className="">
-              <GroupChat socket={socket} />
-              <GroupChatInput socket={socket} />
-            </div>
-            : <div>Not Connected</div>
-          }
+          <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
+          <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
+          <GroupEventList userId={userId} eventList={eventList}/>
+          { socket ? (
+          <div className="">
+            <GroupChat socket={socket} />
+            <GroupChatInput socket={socket} />
+          </div>
+          ) : (
+            <div>Not Connected</div>
+          )}
 
         </div>
       </div>

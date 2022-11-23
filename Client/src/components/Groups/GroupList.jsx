@@ -3,7 +3,7 @@ import React from 'react';
 import GroupListItem from './GroupListItem.jsx';
 const { useState, useEffect, useRef } = React;
 
-function GroupList({userId}) {
+function GroupList({userId, groupIds}) {
 	const [groups, setGroups] = useState([]);
 	const [query, setQuery] = useState('');
 	const handleSubmit = (e) => {
@@ -52,7 +52,7 @@ function GroupList({userId}) {
 			</form>
 			<div className="flex flex-col gap-4 items-center mb-3 p-2">
 				{groups.map((group, i) => {
-					return <GroupListItem  userId={userId} key={i} group={group.json_build_object} />;
+					return <GroupListItem groupIds={groupIds} userId={userId} key={i} group={group.json_build_object} />;
 				})}
 			</div>
 		</div>

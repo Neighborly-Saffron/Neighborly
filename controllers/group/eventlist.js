@@ -1,6 +1,8 @@
 const connectionPool = require('../../db/pool.js')
 
 const getGroupEvents = (request, response) => {
+  let groupId = request.params.groupid
+
   var query = `
     SELECT json_build_object
       (
@@ -10,14 +12,14 @@ const getGroupEvents = (request, response) => {
         'pictureURL', pictureURL,
         'eventid', id
       )
-      FROM event
+      FROM event WHERE groupid = $1
   `
-//WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
+
   connectionPool
-    .query(query)
+    .query(query, [groupId])
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error executing to get related products', err.stack);
+      console.log('Error executing to get related products', err.stack);
       response.status(500);
     });
 }
@@ -29,12 +31,12 @@ const checkAttending = (request, response) => {
   var query = `
     SELECT EXISTS(SELECT 1 FROM attending WHERE id_user=$1 AND id_event=$2)
   `
-//WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
+
   connectionPool
     .query(query, [userID, eventID])
     .then(res => response.send(res.rows))
     .catch(err => {
-      console.error('Error checking attending', err.stack);
+      console.log('Error checking attending', err.stack);
       response.status(500);
     });
 }
@@ -45,12 +47,11 @@ const attendEvent = (request, response) => {
 
   var query = `INSERT INTO attending (id_user, id_event) VALUES ($1, $2)`
 
-//WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool
     .query(query, [userID, eventID])
     .then(res => response.send())
     .catch(err => {
-      console.error('Error checking attending', err.stack);
+      console.log('Error checking attending', err.stack);
       response.status(500);
     });
 }
@@ -61,12 +62,11 @@ const cancelAttend = (request, response) => {
 
   var query = `DELETE FROM attending WHERE id_user = $1 AND id_event = $2`
 
-//WILL NEED TO ADD ACTUAL GROUP SPECIFIC REQUEST- THIS IS JUST DATA TEST
   connectionPool
     .query(query, [userID, eventID])
     .then(res => response.send())
     .catch(err => {
-      console.error('Error checking attending', err.stack);
+      console.log('Error checking attending', err.stack);
       response.status(500);
     });
 }

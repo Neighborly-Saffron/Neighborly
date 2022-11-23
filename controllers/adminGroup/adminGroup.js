@@ -7,15 +7,15 @@ const getAdminGroups = (req, res) => {
                     'groupPic', pictureURL
                   )
 	              )AS admingroup
-              FROM groups WHERE groups.adminID = 5`
+              FROM groups WHERE groups.adminID = $1`
 
-  return connectionPool.query(query)
+  return connectionPool.query(query, [req.query.userId])
             .then(result => {
               // console.log('result in getAdminGroups:', result)
-              res.send(result.rows[0].admingroup)
+              res.send(result.rows)
             })
             .catch(err => {
-              console.error('Error executing to add group', err.message);
+              console.log('Error executing to add group', err.message);
               res.status(500);
             });
 }

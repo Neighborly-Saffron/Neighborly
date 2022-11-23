@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AddEvent = ({ toggleModal, userId, groupId }) => {
+const AddEvent = ({ toggleModal, userId, groupId, getEvents }) => {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -30,7 +30,7 @@ const AddEvent = ({ toggleModal, userId, groupId }) => {
         adminId: userId,
       })
       .then(() => {
-        console.log('Event added to db')
+        getEvents();
         toggleModal()
       })
       .catch(() => {

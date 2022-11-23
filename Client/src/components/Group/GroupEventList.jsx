@@ -4,25 +4,15 @@ import EventItem from './EventItem.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupEventList({ userId }) {
-  const [events, setEvents] = useState([])
+function GroupEventList({ userId, eventList }) {
 
-  const getEvents = () => {
-    axios.get(`/events`)
-      .then((res) => {
-        setEvents(res.data);
-      })
-      .catch((err) => console.log('error getting group event data'))
-  }
-
-  useEffect(getEvents, []);
 
   return (<div>
     <h3 className="italic">
       Group Event List
     </h3>
     <div className="max-h-screen/2 border-2 border-black rounded overflow-hidden overflow-y-scroll">
-      {events.map((event, index) => {
+      {eventList.events.map((event, index) => {
         return <EventItem event={event.json_build_object} key={index} userId={userId} />
       })}
     </div>

@@ -76,7 +76,7 @@ app.post('/addPost', groupPage.addPost)
 app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
 
 //group event
-app.get('/events', groupEvent.getGroupEvents)
+app.get('/events/getlist/:groupid', groupEvent.getGroupEvents)
 app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
 app.post('/events/attend', groupEvent.attendEvent)
 app.post('/events/cancel', groupEvent.cancelAttend)

@@ -56,7 +56,7 @@ const addEvent = (req, res) => {
 
 
   const addressToSend = `${req.body.address} ${req.body.city} ${req.body.state} ${req.body.zipCode}`.replace(/ /g, '+')
-  console.log(addressToSend)
+  console.log(req.body)
 
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addressToSend}&key=${process.env.googleAPI}`)
     .then((data) => {

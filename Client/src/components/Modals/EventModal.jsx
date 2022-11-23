@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import AddEvent from '../AddEvent/AddEvent.jsx';
 
-const EventModal = ({toggleModal, userId, groupId}) => {
+const EventModal = ({toggleModal, userId, groupId, getEvents}) => {
 
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
@@ -12,7 +12,7 @@ const EventModal = ({toggleModal, userId, groupId}) => {
         <div className="flex min-h-fit items-end justify-center p-0 z-50 text-center sm:items-center sm:p-0">
           <div className="relative transform overflow-hidden rounded-lg bg-white text-left shadow-xl transition-all  sm:w-full sm:max-w-lg z-50">
             <div className="bg-white z-50 px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
-              <AddEvent toggleModal={toggleModal} userId={userId} groupId={groupId}/>
+              <AddEvent toggleModal={toggleModal} userId={userId} groupId={groupId} getEvents={getEvents}/>
             </div>
           </div>
         </div>
