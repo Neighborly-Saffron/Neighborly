@@ -41,9 +41,11 @@ app.get('/posts/profile/:userId', feed.getProfileFeed);
 app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 app.get('/comments/:postId', comments.getComments);
+app.post('/comment', comments.addComment);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
+app.post('/addtoGroup', addGroup.addToGroup)
 
 //detailed group list/search routes
 app.get('/getGroups', groupSearch.getInitialGroups);
@@ -58,6 +60,12 @@ app.get('/GroupAdmin',adminGroup.getAdminGroups)
 
 //request-to-join groups route
 app.get('/requestedGroups', adminGroup.getRequestedGroups)
+//approve-to-join groups route
+app.post('/groupApproved', adminGroup.approveJoin)
+//remove a user from requestjoin
+app.delete('/groupApproved', adminGroup.removeJoinRequest)
+
+
 
 // individual group page routes
 app.get('/groupDescription/:groupId', groupPage.getGroupDescription)

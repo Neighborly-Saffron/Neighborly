@@ -10,7 +10,6 @@ function CommentFeed ({ userId, postId }) {
   const getComments = () => {
     axios.get(`/comments/${postId}`)
       .then((res) => {
-        console.log("RETURN OBJECT", res.data)
         setComments(res.data);
       })
       .catch((err) => console.log('error getting comment feed data'))
@@ -21,7 +20,7 @@ function CommentFeed ({ userId, postId }) {
   return (
     <>
     { comments.length ?
-  <div className="border-2 m-5 p-1 bg-white">
+  <div className="m-5 p-1">
     {comments.length ?
     comments.map((item, index) => {
       return <Comment key={index} commentData={item.json_build_object}/>

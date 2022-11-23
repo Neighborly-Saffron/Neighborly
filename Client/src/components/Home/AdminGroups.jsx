@@ -4,8 +4,9 @@ import AdminGroup from './AdminGroup.jsx'
 
 const { useState, useEffect } = React;
 
-function AdminGroups () {
+function AdminGroups ({userData}) {
 
+  // console.log('it got in AdminGroups')
   const [userId, setUserId] = useState('5')
   const [groups, setGroups] = useState([])
 
@@ -30,7 +31,7 @@ function AdminGroups () {
   return (
     <>
      {groups.map((group, index)=>{
-       return <AdminGroup key={index} group={group}></AdminGroup>
+       return <AdminGroup key={index} group={group} userData={userData}></AdminGroup>
       })}
     </>
     )
