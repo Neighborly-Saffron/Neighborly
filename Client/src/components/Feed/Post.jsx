@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import {Link} from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 
 const { useState, useEffect } = React;
@@ -24,6 +25,7 @@ function Post({ postData }) {
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1' src={postData.pictureurl} alt={postData.name}></img>
         <div className="flex flex-col p-3">
+          <Link to={`/group/${postData.groupId}`}>{postData.name}</Link>
           <h3 className="font-bold text-lg">{postData.groupname}</h3>
           <h3 className="italic font-bold">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US"/>
