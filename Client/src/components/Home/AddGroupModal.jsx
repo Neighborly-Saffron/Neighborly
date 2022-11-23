@@ -1,7 +1,7 @@
 import React from 'react';
 import AddGroup from '../AddGroup/AddGroup.jsx';
 
-const AddGroupModal = ({ switchModal }) => {
+const AddGroupModal = ({ switchModal, userId }) => {
 
   return (
     <div className="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">

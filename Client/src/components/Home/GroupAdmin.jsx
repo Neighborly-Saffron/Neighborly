@@ -5,10 +5,10 @@ import AddGroupModal from './AddGroupModal.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupAdmin () {
+function GroupAdmin ({ userId }) {
   const [toggleModal, setToggleModal] = useState(false)
 
-  const switchModal = ({ userId }) => {
+  const switchModal = () => {
     setToggleModal(!toggleModal)
   }
 
