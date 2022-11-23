@@ -3,7 +3,7 @@ import EventModal from '../Modals/EventModal.jsx'
 
 const { useState, useEffect } = React;
 
-function CreateEventModal () {
+function CreateEventModal ({ userId }) {
 
   const [showModal, setShowModal] = useState(false);
 
@@ -17,13 +17,13 @@ function CreateEventModal () {
         Create Event modal
       </h3>
       <button
-        onClick={() => {setShowModal(!showModal)}}
+        onClick={() => toggleModal()}
         class="block border-2 bg-darkerblue hover:bg-lighterblue
         hover:border-black hover:border-2 text-white uppercase text-lg
         mx-auto p-4 rounded-full" type="button">
         Create Event
       </button>
-      {showModal && <EventModal toggleModal={toggleModal}/>}
+      {showModal && <EventModal toggleModal={toggleModal} userId={userId}/>}
     </>
   )
 }

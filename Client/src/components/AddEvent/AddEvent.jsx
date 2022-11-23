@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
-const AddEvent = () => {
-
+const AddEvent = ({ toggleModal, userId }) => {
 
     const [name, setName] = useState('')
     const [description, setDescription] = useState('')
@@ -11,6 +10,10 @@ const AddEvent = () => {
     const [state, setState] = useState('')
     const [zipCode, setZipCode] = useState('')
     const [picURL, setPicURL] = useState('')
+    const [date, setDate] = useState(new Date())
+    const [time, setTime] = useState('12:00')
+console.log(time)
+console.log(date)
 
     //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
     // const newGroupSubmit = (e) => {
@@ -24,6 +27,23 @@ const AddEvent = () => {
     //   })
     // }
 
+    const newEventSubmit = (e) => {
+      e.preventDefault()
+
+      axios.post('/newEvent', {
+        name,
+        description,
+        date,
+        time,
+        address,
+        city,
+        state,
+        zip,
+        pictureUrl,
+        adminId: userId
+      })
+    }
+  console.log(date)
   return (
     <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
@@ -39,8 +59,20 @@ const AddEvent = () => {
             <label className="mb-2 font-bold text-lg text-grey-darkest">Event Description</label>
             <textarea className="border py-2 px-3 text-grey-darkest" required={"required"} value={description} onChange={(e) => { setDescription(e.target.value) }} />
           </div>
+
+          <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest">Date</label>
+            <input type="date" className="border py-2 px-3 text-grey-darkest" required={"required"} value={date} onChange={(e) => { setDate(e.target.value) }} />
+          </div>
+
+          <div className="flex flex-col mb-4">
+            <label className="mb-2 font-bold text-lg text-grey-darkest">Date</label>
+            <input type="time" className="border py-2 px-3 text-grey-darkest" required={"required"} value={time} onChange={(e) => { setTime(e.target.value) }} />
+          </div>
+
           <h2>Location:</h2>
           <br/>
+
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Street Address</label>
             <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={address} onChange={(e) => { setAddress(e.target.value) }} />
