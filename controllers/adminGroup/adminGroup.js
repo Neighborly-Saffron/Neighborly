@@ -64,10 +64,18 @@ const approveJoin = (req, res) => {
 }
 
 const removeJoinRequest = (req, res) => {
-  console.log('req.body in removeJoin:', req.body)
-  console.log('req.header.params in removeJoin:', req.params)
-  const query = `DELETE FROM requestjoin WHERE id_user=${req.params.userId} and id_group=${req.params.groupId}`
-  res.send()
+  // console.log('req.body in removeJoin:', req.body)
+  // console.log('req.header.params in removeJoin:', req.params)
+  console.log('req.query in removeJoin:', req.query)
+  const query = `DELETE FROM requestjoin WHERE id_user=$1 and id_group=$2`
+  return connectionPool
+  .query(query, [req.query.userId, req.query.groupId])
+    .then(result =>
+      res.send())
+    .catch(err => {
+      console.error('controller failed to delete from db', err.message);
+      res.status(500);
+    });
 }
 
 
