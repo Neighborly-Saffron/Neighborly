@@ -8,7 +8,7 @@ const { useState, useEffect } = React;
 function GroupAdmin () {
   const [toggleModal, setToggleModal] = useState(false)
 
-  const switchModal = () => {
+  const switchModal = ({ userId }) => {
     setToggleModal(!toggleModal)
   }
 

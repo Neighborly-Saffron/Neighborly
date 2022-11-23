@@ -20,7 +20,7 @@ function Home({ userId, userGroups }) {
     <UserGroupList userId={userId} userGroups={userGroups} />
     <Calendar />
     <Map mapStart={mapStart} eventList={eventList} />
-    <GroupAdmin />
+    <GroupAdmin userId={userId}/>
     <Feed userId={userId} path={'home'} />
   </div>)
 }
