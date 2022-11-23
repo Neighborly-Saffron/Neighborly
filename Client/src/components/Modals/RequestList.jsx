@@ -3,7 +3,7 @@ import Request from './Request.jsx'
 
 
 const RequestList = ({group, requestedUsers, handleNotificationClick}) => {
-
+  console.log('requestedUsers:', requestedUsers)
   return (
     <>
 
