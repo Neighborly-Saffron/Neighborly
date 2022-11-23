@@ -13,18 +13,6 @@ const AddEvent = ({ toggleModal, userId, groupId }) => {
     const [date, setDate] = useState(new Date())
     const [time, setTime] = useState('12:00')
 
-    //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
-    // const newGroupSubmit = (e) => {
-    //   e.preventDefault()
-    //   axios.post('/newGroup', { name, description, picURL, adminid: 4 }).then(() => {
-    //     console.log('sent to db')
-    //     switchModal()
-    //   }).catch((err) => {
-    //     console.log('error adding group', err)
-    //     switchModal()
-    //   })
-    // }
-
     const newEventSubmit = (e) => {
       e.preventDefault()
 
