@@ -51,7 +51,6 @@ const getGroupFeed = (request, response) => {
 //the most recent posts from all of the user’s various groups
 const getProfileFeed = (request, response) => {
   let userId = request.params.userId
-  console.log("profile feed", userId)
 
   var query = `SELECT json_build_object(
                     'postid', id,

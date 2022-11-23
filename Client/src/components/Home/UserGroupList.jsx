@@ -16,7 +16,7 @@ function UserGroupList ({ userId, userGroups }) {
       <h3 className="italic">
         User Group List
       </h3>
-      <div className="border-2 border-yellow-800 m-5 p-1 overflow-y-scroll">
+      <div className=" h-full overflow-y-scroll">
         {userGroups && groups}
       </div>
 
