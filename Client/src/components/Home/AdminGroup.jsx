@@ -23,7 +23,7 @@ const AdminGroup = ({group}) => {
         console.log('res.data in getRequestedGroups', res.data)
         res.data.forEach(requestObj => {
           // console.log('requestObj', requestObj)
-           setRequestedUsers([...requestedUsers,requestObj])
+          setRequestedUsers([...requestedUsers,requestObj])
           if (requestObj.groupName === group.groupName) {
             // console.log('requestObj.groupName:', requestObj.groupName)
             // console.log('group.groupName:', group.groupName)
