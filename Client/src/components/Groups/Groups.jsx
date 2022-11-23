@@ -6,11 +6,11 @@ const { useState, useEffect } = React;
 function Groups({userId, userGroups}) {
 	return (
 		<div className="mt-5 border-t-2">
-			<div className="grid grid-cols-4 grid-rows-4 p-5">
-				<div className="col-span-1 row-span-4 border-r-2 p-2">
+			<div className="grid grid-cols-5 p-5">
+				<div className="col-span-1 border-r-2 p-2">
 				<UserGroupList userId={userId} userGroups={userGroups} />
 				</div>
-				<div className="col-start-2 col-span-3 row-span-4">
+				<div className="col-start-2 col-span-4 ">
 					<GroupList userId={userId} />
 				</div>
 			</div>

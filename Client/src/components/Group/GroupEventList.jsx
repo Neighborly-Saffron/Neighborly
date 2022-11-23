@@ -4,11 +4,11 @@ import EventItem from './EventItem.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupEventList({ userId }) {
+function GroupEventList({ userId, groupId }) {
   const [events, setEvents] = useState([])
 
   const getEvents = () => {
-    axios.get(`/events`)
+    axios.get(`/events/getlist/${groupId}`)
       .then((res) => {
         setEvents(res.data);
       })

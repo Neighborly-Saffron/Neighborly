@@ -21,7 +21,7 @@ function Bio ({ userId }) {
   useEffect(getProfile, [])
 
   return (
-    <div>
+    <div className="p-3">
       <h3 className="italic">
         Bio
       </h3>
