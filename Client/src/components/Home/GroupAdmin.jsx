@@ -17,7 +17,7 @@ function GroupAdmin ({ userId }) {
     <h3 className="italic">
       GroupAdmin
     </h3>
-    <AdminGroups></AdminGroups>
+    <AdminGroups userId={userId}></AdminGroups>
     <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10" onClick={() => {setToggleModal(!toggleModal)}}>Add A Group</button>
     {toggleModal ? <AddGroupModal switchModal={switchModal} userId={userId}/> : null }
   </div>
