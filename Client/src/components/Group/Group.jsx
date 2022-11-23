@@ -9,7 +9,7 @@ import { useParams } from 'react-router-dom'
 
 const { useState, useEffect } = React;
 
-function Group ({ userId, groupId }) {
+function Group ({ userId }) {
   let { id } = useParams();
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
