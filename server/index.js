@@ -76,6 +76,9 @@ app.post('/events/cancel', groupEvent.cancelAttend)
 app.post('/user', addNewUser.addNewUser);
 app.get('/user', addNewUser.getNewUser);
 
+//add event
+app.post('/newEvent', mapEvents.addEvent);
+
 //MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {

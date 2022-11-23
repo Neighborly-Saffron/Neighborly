@@ -49,4 +49,8 @@ const getEvents = (request, response) => {
     });
 }
 
-module.exports = { getEvents};
+const addEvent = (req, res) => {
+  console.log(req.body)
+}
+
+module.exports = { getEvents, addEvent};
