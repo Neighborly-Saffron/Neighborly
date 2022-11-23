@@ -23,7 +23,7 @@ function Post({ postData, userId }) {
   }
 
   const submitComment =() => {
-    axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postId })
+    axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
       .then((res) => {
         console.log('posted a comment')
         setCommentText('')
