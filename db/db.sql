@@ -81,7 +81,6 @@ CREATE TABLE requestJoin (
  id_group INTEGER
 );
 
-
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_pkey PRIMARY KEY (id);
 
 ALTER TABLE post ADD CONSTRAINT post_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);

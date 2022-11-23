@@ -6,7 +6,7 @@ import ReactTimeAgo from 'react-time-ago'
 const { useState, useEffect } = React;
 
 function Post({ postData }) {
-  console.log(postData)
+
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(false)
 
