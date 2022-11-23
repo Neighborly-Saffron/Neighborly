@@ -7,8 +7,8 @@ const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
-const path = require("path");
-var chat = require('./chat.js')
+const path = require('path');
+const chat = require('./chat.js')
 const socketIo = require('socket.io')
 const http = require('http')
 
@@ -28,13 +28,6 @@ const io = socketIo(server, {
 }) //in case server and client run on different urls
 
 chat(io);
-// io.on('connection', (socket) => {
-//   console.log('client connected: ',socket.id)
-//   socket.join('clock-room')
-//   socket.on('disconnect', (reason) => console.log(reason))
-// })
-
-// setInterval(() => {io.to('clock-room').emit('time', new Date())}, 1000)
 
 app.use(express.static(path.join(__dirname, '../public')));
 
