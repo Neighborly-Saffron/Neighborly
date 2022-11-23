@@ -4,11 +4,7 @@ import { useAuth0 } from '@auth0/auth0-react';
 const LoginButton = ({ onAuth }) => {
   const { loginWithPopup, user, isAuthenticated } = useAuth0();
 
-  useEffect(() => {
-    if(isAuthenticated) {
-      onAuth(user)
-    }
-  }, [isAuthenticated])
+
 
   return (
     <button

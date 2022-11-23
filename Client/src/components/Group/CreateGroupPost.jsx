@@ -7,15 +7,14 @@ import Feed from '../Feed/Feed.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupPost () {
+function GroupPost ({ userId, groupId }) {
 
   const [message, setMessage] = useState('');
   const [tempMessage, setTempMessage] = useState('')
-  const [user, setUser] = useState('4');
 
   const postMessage = () => {
     if (message.length > 0) {
-      axios.post('/addPost', {post: message, likes: 0, userId: user, groupId: 1})
+      axios.post('/addPost', {post: message, likes: 0, userId: userId, groupId: groupId})
         .then((res) => console.log(res.data))
         .catch((err) => console.log(err))
     }

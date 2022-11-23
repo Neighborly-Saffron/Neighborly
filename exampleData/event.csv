@@ -1,4 +1,4 @@
-id,name,location,description,pictureURL,groupID,adminID
-1,homeless dog reading,"1720 N Goldenrod Rd Suite 8, Orlando, FL 32807",join fran in reading to homeless dogs,https://media.timeout.com/images/101705309/image.jpg,1,4
-2,diabetic duck awareness,"2117 E Club Blvd, Durham, NC 27704",let's spread awareness for ducks with diabetes,https://www.creativefabrica.com/wp-content/uploads/2019/03/Baby-duck-cartoon.jpg,2,1
-3,blind cat feeding,"20 W 34th St., New York, NY 10001",join us feeding the poor cats,https://www.creativefabrica.com/wp-content/uploads/2021/10/18/Comic-Cartoon-Cat-Sticker-18-Graphics-18955531-1.jpg,3,5
+id,name,location,lat,lng,date,time,description,pictureURL,groupID,adminID
+1,homeless dog reading,"1720 N Goldenrod Rd Suite 8, Orlando, FL 32807",28.5707996,-81.28761569999999,Nov-23-2022,09:00,join fran in reading to homeless dogs,https://media.timeout.com/images/101705309/image.jpg,1,4
+2,diabetic duck awareness,"2117 E Club Blvd, Durham, NC 27704",36.0264244,-78.85622380000001,Nov-25-2022,16:00,let's spread awareness for ducks with diabetes,https://www.creativefabrica.com/wp-content/uploads/2019/03/Baby-duck-cartoon.jpg,2,1
+3,blind cat feeding,"20 W 34th St., New York, NY 10001",40.7487658,-73.9857248,Nov-27-2022,17:00,join us feeding the poor cats,https://www.creativefabrica.com/wp-content/uploads/2021/10/18/Comic-Cartoon-Cat-Sticker-18-Graphics-18955531-1.jpg,3,7

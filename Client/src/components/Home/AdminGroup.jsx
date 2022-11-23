@@ -1,13 +1,14 @@
 import React from 'react';
 import axios from 'axios'
 const { useState, useEffect } = React;
-import AdminModal from '../Modals/AdminModal.jsx'
+import RequestList from '../Modals/RequestList.jsx'
 
 
 const AdminGroup = ({group}) => {
   // console.log('group.groupPic:', group.groupPic)
-  const [showModal, setShowModal] = useState(false);
-  const [notificationCount, setNotificationCount] = useState(0);
+  const [showModal, setShowModal] = useState(false)
+  const [notificationCount, setNotificationCount] = useState(0)
+  const [requestedUsers, setRequestedUsers] = useState([])
 
   console.log('group:', group)
   const handleNotificationClick = (e) =>{
@@ -18,12 +19,14 @@ const AdminGroup = ({group}) => {
 
     return axios.get('/requestedGroups')
       .then((res)=>{
-        // console.log('res.data in getRequestedGroups', res.data)
+        console.log('res.data in getRequestedGroups', res.data)
         res.data.forEach(requestObj => {
-          // console.log('here!!!!', requestObj)
+          console.log('requestObj', requestObj)
+           setRequestedUsers([...requestedUsers,requestObj])
           if (requestObj.groupName === group.groupName) {
-            // console.log('requestObj.groupName:', requestObj.groupName)
-            // console.log('group.groupName:', group.groupName)
+            console.log('requestObj.groupName:', requestObj.groupName)
+            console.log('group.groupName:', group.groupName)
+
             setNotificationCount(notificationCount+1)
           }
         })
@@ -33,7 +36,7 @@ const AdminGroup = ({group}) => {
       })
   }
 
-
+  //to make this real time, i need to set a state in App
   //when the page first loads, get notification counts
   useEffect(()=>{
     getRequestedGroups()
@@ -43,7 +46,7 @@ const AdminGroup = ({group}) => {
   return (
     <>
 
-{showModal&&<AdminModal></AdminModal>}
+{showModal&&(requestedUsers.length !==0)&&<RequestList group={group} requestedUsers={requestedUsers} handleNotificationClick={handleNotificationClick}></RequestList>}
 
 <div className="flex justify-center">
   <div className="bg-white rounded-lg border border-gray-200 w-96 text-gray-900">
