@@ -3,12 +3,11 @@ import axios from 'axios';
 
 const { useState, useEffect } = React;
 
-function EventItem({ event }) {
+function EventItem({ event, userId }) {
   const [attending, setAttending] = useState(false)
 
   let eventID = event.eventid
-  let userID = 4
-  //MUST REFACTOR TO USE ACTUAL USER ID
+  let userID = userId
 
   const checkAttending = () => {
     axios.get(`/events/attending/${eventID}/${userID}`)
