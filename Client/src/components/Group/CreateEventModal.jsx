@@ -7,6 +7,10 @@ function CreateEventModal () {
 
   const [showModal, setShowModal] = useState(false);
 
+  const toggleModal = () => {
+    setShowModal(!showModal);
+  }
+
   return (
     <>
       <h3 className="italic">
@@ -19,7 +23,7 @@ function CreateEventModal () {
         mx-auto p-4 rounded-full" type="button">
         Create Event
       </button>
-      {showModal && <EventModal />}
+      {showModal && <EventModal toggleModal={toggleModal}/>}
     </>
   )
 }
