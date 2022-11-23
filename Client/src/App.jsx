@@ -41,7 +41,7 @@ function App() {
 			.catch((err) => console.log(err));
 		}
 	}, [userData])
-
+	console.log(user)
 	useEffect (() => {
 		if (userId) {
 			axios.get(`/usergroups/${userId}`)

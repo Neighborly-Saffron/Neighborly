@@ -35,7 +35,7 @@ function Group ({ userId, groupId }) {
         </div>
         <div className='flex flex-col'>
           <GroupEventMap userId={userId} groupId={id}/>
-          <CreateEventModal />
+          <CreateEventModal userId={userId} groupId={id}/>
 
           <GroupEventList userId={userId} />
           { socket ? (
