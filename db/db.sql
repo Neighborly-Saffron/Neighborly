@@ -23,6 +23,19 @@ CREATE TABLE post (
 
 ALTER TABLE post ADD CONSTRAINT post_pkey PRIMARY KEY (id);
 
+DROP TABLE IF EXISTS comment cascade;
+
+CREATE TABLE comment (
+ id BIGSERIAL,
+ message VARCHAR,
+ likes INTEGER,
+ posted_at TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP,
+ userID INTEGER,
+ postID INTEGER
+);
+
+ALTER TABLE comment ADD CONSTRAINT comment_pkey PRIMARY KEY (id);
+
 DROP TABLE IF EXISTS groups cascade;
 
 CREATE TABLE groups (
@@ -85,6 +98,8 @@ ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_pkey PRIMARY KEY (id);
 
 ALTER TABLE post ADD CONSTRAINT post_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
 ALTER TABLE post ADD CONSTRAINT post_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
+ALTER TABLE comment ADD CONSTRAINT comment_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
+ALTER TABLE comment ADD CONSTRAINT comment_groupID_fkey FOREIGN KEY (postID) REFERENCES post(id);
 ALTER TABLE groups ADD CONSTRAINT groups_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
 ALTER TABLE event ADD CONSTRAINT event_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
 ALTER TABLE event ADD CONSTRAINT event_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);

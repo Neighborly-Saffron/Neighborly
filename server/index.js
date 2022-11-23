@@ -8,6 +8,7 @@ const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
 const mapEvents = require('../controllers/map/events.js')
+const comments = require('../controllers/feed/comment.js')
 const path = require("path");
 
 const express = require('express')
@@ -25,6 +26,7 @@ app.get('/posts/home/:userId', feed.getHomeFeed);
 app.get('/posts/profile/:userId', feed.getProfileFeed);
 app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
+app.get('/comments/:postId', comments.getComments);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)

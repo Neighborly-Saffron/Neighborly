@@ -8,7 +8,6 @@ function EventItem({ event, userId }) {
 
   let eventID = event.eventid
   let userID = userId
-  //MUST REFACTOR TO USE ACTUAL USER ID
 
   const checkAttending = () => {
     axios.get(`/events/attending/${eventID}/${userID}`)
