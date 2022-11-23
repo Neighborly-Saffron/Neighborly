@@ -7,6 +7,7 @@ const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
+const mapEvents = require('../controllers/map/events.js')
 const path = require("path");
 
 const express = require('express')
@@ -46,6 +47,9 @@ app.get('/requestedGroups', adminGroup.getRequestedGroups)
 app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
 
+//map routes
+app.get('/mapEvents',mapEvents.getEvents);
+app.get('/groupEvents', mapEvents.getGroupEvents);
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
