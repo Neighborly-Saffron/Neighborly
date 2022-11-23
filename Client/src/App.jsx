@@ -13,7 +13,6 @@ import AddGroup from './components/AddGroup/AddGroup.jsx'
 import ModalTemplate from './components/Modals/ModalTemplate.jsx'
 const { useState, useEffect } = React;
 
-
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
 	const [userData, setUserData] = useState({});
@@ -70,7 +69,7 @@ function App() {
       <Route path="/profile" element={<Profile userId={userId} userGroups={userGroups}/>}/>
       <Route path="/group/:id" element={<Group userId={userId} />}/>
       <Route path="/group/:id" element={<Group userId={userId} />}/>
-      <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
+      <Route path="/groups/group/:id" element={<Group userId={userId} userData={userData} />}/>
       </Routes>
 			</>}
 			{!isAuthenticated &&

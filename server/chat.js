@@ -1,5 +1,13 @@
 const uuidv4 = require('uuid').v4;
 
+async function authHandler(socket, next) {
+  users.set(socket, {
+    id: user.id,
+    name: [user.profile.firstName, user.profile.lastName].filter(Boolean).join(' '),
+  });
+  next();
+}
+
 const messages = new Set();
 const users = new Map();
 

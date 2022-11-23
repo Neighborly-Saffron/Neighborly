@@ -12,12 +12,12 @@ import socketClient  from "socket.io-client";
 
 const { useState, useEffect } = React;
 
-function Group ({ userId }) {
+function Group ({ userId, userData }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
 
 	useEffect(() => {
-    const newSocket = socketClient(`http://${window.location.hostname}:3001`);
+    const newSocket = socketClient(`http://${window.location.hostname}:3001`, userData && {name: `${userData.given_name} ${userData.family_name}`});
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
@@ -36,16 +36,14 @@ function Group ({ userId }) {
           <GroupDescription groupId={id} />
           <GroupEventMap userId={userId} groupId={id}/>
           <CreateEventModal userId={userId} groupId={id}/>
-
           <GroupEventList userId={userId} />
-          { socket ? (
-          <div className="">
-            <GroupChat socket={socket} />
-            <GroupChatInput socket={socket} />
-          </div>
-          ) : (
-            <div>Not Connected</div>
-          )}
+          { socket ?
+            <div className="">
+              <GroupChat socket={socket} />
+              <GroupChatInput socket={socket} />
+            </div>
+            : <div>Not Connected</div>
+          }
 
         </div>
       </div>

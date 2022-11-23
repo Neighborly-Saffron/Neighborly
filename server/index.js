@@ -1,3 +1,9 @@
+const path = require('path');
+const socketIo = require('socket.io')
+const http = require('http')
+const chat = require('./chat.js')
+const express = require('express')
+
 const groups = require('../controllers/group/groups.js')
 const groupSearch = require('../controllers/group/groupSearch.js')
 const groupPage = require('../controllers/group/groupPage.js')
@@ -7,14 +13,9 @@ const addGroup = require('../controllers/addGroup/addGroup.js')
 const groupEvent = require('../controllers/group/eventlist.js')
 const addNewUser = require('../controllers/user/user.js')
 const adminGroup = require('../controllers/adminGroup/adminGroup.js')
-const path = require('path');
-const chat = require('./chat.js')
-const socketIo = require('socket.io')
-const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
 const comments = require('../controllers/feed/comment.js')
 
-const express = require('express')
 const app = express()
 const server = http.createServer(app)
 
