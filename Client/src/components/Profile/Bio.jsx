@@ -2,28 +2,12 @@ import React from 'react';
 import axios from 'axios';
 const { useState, useEffect } = React;
 
-function Bio () {
+function Bio ({ userId }) {
 
-  // const [userID, setUserID] = useState(4)
-  // const [bio, setBio] = useState('')
-
-  // useEffect(() => {
-  //   axios.get('/profile/bio')
-  //   .then(res => {
-  //     console.log(res.data);
-  //     setBio(res.data);
-  //   })
-  //   .catch(err => {
-  //     console.log(err);
-  //   })
-  // },[])
-  const [userId, setUserId] = useState('5');
   const [userProfile, setUserProfile] = useState({})
-  console.log('pls print this line')
-
 
   const getProfile = () => {
-    axios.get('http://localhost:3001/profile/bio?userId=5' )
+    axios.get(`profile/bio?userId=${userId}`)
     .then(res => {
       console.log('client success receiving data from db');
       console.log('userProfile.pictureurl: ', res.data.pictureURL)
@@ -34,20 +18,24 @@ function Bio () {
     })
   }
 
-useEffect(()=>{
-  getProfile()
-}, [])
+  useEffect(getProfile, [])
 
-
-
-  return (<div>
-    <h3 className="italic">
-      Bio
-    </h3>
-    <div>{userProfile.name}</div>
-    <div>{userProfile.bio}</div>
-    <img className='h-20 m-1' src={userProfile.pictureURL}></img>
-  </div>)
+  return (
+    <div className="p-3">
+      <h3 className="italic">
+        Bio
+      </h3>
+      <div className='flex'>
+        <div  className='flex flex-col'>
+          <img className='h-20 m-1' src={userProfile.pictureURL}></img>
+        </div>
+        <div className='flex flex-col'>
+          <div>{userProfile.name}</div>
+          <div>{userProfile.bio}</div>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export default Bio;

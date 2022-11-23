@@ -12,7 +12,7 @@ import socketClient  from "socket.io-client";
 
 const { useState, useEffect } = React;
 
-function Group ({ userId, groupId }) {
+function Group ({ userId }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
 
@@ -27,16 +27,17 @@ function Group ({ userId, groupId }) {
       <h2>
         GROUP
       </h2>
-      <GroupDescription groupId={id} />
       <div className='flex'>
-        <div className='flex-auto flex-col'>
+        <div className='flex w-2/3 flex-col'>
           <CreateGroupPost userId={userId} groupId={id} />
           <Feed userId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
-          <GroupEventMap />
-          <CreateEventModal />
-          <GroupEventList />
+          <GroupDescription groupId={id} />
+          <GroupEventMap userId={userId} groupId={id}/>
+          <CreateEventModal userId={userId} groupId={id}/>
+
+          <GroupEventList userId={userId} />
           { socket ? (
           <div className="">
             <GroupChat socket={socket} />
@@ -45,6 +46,7 @@ function Group ({ userId, groupId }) {
           ) : (
             <div>Not Connected</div>
           )}
+
         </div>
       </div>
     </div>

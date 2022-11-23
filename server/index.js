@@ -12,6 +12,7 @@ const chat = require('./chat.js')
 const socketIo = require('socket.io')
 const http = require('http')
 const mapEvents = require('../controllers/map/events.js')
+const comments = require('../controllers/feed/comment.js')
 
 const express = require('express')
 const app = express()
@@ -39,9 +40,12 @@ app.get('/posts/home/:userId', feed.getHomeFeed);
 app.get('/posts/profile/:userId', feed.getProfileFeed);
 app.get('/posts/group/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
+app.get('/comments/:postId', comments.getComments);
+app.post('/comment', comments.addComment);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
+app.post('/addtoGroup', addGroup.addToGroup)
 
 //detailed group list/search routes
 app.get('/getGroups', groupSearch.getInitialGroups);
@@ -56,14 +60,19 @@ app.get('/GroupAdmin',adminGroup.getAdminGroups)
 
 //request-to-join groups route
 app.get('/requestedGroups', adminGroup.getRequestedGroups)
+//approve-to-join groups route
+app.post('/groupApproved', adminGroup.approveJoin)
+//remove a user from requestjoin
+app.delete('/groupApproved', adminGroup.removeJoinRequest)
+
+
 
 // individual group page routes
 app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
 app.post('/addPost', groupPage.addPost)
 
 //map routes
-app.get('/mapEvents',mapEvents.getEvents);
-// app.get('/groupEvents', mapEvents.getGroupEvents);
+app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
 
 //group event
 app.get('/events', groupEvent.getGroupEvents)
@@ -74,6 +83,9 @@ app.post('/events/cancel', groupEvent.cancelAttend)
 //add new user
 app.post('/user', addNewUser.addNewUser);
 app.get('/user', addNewUser.getNewUser);
+
+//add event
+app.post('/newEvent', mapEvents.addEvent);
 
 //MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {

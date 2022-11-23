@@ -8,16 +8,26 @@ function AddGroup({ switchModal, userId }) {
   const [description, setDescription] = useState('')
   const [picURL, setPicURL] = useState('')
 
-  //ADMINID IS CURRENTLY HARDCODED- WILL NEED TO BE UPDATED TO USERID
   const newGroupSubmit = (e) => {
     e.preventDefault()
-    axios.post('/newGroup', { name, description, picURL, adminid: userId }).then(() => {
-      console.log('sent to db')
+    axios.post('/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
+      let newGroupId = data.data[0].id
+      addCreatorToGroup(userId, newGroupId)
       switchModal()
     }).catch((err) => {
       console.log('error adding group', err)
       switchModal()
     })
+  }
+
+  const addCreatorToGroup = (userId, newGroupId) => {
+    axios.post('/addtoGroup', {userId, newGroupId})
+      .then(() =>{
+        console.log('added to new group')
+      })
+      .catch(() => {
+        console.log('error adding creator to new group')
+      })
   }
 
   return (
