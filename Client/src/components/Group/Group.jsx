@@ -25,7 +25,7 @@ function Group ({ userId, groupId }) {
         <div className='flex flex-col'>
           <GroupEventMap />
           <CreateEventModal />
-          <GroupEventList />
+          <GroupEventList userId={userId} />
         </div>
       </div>
     </div>

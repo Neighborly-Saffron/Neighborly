@@ -4,7 +4,7 @@ import EventItem from './EventItem.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupEventList() {
+function GroupEventList({ userId }) {
   const [events, setEvents] = useState([])
 
   const getEvents = () => {
@@ -23,7 +23,7 @@ function GroupEventList() {
     </h3>
     <div className="max-h-screen/2 border-2 border-black rounded overflow-hidden overflow-y-scroll">
       {events.map((event, index) => {
-        return <EventItem event={event.json_build_object} key={index} />
+        return <EventItem event={event.json_build_object} key={index} userId={userId} />
       })}
     </div>
   </div>)
