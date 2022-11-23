@@ -9,7 +9,7 @@ const AddEvent = ({ toggleModal, userId, groupId }) => {
     const [city, setCity] = useState('')
     const [state, setState] = useState('')
     const [zipCode, setZipCode] = useState('')
-    const [picURL, setPicURL] = useState('')
+    const [picUrl, setPicUrl] = useState('')
     const [date, setDate] = useState(new Date())
     const [time, setTime] = useState('12:00')
 
@@ -24,7 +24,7 @@ const AddEvent = ({ toggleModal, userId, groupId }) => {
     //     switchModal()
     //   })
     // }
-console.log(userId, "IN EVENT MODAL")
+
     const newEventSubmit = (e) => {
       e.preventDefault()
 
@@ -36,8 +36,8 @@ console.log(userId, "IN EVENT MODAL")
         address,
         city,
         state,
-        zip,
-        pictureUrl,
+        zipCode,
+        picUrl,
         groupId,
         adminId: userId,
       })
@@ -50,7 +50,7 @@ console.log(userId, "IN EVENT MODAL")
         toggleModal()
       })
     }
-  console.log("IN ADD EVENT", groupId)
+console.log(picUrl)
   return (
     <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
@@ -102,7 +102,7 @@ console.log(userId, "IN EVENT MODAL")
 
           <div className="flex flex-col mb-4">
             <label className="mb-2 font-bold text-lg text-grey-darkest">Photo URL</label>
-            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={picURL} onChange={(e) => { setPicURL(e.target.value) }} />
+            <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={picUrl} onChange={(e) => { setPicUrl(e.target.value) }} />
           </div>
 
           <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white uppercase text-lg mx-auto p-4 rounded-full" type="submit">Create Event</button>
