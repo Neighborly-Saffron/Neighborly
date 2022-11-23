@@ -9,13 +9,17 @@ function Map (props) {
   let [mapLng, setMapLng] = useState()
   let [mapLat, setMapLat] = useState()
 
+  let maplatlng = props.mapStart.latlng.length ? props.mapStart.latlng : [40.7487658,-73.9857248];
+
+  console.log(maplatlng);
+
   return (
   <div className="w-full h-96">
     {
-      props.mapStart.latlng.length ?
+      maplatlng.length ?
       <GoogleMap
         bootstrapURLKeys={{key:process.env.googleAPI}}
-        center= {props.mapStart.latlng}
+        center= {maplatlng}
         zoom= {9}>
           {props.eventList.events.map((event, i)=> {
             return <Marker key = {i} name={event.json_build_object.name} lat={event.json_build_object.lat} lng={event.json_build_object.lng}></Marker>
