@@ -10,6 +10,7 @@ function Post({ postData, userId }) {
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(false)
   const [commentText, setCommentText] = useState('')
+  const [comments, setComments] = useState([])
 
   const likePost = (postid) => {
     if (!hasLiked) {
@@ -27,9 +28,21 @@ function Post({ postData, userId }) {
       .then((res) => {
         console.log('posted a comment')
         setCommentText('')
+        getComments()
       })
       .catch((err) => console.log('error posting comment'))
   }
+
+  const getComments = () => {
+    axios.get(`/comments/${postData.postid}`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((err) => console.log('error getting comment feed data'))
+  }
+
+  useEffect(getComments, []);
+
 
   return (
     <div className="border-2 m-2 p-2 border-black rounded bg-lighterblue">
@@ -47,7 +60,7 @@ function Post({ postData, userId }) {
           <button className='btn rounded border-2 bg-white p-1' onClick={() => {submitComment()}}>Comment</button>
         <div onClick={() => {likePost(postData.postid)}} className="h-6 w-6 border-2 border-lightergreen bg-darkergreen hover:bg-lightergreen hover:border-darkergreen text-white m-1 rounded-full flex items-center justify-center cursor-default">{likes}</div>
       </div>
-      <CommentFeed postId={postData.postid}/>
+      <CommentFeed comments={comments} postId={postData.postid}/>
     </div>
   )
 }

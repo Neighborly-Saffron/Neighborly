@@ -4,18 +4,7 @@ import Comment from './Comment.jsx'
 
 const { useState, useEffect } = React;
 
-function CommentFeed ({ userId, postId }) {
-  const [comments, setComments] = useState([])
-
-  const getComments = () => {
-    axios.get(`/comments/${postId}`)
-      .then((res) => {
-        setComments(res.data);
-      })
-      .catch((err) => console.log('error getting comment feed data'))
-  }
-
-  useEffect(getComments, []);
+function CommentFeed ({ userId, postId, comments }) {
 
   return (
     <>
