@@ -9,12 +9,14 @@ import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
 import { useParams } from 'react-router-dom'
 import socketClient  from "socket.io-client";
+import axios from 'axios';
 
 const { useState, useEffect } = React;
 
-function Group ({ userId, groupId }) {
+function Group ({ userId }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
+  const [eventList, setEventList] = useState({events:[]});
 
 	useEffect(() => {
     const newSocket = socketClient(`http://${window.location.hostname}:3001`);
@@ -22,22 +24,32 @@ function Group ({ userId, groupId }) {
     return () => newSocket.close();
   }, [setSocket]);
 
+  const getEvents = () => {
+    axios.get(`/mapEvents/${userId}/${id}`)
+      .then((res) => {
+        console.log(res)
+        setEventList({events:res.data});
+      })
+      .catch((err) => console.log('error getting group event data'))
+  }
+
+  useEffect(getEvents, []);
+
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
       <h2>
         GROUP
       </h2>
-      <GroupDescription groupId={id} />
       <div className='flex'>
-        <div className='flex-auto flex-col'>
+        <div className='flex w-2/3 flex-col'>
           <CreateGroupPost userId={userId} groupId={id} />
           <Feed userId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
-          <GroupEventMap userId={userId} groupId={id}/>
-          <CreateEventModal userId={userId} groupId={id}/>
-
-          <GroupEventList userId={userId} groupId={id} />
+          <GroupDescription groupId={id} />
+          <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
+          <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
+          <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
           <div className="">
             <GroupChat socket={socket} />

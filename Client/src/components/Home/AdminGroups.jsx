@@ -4,19 +4,20 @@ import AdminGroup from './AdminGroup.jsx'
 
 const { useState, useEffect } = React;
 
-function AdminGroups () {
+function AdminGroups ({userId}) {
 
-  const [userId, setUserId] = useState('5')
+  // console.log('it got in AdminGroups')
+
   const [groups, setGroups] = useState([])
 
 
   const getAllAdminGroups = () => {
-    axios.get('http://localhost:3001/GroupAdmin/?userId=5' )
+    axios.get(`/GroupAdmin/?userId=${userId}` )
     .then(res => {
-      console.log('AdminGroups client success receiving data from db');
-      // console.log('res.data client received:', res.data)
+      // console.log('AdminGroups client success receiving data from db');
+      console.log('res.data client received:', res.data)
       // console.log('userProfile.pictureurl: ', res.data.pictureURL)
-      setGroups(res.data)
+      setGroups(res.data[0].admingroup)
     })
     .catch(err => {
       console.log('client failed to receive data from db', err);
@@ -29,7 +30,7 @@ function AdminGroups () {
 
   return (
     <>
-     {groups.map((group, index)=>{
+     {groups && groups.map((group, index)=>{
        return <AdminGroup key={index} group={group}></AdminGroup>
       })}
     </>

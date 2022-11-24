@@ -13,10 +13,10 @@ function UserGroupList ({ userId, userGroups }) {
 
   return (
     <>
-      <h3 className="italic">
+      <h3 className="  text-2xl mx-auto mb-2 w-fit italic text-center border-b-4">
         User Group List
       </h3>
-      <div className=" h-full overflow-y-scroll">
+      <div className=" h-full flex flex-col items-center gap-5">
         {userGroups && groups}
       </div>
 
