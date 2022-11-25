@@ -37,7 +37,8 @@ const getGroupFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
-                    'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
+                    'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
+                    'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
                                         )FROM post WHERE groupid = $1 ORDER BY posted_at DESC`;
 //GROUP ID IS WRITTEN AS ONE AS A PROP, WILL NEED TO BE UPDATED WHEN IT IS PASSED TO GROUP
   connectionPool
@@ -61,7 +62,8 @@ const getProfileFeed = (request, response) => {
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
-                    'pictureurl', (SELECT pictureurl FROM users WHERE id=userid)
+                    'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
+                    'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
                                         )FROM post WHERE userid = $1 ORDER BY posted_at DESC`;
 
   connectionPool
