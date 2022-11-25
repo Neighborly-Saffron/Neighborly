@@ -76,13 +76,11 @@ function App() {
 			{!isAuthenticated &&
 			<>
 			{isLoading ?
-				<div className="h-full">
-					<div className="flex items-center justify-center">
-						<div className="spinner-border animate-spin inline-block w-8 h-8 border-4 rounded-full" role="status">
-						</div>
-					<span className="visually-hidden">Loading...</span>
-				</div>
-			</div> : null}
+
+				<div class="flex h-screen w-screen justify-center items-center">
+  				<span class="animate-ping inline-flex rounded-full bg-sky-400 opacity-75 italic text-4xl mb-2">Loading...</span>
+  				<span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+				</div> : null}
 			{!isLoading ? <Login onAuth={onAuth} /> : null}
 			</>
 }
