@@ -45,7 +45,7 @@ function GroupChat ({ socket }) {
             title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
           >
             <span className="">{new Date(message.time).toLocaleTimeString()} </span>
-            <span className="">{message.user.name}: </span>
+            <span className="">{message.user || message.user.name}: </span>
             <span className="">{message.value}</span>
           </div>
         ))

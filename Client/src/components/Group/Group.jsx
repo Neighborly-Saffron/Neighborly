@@ -18,8 +18,11 @@ function Group ({ userId, userData }) {
   const [socket, setSocket] = useState(null);
   const [eventList, setEventList] = useState({events:[]});
 
+  console.log('user id in group: ', userId)
+  console.log('user data in group: ', userData)
+
 	useEffect(() => {
-    const newSocket = socketClient(`http://${window.location.hostname}:3001`, userData && {name: `${userData.given_name} ${userData.family_name}`});
+    const newSocket = socketClient(`http://${window.location.hostname}:3001`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
@@ -27,7 +30,7 @@ function Group ({ userId, userData }) {
   const getEvents = () => {
     axios.get(`/mapEvents/${userId}/${id}`)
       .then((res) => {
-        console.log(res)
+        // console.log(res)
         setEventList({events:res.data});
       })
       .catch((err) => console.log('error getting group event data'))
@@ -51,9 +54,11 @@ function Group ({ userId, userData }) {
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
-          <div className="">
+          <div className="h-44">
             <GroupChat socket={socket} />
-            <GroupChatInput socket={socket} />
+            {userData &&
+              <GroupChatInput socket={socket} userData={userData} />
+            }
           </div>
           ) : (
             <div>Not Connected</div>
