@@ -7,6 +7,7 @@ import GroupChat from './GroupChat.jsx'
 import GroupChatInput from './GroupChatInput.jsx'
 import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
+import GroupFeed from '../Feed/GroupFeed.jsx'
 import { useParams } from 'react-router-dom'
 import socketClient  from "socket.io-client";
 import axios from 'axios';
@@ -17,6 +18,7 @@ function Group ({ userId }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
   const [eventList, setEventList] = useState({events:[]});
+  const [posts, setPosts] = useState([]);
 
 	useEffect(() => {
     const newSocket = socketClient(`http://${window.location.hostname}:3001`);
@@ -35,6 +37,26 @@ function Group ({ userId }) {
 
   useEffect(getEvents, []);
 
+  const getPosts = () => {
+    axios.get(`/posts/group/${userId}/${id}`)
+      .then((res) => {
+        setPosts(res.data);
+      })
+      .catch((err) => console.log('error getting group feed post data'))
+  }
+
+  useEffect(getPosts, []);
+
+  const postMessage = (message) => {
+    if (message.length > 0) {
+      axios.post('/addPost', {post: message, likes: 0, userId: userId, groupId: id})
+        .then((res) => {
+          getPosts()
+        })
+        .catch((err) => console.log(err))
+    }
+  }
+
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
       <h2>
@@ -42,8 +64,9 @@ function Group ({ userId }) {
       </h2>
       <div className='flex'>
         <div className='flex w-2/3 flex-col'>
-          <CreateGroupPost userId={userId} groupId={id} />
-          <Feed userId={userId} groupId={id} path={'group'} />
+          <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
+          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
+          {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
         </div>
         <div className='flex flex-col'>
           <GroupDescription groupId={id} />
