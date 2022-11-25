@@ -96,10 +96,20 @@ CREATE TABLE requestJoin (
 
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_pkey PRIMARY KEY (id);
 
+DROP TABLE IF EXISTS userlikes cascade;
+
+CREATE TABLE userlikes (
+ id BIGSERIAL,
+ id_user INTEGER,
+ id_post INTEGER
+);
+
+ALTER TABLE userlikes ADD CONSTRAINT userlikes_pkey PRIMARY KEY (id);
+
 ALTER TABLE post ADD CONSTRAINT post_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
 ALTER TABLE post ADD CONSTRAINT post_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
 ALTER TABLE comment ADD CONSTRAINT comment_userID_fkey FOREIGN KEY (userID) REFERENCES users(id);
-ALTER TABLE comment ADD CONSTRAINT comment_groupID_fkey FOREIGN KEY (postID) REFERENCES post(id);
+ALTER TABLE comment ADD CONSTRAINT comment_postID_fkey FOREIGN KEY (postID) REFERENCES post(id);
 ALTER TABLE groups ADD CONSTRAINT groups_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
 ALTER TABLE event ADD CONSTRAINT event_groupID_fkey FOREIGN KEY (groupID) REFERENCES groups(id);
 ALTER TABLE event ADD CONSTRAINT event_adminID_fkey FOREIGN KEY (adminID) REFERENCES users(id);
@@ -109,4 +119,6 @@ ALTER TABLE attending ADD CONSTRAINT attending_id_user_fkey FOREIGN KEY (id_user
 ALTER TABLE attending ADD CONSTRAINT attending_id_event_fkey FOREIGN KEY (id_event) REFERENCES event(id);
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
 ALTER TABLE requestJoin ADD CONSTRAINT requestJoin_id_group_fkey FOREIGN KEY (id_group) REFERENCES groups(id);
+ALTER TABLE userlikes ADD CONSTRAINT userlikes_id_user_fkey FOREIGN KEY (id_user) REFERENCES users(id);
+ALTER TABLE userlikes ADD CONSTRAINT userlikes_id_post_fkey FOREIGN KEY (id_post) REFERENCES post(id);
 

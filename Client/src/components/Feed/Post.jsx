@@ -3,18 +3,21 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 const { useState, useEffect } = React;
 
 function Post({ postData, userId }) {
+  console.log('post data', postData)
   const [likes, setLikes] = useState(postData.likes)
-  const [hasLiked, setHasLiked] = useState(false)
+  const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')
   const [comments, setComments] = useState([])
 
-  const likePost = (postid) => {
+  const likePost = (postid, userid) => {
     if (!hasLiked) {
-    axios.put(`/posts`, {postid})
+    axios.put(`/posts`, {postid, userid})
       .then((res) => {
           setLikes(likes + 1)
           setHasLiked(!hasLiked)
@@ -60,7 +63,18 @@ function Post({ postData, userId }) {
       <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
-        <div onClick={() => {likePost(postData.postid)}} className="h-6 w-6 border-2 border-lightergreen bg-darkergreen hover:bg-lightergreen hover:border-darkergreen text-white m-1 rounded-full flex items-center justify-center cursor-default">{likes}</div>
+        {/* <div className="h-6 w-6 border-2 border-lightergreen bg-darkergreen hover:bg-lightergreen hover:border-darkergreen text-white m-1 rounded-full flex items-center justify-center cursor-default">{likes}</div> */}
+        {hasLiked ?
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon icon={faHeart} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <div className="text-white">{likes}</div>
+        </div>
+        :
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw"/>
+          <div className="text-white">{likes}</div>
+        </div>
+        }
       </div>
       <CommentFeed comments={comments} postId={postData.postid}/>
     </div>
