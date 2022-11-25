@@ -9,7 +9,6 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 const { useState, useEffect } = React;
 
 function Post({ postData, userId }) {
-  console.log('post data', postData)
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')

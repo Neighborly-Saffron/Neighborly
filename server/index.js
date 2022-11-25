@@ -36,9 +36,9 @@ app.use(express.static(path.join(__dirname, '../public')));
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
-app.get('/posts/home/:userId', feed.getHomeFeed);
-app.get('/posts/profile/:userId', feed.getProfileFeed);
-app.get('/posts/group/:groupId', feed.getGroupFeed);
+app.get('/posts/home/:userId/:groupId', feed.getHomeFeed);
+app.get('/posts/profile/:userId/:groupId', feed.getProfileFeed);
+app.get('/posts/group/:userId/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 app.get('/comments/:postId', comments.getComments);
 app.post('/comment', comments.addComment);

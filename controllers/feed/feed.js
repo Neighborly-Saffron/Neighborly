@@ -28,6 +28,7 @@ const getHomeFeed = (request, response) => {
 //returns the most recent posts from that group
 const getGroupFeed = (request, response) => {
   let groupId = request.params.groupId
+  let userId = request.params.userId
 
   let query = `SELECT json_build_object(
                     'postid', id,
@@ -38,11 +39,11 @@ const getGroupFeed = (request, response) => {
                     'groupid', groupid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
-                    'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
+                    'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$2 AND id_post=post.id))
                                         )FROM post WHERE groupid = $1 ORDER BY posted_at DESC`;
 //GROUP ID IS WRITTEN AS ONE AS A PROP, WILL NEED TO BE UPDATED WHEN IT IS PASSED TO GROUP
   connectionPool
-    .query(query, [groupId])
+    .query(query, [groupId, userId])
     .then(res => response.send(res.rows))
     .catch(err => {
       console.error('Error getting group feed', err.stack);

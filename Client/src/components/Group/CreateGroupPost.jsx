@@ -8,7 +8,7 @@ import Feed from '../Feed/Feed.jsx'
 const { useState, useEffect } = React;
 
 function GroupPost ({ userId, groupId }) {
-
+console.log("USER ID IN GROUP POST", userId)
   const [message, setMessage] = useState('');
   const [tempMessage, setTempMessage] = useState('')
 

@@ -43,7 +43,7 @@ function Group ({ userId }) {
       <div className='flex'>
         <div className='flex w-2/3 flex-col'>
           <CreateGroupPost userId={userId} groupId={id} />
-          <Feed userId={id} path={'group'} />
+          <Feed userId={userId} groupId={id} path={'group'} />
         </div>
         <div className='flex flex-col'>
           <GroupDescription groupId={id} />
