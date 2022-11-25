@@ -7,9 +7,9 @@ const { useState, useEffect } = React;
 function CommentFeed ({ userId, postId, comments }) {
 
   return (
-    <>
+    <div>
     { comments.length ?
-  <div className="m-5 p-1">
+  <div className="p-1">
     {comments.length ?
     comments.map((item, index) => {
       return <Comment key={index} commentData={item.json_build_object}/>
@@ -21,7 +21,7 @@ function CommentFeed ({ userId, postId, comments }) {
   :
   null
   }
-  </>)
+  </div>)
 }
 
 export default CommentFeed;
