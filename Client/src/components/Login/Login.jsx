@@ -5,15 +5,25 @@ import LoginButton from './LoginButton.jsx'
 import SignUpButton from './SignUpButton.jsx'
 import LogoutButton from './LogoutButton.jsx'
 
+
 const { useState, useEffect } = React;
 
 function Login ({onAuth}) {
   return (
-    <div className="h-full w-full flex justify-center align-middle">
-      <div className="border-2 border-cyan-800 p-1">
-        <h2>LOGIN</h2>
-        <LoginButton onAuth={onAuth}/>
-        <SignUpButton onAuth={onAuth}/>
+    <div className="h-screen w-screen flex justify-center items-center">
+      <div className="flex flex-col justify-center items-center h-1/2 w-1/2">
+        <h1 className="align-middle italic text-4xl mb-2">
+				  Neighborly
+				</h1>
+        <img src={window.location.origin + "/logo.png"} className="object-cover w-80 h-80 mb-2" />
+        <h1 className="align-middle italic text-1xl mb-2">
+				  Come and join the neighborhood
+				</h1>
+        <div className="align-middle italic text-1xl mb-2">
+          <LoginButton onAuth={onAuth}/>
+          <span> or </span>
+          <SignUpButton onAuth={onAuth}/>
+        </div>
       </div>
     </div>
   )
