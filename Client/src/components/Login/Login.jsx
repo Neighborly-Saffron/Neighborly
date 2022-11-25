@@ -9,10 +9,12 @@ const { useState, useEffect } = React;
 
 function Login ({onAuth}) {
   return (
-    <div className="border-2 border-cyan-800 p-1">
-      <h2>LOGIN</h2>
-      <LoginButton onAuth={onAuth}/>
-      <SignUpButton onAuth={onAuth}/>
+    <div className="h-full w-full flex justify-center align-middle">
+      <div className="border-2 border-cyan-800 p-1">
+        <h2>LOGIN</h2>
+        <LoginButton onAuth={onAuth}/>
+        <SignUpButton onAuth={onAuth}/>
+      </div>
     </div>
   )
 }
