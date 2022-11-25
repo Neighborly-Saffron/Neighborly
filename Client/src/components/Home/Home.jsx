@@ -37,7 +37,7 @@ useEffect(getEvents, [])
 				<Map mapStart={mapStart} eventList={eventList} />
 				<div className="flex gap-2 justify-between">
 					{/* <div className="border-2">Event List</div> */}
-				<Calendar />
+				<Calendar eventList={eventList}/>
 				</div>
 				<GroupAdmin userId={userId}/>
 			</div>
