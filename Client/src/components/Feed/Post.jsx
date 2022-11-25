@@ -45,7 +45,7 @@ function Post({ postData, userId }) {
       .catch((err) => console.log('error getting comment feed data'))
   }
 
-  useEffect(getComments, []);
+  useEffect(() => {getComments()}, [postData]);
 
 
   return (
