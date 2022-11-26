@@ -10,17 +10,17 @@ function Header() {
 				<Link to="/">Neighborly</Link>
 				</h1>
 
-			<ul className="flex gap-4 mr-5">
-				<li className="hover:text-darkerblue">
+			<ul className="flex gap-4 mr-5 text-2xl">
+				<li className="hover:text-darkerblue hover:ease-in duration-300">
 					<Link to="/">Home</Link>
 				</li>
-				<li className="hover:text-darkerblue">
+				<li className="hover:text-darkerblue hover:ease-in duration-300">
 					<Link to="/groups">Groups</Link>
 				</li>
-				<li className="hover:text-darkerblue">
+				<li className="hover:text-darkerblue hover:ease-in duration-300">
 					<Link to="profile">Profile</Link>
 				</li>
-				<li className="hover:text-darkerblue" >
+				<li className="hover:text-darkerblue hover:ease-in duration-300" >
 					<LogoutButton />
 				</li>
 			</ul>
