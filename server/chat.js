@@ -8,7 +8,7 @@ const defaultUser = {
   name: 'Anonymous',
 };
 
-const messageExpirationTimeMS = 5*60 * 1000;
+const messageExpirationTimeMS = 5*60 * 2000; // 10 min
 
 class Connection {
   constructor(io, socket) {
@@ -34,9 +34,10 @@ class Connection {
   handleMessage(value) {
     const message = {
       id: uuidv4(),
-      user: users.get(this.socket) || defaultUser,
-      value,
-      time: Date.now()
+      user: value.name || defaultUser,
+      value: value.value,
+      time: Date.now(),
+      groupId: value.groupId
     };
 
     messages.add(message);
@@ -58,6 +59,7 @@ class Connection {
 
 function chat(io) {
   io.on('connection', (socket) => {
+    // io.use(authHandler);
     new Connection(io, socket);
   });
 };
