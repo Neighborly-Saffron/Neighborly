@@ -6,7 +6,7 @@ const { useState, useEffect } = React;
 
 function AdminRow({ group, getAdminGroups }) {
   const [toggleModal, setToggleModal] = useState(false)
-  console.log("ADMIN ROW GROUP INFO", group)
+
   const switchModal = () => {
     setToggleModal(!toggleModal)
     getAdminGroups()

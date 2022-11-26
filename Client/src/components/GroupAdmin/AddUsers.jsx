@@ -10,7 +10,6 @@ function AddUsers({ groupId, switchModal }) {
   const getUserRequests = () => {
     axios.get(`/userRequests/${groupId}`)
       .then((data) => {
-        console.log('REQUESTED USER LIST', data.data)
         if (data.data.length === 0) {
           switchModal(false)
         }
@@ -26,18 +25,16 @@ function AddUsers({ groupId, switchModal }) {
   const approveUser = (userId, groupId) => {
     axios.post('/userApprove', {userid: userId, groupid: groupId})
       .then((data) => {
-        console.log('APPROVED USER')
         getUserRequests()
       })
       .catch((err) => {
-        console.log('error approving user request', err)
+        console.log('error approving user requests', err)
       })
   }
 
   const declineUser = (userId) => {
     axios.post('/userDecline', {userid: userId})
       .then((data) => {
-        console.log('DECLINED USER')
         getUserRequests()
       })
       .catch((err) => {
