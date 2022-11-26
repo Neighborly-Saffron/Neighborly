@@ -5,6 +5,8 @@ import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartActive } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartInactive } from '@fortawesome/free-regular-svg-icons';
 
 const { useState, useEffect } = React;
 
@@ -68,13 +70,13 @@ function Post({ postData, userId, deletePost }) {
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon icon={faHeart} transform="grow-8" color="red" className="fa-layers fa-fw"/>
-          <div className="text-white">{likes}</div>
+          <FontAwesomeIcon icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <div className="text-black">{likes}</div>
         </div>
         :
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
-          <div className="text-white cursor-default">{likes}</div>
+          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeartInactive} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <div className="text-black cursor-default">{likes}</div>
         </div>
         }
       </div>

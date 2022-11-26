@@ -4,6 +4,8 @@ import 'react-calendar/dist/Calendar.css'
 import EventList from '../Group/GroupEventList.jsx'
 
 const { useState, useEffect } = React;
+const monthNames = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"
+];
 
 function CalendarComponent (props) {
   const [eventList, setEventList] = useState({events:[]});
@@ -15,7 +17,9 @@ function CalendarComponent (props) {
   useEffect(()=>{
     checkEvents();
   },[date])
-
+  useEffect(()=> {
+    checkEvents();
+  },[props.eventList])
   let checkEvents = () => {
     var dateEvents = []
     props.eventList.events.forEach(event =>{
@@ -30,15 +34,16 @@ function CalendarComponent (props) {
     })
     setEventList({events: dateEvents})
   }
-  useEffect(()=>console.log(eventList),[eventList])
+
   return (
-  <div className="flex gap-5 sm:flex-col">
-      <EventList eventList={eventList} userId={props.userId}></EventList>
+  <div>
       <Calendar
         onChange={onChange}
         value= {date}
       >
       </Calendar>
+      <h3 className='italic'> Events for {monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</h3>
+      <EventList eventList={eventList}></EventList>
   </div>
   )
 }
