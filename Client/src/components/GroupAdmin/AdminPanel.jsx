@@ -28,9 +28,9 @@ function AdminPanel({ userId }) {
           <th>Group Name</th>
           <th>Join Requests</th>
         </tr>
-        {adminGroups.map((group, index) => {
+        {adminGroups ? adminGroups.map((group, index) => {
           return <AdminRow key={index} group={group} getAdminGroups={getAdminGroups} />
-        })}
+        }) : null}
         </tbody>
       </table>
     </>
