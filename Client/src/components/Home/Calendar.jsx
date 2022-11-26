@@ -21,7 +21,7 @@ function CalendarComponent (props) {
     props.eventList.events.forEach(event =>{
       let eventDate = new Date(event.json_build_object.date);
       if(
-        date.getDay() === eventDate.getDay() &&
+        date.getDate() === eventDate.getDate() &&
         date.getMonth() === eventDate.getMonth() &&
         date.getFullYear() === eventDate.getFullYear()
       ) {
@@ -33,7 +33,7 @@ function CalendarComponent (props) {
   useEffect(()=>console.log(eventList),[eventList])
   return (
   <div>
-      <EventList eventList={eventList}></EventList>
+      <EventList eventList={eventList} userId={props.userId}></EventList>
       <Calendar
         onChange={onChange}
         value= {date}

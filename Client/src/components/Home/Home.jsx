@@ -5,6 +5,7 @@ import Map from './Map.jsx';
 import UserGroupList from './UserGroupList.jsx';
 import Calendar from './Calendar.jsx';
 import axios from 'axios';
+import AdminPanel from '../GroupAdmin/AdminPanel.jsx'
 
 const { useState, useEffect } = React;
 
@@ -37,11 +38,14 @@ useEffect(getEvents, [])
 			<div className="col-start-4 col-span-2 flex flex-col gap-5 items-center">
 				<Map mapStart={mapStart} eventList={eventList} />
 				<div className="flex gap-2 justify-between">
-					{/* <div className="w-fit border-2">Event List</div> */}
-				<Calendar userId={userId} eventList={eventList}/>
+
+					{/* <div className="border-2">Event List</div> */}
+				<Calendar eventList={eventList} userId={userId}/>
+
 				</div>
 				<GroupAdmin userId={userId}/>
 			</div>
+			<AdminPanel userId={userId} ></AdminPanel>
 		</div>
 	);
 }
