@@ -8,7 +8,7 @@ import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 const { useState, useEffect } = React;
 
-function Post({ postData, userId }) {
+function Post({ postData, userId, deletePost }) {
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')
@@ -52,12 +52,13 @@ function Post({ postData, userId }) {
     <div className="m-2 p-2 rounded bg-lighterblue">
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
-        <div className="flex flex-col p-3">
+        <div className="flex flex-col p-3 w-full">
           <Link className="font-bold text-lg hover:text-darkerblue" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
           <h3 className="italic font-bold cursor-default">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
-          <p className="cursor-default">{postData.message}</p>
+          <p className="cursor-default w-full">{postData.message}</p>
         </div>
+        {postData.userid === Number(userId) ? <div onClick={()=>{deletePost(postData.postid)}}className="w-max justify-self-end text-sm font-extrabold">X</div> : null}
       </div>
       <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">

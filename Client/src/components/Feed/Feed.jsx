@@ -17,10 +17,18 @@ function Feed ({ userId, path, groupId }) {
 
   useEffect(getPosts, []);
 
+  const deletePost = (postid) => {
+    axios.delete('/posts', {data:{postid}})
+      .then((res) => {
+        getPosts()
+      })
+      .catch((err) => console.log('error deleting post'))
+  }
+
   return (<div className="border-2 m-5 p-1 bg-white">
     <h2>{`${path} FEED`}</h2>
     {posts.map((item, index) => {
-      return <Post key={index} postData={item.json_build_object} userId={userId} />
+      return <Post key={index} postData={item.json_build_object} userId={userId} deletePost={deletePost} />
     })}
   </div>)
 }
