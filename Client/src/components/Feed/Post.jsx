@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHeart} from '@fortawesome/free-solid-svg-icons';
+import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
 
 const { useState, useEffect } = React;
 
@@ -58,7 +58,10 @@ function Post({ postData, userId, deletePost }) {
           <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
-        {postData.userid === Number(userId) ? <div onClick={()=>{deletePost(postData.postid)}}className="w-max justify-self-end text-sm font-extrabold">X</div> : null}
+        {postData.userid === Number(userId) ?
+        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{deletePost(postData.postid)}}className="hover:text-white cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
+        :
+        null}
       </div>
       <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
