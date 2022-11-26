@@ -16,22 +16,32 @@ const AdminGroup = ({group}) => {
     setShowModal(!showModal)
   }
 
-  const getRequestedGroups = () => { 
+  const getRequestedGroups = () => {
 
     return axios.get('/requestedGroups')
       .then((res)=>{
         console.log('res.data in getRequestedGroups', res.data)
+        // res.data.forEach(requestObj => {
+        //   console.log('requestObj inside forEach', requestObj)
+        //   setRequestedUsers((prevUsers)=>{
+        //     console.log('prevUsers in line 27', prevUsers)
+        //   if (prevUsers) {
+        //     prevUsers.concat([requestObj])
+        //   }
+        //   })
+        setRequestedUsers(res.data)
         res.data.forEach(requestObj => {
           console.log('requestObj inside forEach', requestObj)
-          setRequestedUsers([...requestedUsers,requestObj])
           if (requestObj.groupName === group.groupName) {
             // console.log('requestObj.groupName:', requestObj.groupName)
             // console.log('group.groupName:', group.groupName)
-            setNotificationCount(notificationCount+1)
-            console.log('requestedUsers:', requestedUsers)
-          }
+
+           setNotificationCount(prevCount => prevCount + 1)
+          //   console.log('requestedUsers:', requestedUsers)
+           }
+          })
         })
-      })
+
       .catch(err=>{
         console.log('err in getRequestedGroups:', err)
       })
@@ -48,7 +58,7 @@ const AdminGroup = ({group}) => {
   return (
     <>
 
-{showModal&&(requestedUsers.length !==0)&&<RequestList group={group} requestedUsers={requestedUsers} handleNotificationClick={handleNotificationClick}></RequestList>}
+{showModal&&(requestedUsers.length !==0)&&<RequestList group={group} requestedUsers={requestedUsers}  handleNotificationClick={handleNotificationClick}></RequestList>}
 
 <div className="flex justify-center">
   <div className="bg-white rounded-lg border border-gray-200 w-96 text-gray-900">

@@ -1,9 +1,30 @@
 import React from 'react';
 import Request from './Request.jsx'
+import {useEffect, useState} from 'react'
 
 
-const RequestList = ({group, requestedUsers, handleNotificationClick}) => {
+const RequestList = ({group, requestedUsers, handleNotificationClick, setNotificationCount}) => {
+  console.log('it got in requestedlist')
+  const [displayRequests, setDisplayRequests] = useState([])
+
   console.log('requestedUsers:', requestedUsers)
+  const filteredRequests = []
+  const filter = () => {
+    requestedUsers.forEach(requestObj=>{
+      if (requestObj.groupName === group.groupName){
+
+        filteredRequests.push(requestObj)
+      }
+      console.log('filteredRequests', filteredRequests)
+
+    })
+    setDisplayRequests(filteredRequests)
+  }
+
+  useEffect(()=>{
+    filter()
+  }, [])
+
   return (
     <>
 
@@ -17,9 +38,9 @@ const RequestList = ({group, requestedUsers, handleNotificationClick}) => {
       <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
         {/* <h1 className="block w-full text-center text-2xl mx-auto p-4">Requests</h1> */}
-
-          {requestedUsers.map((requestedUser, index)=>{
-          return <Request key={index} requestedUser={requestedUser} requestedUsers={requestedUsers} group={group} handleNotificationClick={handleNotificationClick}></Request>
+        {/* {requestedUsers.map((requestedUser, index)=>{ */}
+          {displayRequests.map((requestedUser, index)=>{
+          return <Request key={index} requestedUser={requestedUser} displayRequests={displayRequests} setgroup={group} handleNotificationClick={handleNotificationClick}></Request>
           })
           }
 
