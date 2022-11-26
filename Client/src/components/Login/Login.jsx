@@ -11,7 +11,7 @@ const { useState, useEffect } = React;
 function Login ({onAuth}) {
   return (
     <div className="h-screen w-screen flex justify-center items-center bg-logo">
-      <div className="flex flex-col justify-center items-center h-1/2 w-1/2 bg-lightergreen opacity-90 text-white rounded-md">
+      <div className="flex flex-col justify-center items-center h-1/2 w-1/2 bg-lightergreen text-white rounded-md">
         <h1 className="align-middle italic text-6xl mb-2">
 				  Neighborly
 				</h1>
@@ -19,9 +19,9 @@ function Login ({onAuth}) {
         <h1 className="align-middle italic text-1xl mb-2">
 				  Come and join the neighborhood
 				</h1>
-        <div className="align-middle italic text-1xl mb-2">
+        <div className="flex gap-4 italic text-1xl mb-2 items-center justify-evenly">
           <LoginButton onAuth={onAuth}/>
-          <span> or </span>
+          <span>or</span>
           <SignUpButton onAuth={onAuth}/>
         </div>
       </div>
