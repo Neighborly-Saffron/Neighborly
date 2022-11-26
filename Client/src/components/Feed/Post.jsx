@@ -5,10 +5,12 @@ import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartActive } from '@fortawesome/free-solid-svg-icons';
+import { faHeart as faHeartInactive } from '@fortawesome/free-regular-svg-icons';
 
 const { useState, useEffect } = React;
 
-function Post({ postData, userId, deletePost }) {
+function Post({ postData, userId, removePost }) {
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')
@@ -24,6 +26,13 @@ function Post({ postData, userId, deletePost }) {
         .catch((err) => console.log('error liking post'))
       }
   }
+
+  const setLikesOnLoad = () => {
+    setLikes(postData.likes)
+    setHasLiked(postData.hasliked)
+  }
+
+  useEffect(() => {setLikesOnLoad()}, [postData]);
 
   const submitComment =() => {
     if (commentText.length) {
@@ -59,7 +68,7 @@ function Post({ postData, userId, deletePost }) {
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?
-        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{deletePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold translate-x-3 -translate-y-3"></FontAwesomeIcon>
+        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{removePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold"></FontAwesomeIcon>
         :
         null}
       </div>
@@ -68,13 +77,13 @@ function Post({ postData, userId, deletePost }) {
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon icon={faHeart} transform="grow-8" color="red" className="fa-layers fa-fw"/>
-          <div className="text-white">{likes}</div>
+          <FontAwesomeIcon icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <div className="text-black">{likes}</div>
         </div>
         :
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
-          <div className="text-white cursor-default">{likes}</div>
+          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeartInactive} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <div className="text-black cursor-default">{likes}</div>
         </div>
         }
       </div>
