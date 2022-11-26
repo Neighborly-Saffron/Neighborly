@@ -4,11 +4,11 @@ import Post from './Post.jsx'
 
 const { useState, useEffect } = React;
 
-function Feed ({ userId, path }) {
+function Feed ({ userId, path, groupId }) {
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
-    axios.get(`/posts/${path}/${userId}`)
+    axios.get(`/posts/${path}/${userId}/${groupId}`)
       .then((res) => {
         setPosts(res.data);
       })
