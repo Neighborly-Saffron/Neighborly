@@ -42,6 +42,7 @@ app.get('/posts/group/:userId/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
 app.get('/comments/:postId', comments.getComments);
 app.post('/comment', comments.addComment);
+app.delete('/posts', feed.deletePost);
 
 //add group
 app.post('/newGroup', addGroup.insertGroup)
