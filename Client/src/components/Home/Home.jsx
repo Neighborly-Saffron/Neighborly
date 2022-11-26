@@ -5,6 +5,7 @@ import Map from './Map.jsx';
 import UserGroupList from './UserGroupList.jsx';
 import Calendar from './Calendar.jsx';
 import axios from 'axios';
+import AdminPanel from '../GroupAdmin/AdminPanel.jsx'
 
 const { useState, useEffect } = React;
 
@@ -42,6 +43,7 @@ useEffect(getEvents, [])
 				</div>
 				<GroupAdmin userId={userId}/>
 			</div>
+			<AdminPanel userId={userId} ></AdminPanel>
 		</div>
 	);
 }

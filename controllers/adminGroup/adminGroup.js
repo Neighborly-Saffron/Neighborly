@@ -1,11 +1,13 @@
 const connectionPool = require('../../db/pool.js')
 
 const getAdminGroups = (req, res) => {
-  console.log('req.query in getAdminGroups controller:', req.query)
+
   const query = `SELECT json_agg (
 		              json_build_object(
                     'groupName', name,
-                    'groupPic', pictureURL
+                    'groupPic', pictureURL,
+                    'groupid', id,
+                    'requests', (SELECT COUNT(*) FROM requestjoin WHERE requestjoin.id_group = groups.id)
                   )
 	              )AS admingroup
               FROM groups WHERE groups.adminID = $1`
@@ -30,8 +32,7 @@ const getRequestedGroups = (req, res) => {
     json_build_object(
       'requestedUserId', id_user,
       'requestedGroupId', id_group,
-'userName',
-(select name from users where users.id=id_user),
+'userName', (select name from users where users.id=id_user),
 'groupName', (select name from groups where groups.id=id_group),
 'userProfile', (select pictureURL from users where users.id=id_user )
     )
@@ -79,10 +80,69 @@ const removeJoinRequest = (req, res) => {
     });
 }
 
+const userRequests = (req, res) => {
+  let groupId = req.params.groupId
+
+  let query = `SELECT json_build_object(
+                    'userid', id_user,
+                    'groupid', id_group,
+                    'username', (SELECT name FROM users WHERE id_user=users.id),
+                    'pictureurl', (SELECT pictureurl FROM users WHERE id_user=users.id)
+                                        )FROM requestjoin WHERE id_group = $1`;
+
+  connectionPool
+    .query(query, [groupId])
+    .then(data => res.send(data.rows))
+    .catch(err => {
+      console.error('Error getting requested users for group admin', err.stack);
+      res.status(500);
+    });
+}
+
+const userApprove = (req, res) => {
+  let userId = req.body.userid
+  let groupId = req.body.groupid
+
+  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1`
+
+  let addUserQuery = `INSERT INTO usergroups (id_user, id_group) VALUES ($1, $2)`
+
+  connectionPool
+    .query(removeRequestQuery, [userId])
+    .then((data) => {
+      connectionPool.query(addUserQuery, [userId, groupId]).then((data) => {
+        res.send()
+      })
+    })
+    .catch(err => {
+      console.error('Error adding user to group', err.stack);
+      res.status(500);
+    });
+}
+
+const userDecline = (req, res) => {
+  let userId = req.body.userid
+
+  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1`
+
+  connectionPool
+    .query(removeRequestQuery, [userId])
+    .then((data) => {
+        res.send()
+    })
+    .catch(err => {
+      console.error('Error adding user to group', err.stack);
+      res.status(500);
+    });
+}
+
 
 module.exports = {
   getAdminGroups,
   getRequestedGroups,
   approveJoin,
-  removeJoinRequest
+  removeJoinRequest,
+  userRequests,
+  userApprove,
+  userDecline
  }
