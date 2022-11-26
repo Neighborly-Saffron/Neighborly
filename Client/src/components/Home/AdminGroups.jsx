@@ -30,7 +30,7 @@ function AdminGroups ({userId}) {
 
   return (
     <>
-     {groups.map((group, index)=>{
+     {groups && groups.map((group, index)=>{
        return <AdminGroup key={index} group={group}></AdminGroup>
       })}
     </>
