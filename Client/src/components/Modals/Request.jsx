@@ -51,7 +51,7 @@ const Request = ({group, requestedUser, handleNotificationClick, filteredRequest
             <button type="button" className="inline-flex w-full justify-center rounded-md border border-transparent bg-darkergreen px-4 py-2 text-base
             font-medium text-white shadow-sm hover:bg-darkerblue focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 sm:ml-3 sm:w-auto
              sm:text-sm" onClick={handleLastRequest}>Decline</button>
-    {/* //no need to do anything if declined */}
+
 </div>
   )
 }
