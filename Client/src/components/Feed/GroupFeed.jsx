@@ -11,7 +11,7 @@ function GroupFeed ({ userId, path, groupId, posts }) {
     setGroupPosts(posts)
   }, [posts])
 
-  return (<div className="">
+  return (<div>
     {groupPosts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object} userId={userId} />
     })}

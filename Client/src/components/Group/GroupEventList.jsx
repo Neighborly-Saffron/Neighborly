@@ -9,7 +9,7 @@ function GroupEventList({ userId, eventList }) {
 
   return (<div>
     <h3 className="italic">
-      Group Event List
+      Events
     </h3>
     <div className="max-h-screen/2 border-2 border-black rounded overflow-hidden overflow-y-scroll">
       {eventList.events.map((event, index) => {

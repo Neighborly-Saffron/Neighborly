@@ -38,44 +38,48 @@ function GroupChat ({ socket, userData, groupId }) {
     element.scrollTop = element.scrollHeight;
   }
 
+  let messageDiv;
+  messageDiv = [...Object.values(messages)]
+    .sort((a, b) => a.time - b.time)
+    .map((message) => {
+      if (message.groupId === groupId) {
+        if (message.user === `${userData.given_name} ${userData.family_name}`) {
+          return (
+            <div
+              key={message.id}
+              className=""
+              title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
+            >
+              <span className="font-bold">You </span>
+              <span className="text-darkgrey">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+              <span className="">{message.value}</span>
+            </div>
+          )
+        } else {
+          return (
+            <div
+              key={message.id}
+              className=""
+              title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
+            >
+              <span className="font-bold">{message.user || message.user.name} </span>
+              <span className="text-lightgray">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+              <span className="">{message.value}</span>
+            </div>
+          )
+        }
+      }
+    })
+
+
   return (
-    <div>
+    <>
       <h2>Chat</h2>
       <div id="chatBox" className="h-44 overflow-y-auto flex flex-col">
-      {[...Object.values(messages)]
-        .sort((a, b) => a.time - b.time)
-        .map((message) => {
-          if (message.groupId === groupId) {
-            if (message.user === `${userData.given_name} ${userData.family_name}`) {
-              return (
-                <div
-                  key={message.id}
-                  className=""
-                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-                >
-                  <span className="font-bold">You </span>
-                  <span className="text-darkgrey">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-                  <span className="">{message.value}</span>
-                </div>
-              )
-            } else {
-              return (
-                <div
-                  key={message.id}
-                  className=""
-                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-                >
-                  <span className="font-bold">{message.user || message.user.name} </span>
-                  <span className="text-lightgray">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-                  <span className="">{message.value}</span>
-                </div>
-              )
-            }
-          }
-        })
+      {messageDiv.length > 0 ? messageDiv : <div className="italic text-darkgrey"> Start a conversation </div>
       }
       </div>
-    </div>
+    </>
   )
 }
 

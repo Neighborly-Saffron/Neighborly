@@ -65,7 +65,7 @@ function Group ({ userId, userData }) {
           <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
           {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-y-3'>
           <GroupDescription groupId={id} />
           <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
