@@ -23,7 +23,7 @@ function Bio ({ userId }) {
     <div className="p-3">
       <div className='flex'>
         <div  className='flex flex-col'>
-          <img className='h-20 m-1' src={userProfile.pictureURL}></img>
+          <img className='h-60 m-1' src={userProfile.pictureURL}></img>
         </div>
         <div className='flex flex-col'>
           <div className='text-lg font-bold'>{userProfile.name}</div>
