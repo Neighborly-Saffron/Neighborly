@@ -13,6 +13,7 @@ module.exports = {
       'darkergreen': '#354e19',
       'lightergreen': '#47AA51',
       'goodgreen': '#22604E',
+      'wizardred': 'red'
     },
 		extend: {
       height: theme => ({
@@ -21,7 +22,10 @@ module.exports = {
         "screen/4": "calc(100vh / 4)",
         "screen/5": "calc(100vh / 5)",
         "calendar": "72px"
-      })
+      }),
+      backgroundImage: {
+        logo: "url(/public/logo.png)"
+      }
     },
 	},
 	plugins: [],
