@@ -11,9 +11,6 @@ function EventItem({ event, userId }) {
   let formatted = new Date(event.date).toString()
   let time = event.time.slice(0, 5)
   let hours = time.slice(0, 2)
-  let suffix = hours >= 12 ? 'PM' : 'AM'
-  console.log(time)
-  //hours > 12 ? `${time.slice(0,2) - 12}:${time.slice(3,5)} PM` : time + ' AM'
 
   const checkAttending = () => {
     axios.get(`/events/attending/${eventID}/${userID}`)
@@ -74,7 +71,6 @@ function EventItem({ event, userId }) {
         <div className="text-2xl font-bold">{formatted.slice(7, 10)}</div>
       </div>
     </div>
-    {/* <div>{hours > 12 ? `${time.slice(0,2) - 12}:${time.slice(3,5)} PM` : time + ' AM'}</div> */}
     {hours == 12 && <div>{time + ' PM'}</div>}
     {hours > 12 && <div>{`${time.slice(0,2) - 12}:${time.slice(3,5)} PM`}</div>}
     {hours == 0 && <div>{`${Number(time.slice(0,2)) + 12}:${time.slice(3,5)} AM`}</div>}
