@@ -6,12 +6,6 @@ const { useState, useEffect } = React;
 
 function ProfileImage () {
 
-  //set this aside for now, it was intended to cloudinary
-  const handleAddImage = () => {
-  }
-
-
-
   return (<div>
     <label htmlFor='image' className='h-20 w-20'>
     <div className='h-15 w-15'>

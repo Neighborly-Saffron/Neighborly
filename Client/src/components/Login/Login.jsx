@@ -10,12 +10,12 @@ const { useState, useEffect } = React;
 
 function Login ({onAuth}) {
   return (
-    <div className="h-screen w-screen flex justify-center items-center">
-      <div className="flex flex-col justify-center items-center h-1/2 w-1/2">
-        <h1 className="align-middle italic text-4xl mb-2">
+    <div className="h-screen w-screen flex justify-center items-center bg-logo">
+      <div className="flex flex-col justify-center items-center h-1/2 w-1/2 bg-lightergreen opacity-90 text-white rounded-md">
+        <h1 className="align-middle italic text-6xl mb-2">
 				  Neighborly
 				</h1>
-        <img src={window.location.origin + "/logo.png"} className="object-cover w-80 h-80 mb-2" />
+        {/* <img src={window.location.origin + "/logo.png"} className="object-cover w-80 h-80 mb-2" /> */}
         <h1 className="align-middle italic text-1xl mb-2">
 				  Come and join the neighborhood
 				</h1>

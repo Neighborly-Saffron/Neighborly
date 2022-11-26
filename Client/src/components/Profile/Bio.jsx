@@ -23,11 +23,12 @@ function Bio ({ userId }) {
     <div className="p-3">
       <div className='flex'>
         <div  className='flex flex-col'>
-          <img className='h-60 m-1' src={userProfile.pictureURL}></img>
+          <img className='h-32 m-1' src={userProfile.pictureURL}></img>
         </div>
         <div className='flex flex-col'>
-          <div className='text-lg font-bold'>{userProfile.name}</div>
-          <div>{userProfile.bio}</div>
+          <div className='text-3xl font-bold'>{userProfile.name}</div>
+          <div className='text-xl'>{userProfile.bio}</div>
+          <br></br>
           <div>{`Member of ${userProfile.groups} groups`}</div>
           <div>{`Administrator of ${userProfile.admins} groups`}</div>
         </div>

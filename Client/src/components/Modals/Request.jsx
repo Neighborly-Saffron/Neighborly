@@ -4,6 +4,8 @@ const Request = ({
 	requestedUser,
 	handleNotificationClick,
 	displayRequests,
+  decreaseNotificationCount,
+  getRequestedGroups
 }) => {
 	const newUserGroup = {
 		userId: requestedUser.requestedUserId,
@@ -28,6 +30,7 @@ const Request = ({
 	const handleLastRequest = () => {
 		if (displayRequests.length === 1) {
 			handleDeleteRequest(); //delete request from requestjoin table
+      decreaseNotificationCount();
 			return handleNotificationClick(); //show and close modal
 		}
 	};
@@ -36,7 +39,7 @@ const Request = ({
 		return axios
 			.delete('/groupApproved', { params: newUserGroup })
 			.then(() => {
-				console.log('client side: delete data from db successfully ');
+        decreaseNotificationCount();
 			})
 			.catch((err) => {
 				console.log('client side: error deleting requestjoin table');
@@ -44,7 +47,7 @@ const Request = ({
 	};
 
 	return (
-		<div>
+		<div className="bg-white p-3 rounded-md">
 			<div
 				className="text-lg font-medium leading-6 text-gray-900"
 				id="modal-title"
