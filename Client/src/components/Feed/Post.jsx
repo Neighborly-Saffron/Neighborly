@@ -53,16 +53,15 @@ function Post({ postData, userId }) {
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col p-3">
-          <Link className="font-bold text-lg" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
-          <h3 className="italic font-bold">{postData.username}</h3>
-          <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US"/>
-          <p>{postData.message}</p>
+          <Link className="font-bold text-lg hover:text-darkerblue" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
+          <h3 className="italic font-bold cursor-default">{postData.username}</h3>
+          <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
+          <p className="cursor-default">{postData.message}</p>
         </div>
       </div>
       <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
-        {/* <div className="h-6 w-6 border-2 border-lightergreen bg-darkergreen hover:bg-lightergreen hover:border-darkergreen text-white m-1 rounded-full flex items-center justify-center cursor-default">{likes}</div> */}
         {hasLiked ?
         <div className="flex gap-2 items-center">
           <FontAwesomeIcon icon={faHeart} transform="grow-8" color="red" className="fa-layers fa-fw"/>
@@ -70,8 +69,8 @@ function Post({ postData, userId }) {
         </div>
         :
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw"/>
-          <div className="text-white">{likes}</div>
+          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <div className="text-white cursor-default">{likes}</div>
         </div>
         }
       </div>
