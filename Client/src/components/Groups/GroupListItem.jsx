@@ -16,16 +16,16 @@ function GroupListItem({ group, userId, groupIds }) {
 		})
   }
 	return (
-		<div className="w-full bg-lighterblue rounded-lg ">
-			<div className="flex gap-3 p-2 items-center">
+		<div className="w-full h-fit bg-lighterblue rounded-lg ">
+			<div className="flex gap-1 px-5 items-center">
 				<img
-					className="object-scale-down h-40 w-40 "
+					className="object-scale-down h-72 w-72 "
 					src={group.pictureurl}
 					alt={group.name}
 				/>
 				<ul className="flex flex-col items-center">
-					<li className="text-2xl font font-semibold">{group.name}</li>
-					<li className="italic">{group.admin}</li>
+					<li className="text-4xl font font-semibold capitalize">{group.name}</li>
+					<li className="italic capitalize">{group.admin}</li>
 					<li  className="">{group.description}</li>
 				</ul>
 			</div>
