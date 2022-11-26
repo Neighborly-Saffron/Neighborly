@@ -7,7 +7,7 @@ function EventItem({ event, userId }) {
   const [attending, setAttending] = useState(false)
 
   let eventID = event.eventid
-  let userID = userId
+  let userID = userId || -1
 
   const checkAttending = () => {
     axios.get(`/events/attending/${eventID}/${userID}`)
@@ -37,16 +37,19 @@ function EventItem({ event, userId }) {
     .catch((err) => console.log('error cancelling attending event'))
   }
 
-  useEffect(checkAttending, [])
+  useEffect(()=>{if(userId !== -1)checkAttending()}, [])
 
   return (<div className="border-2 m-2 p-1 border-black rounded bg-lighterblue">
     <div className="flex justify-between">
       <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
       {
+      userId !== -1 ?
       attending ?
       <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{cancelAttend()}}>Cancel</button>
       :
       <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{attendEvent()}}>Attend</button>
+      :
+      null
       }
     </div>
 

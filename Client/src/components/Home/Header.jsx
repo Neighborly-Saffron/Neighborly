@@ -20,7 +20,7 @@ function Header() {
 				<li className="hover:text-darkerblue">
 					<Link to="profile">Profile</Link>
 				</li>
-				<li>
+				<li className="hover:text-darkerblue" >
 					<LogoutButton />
 				</li>
 			</ul>
