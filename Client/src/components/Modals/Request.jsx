@@ -1,14 +1,14 @@
 import React from 'react';
 import axios from 'axios'
-const Request = ({group, requestedUser, handleNotificationClick, requestedUsers, userData}) => {
-
+const Request = ({group, requestedUser, handleNotificationClick, filteredRequests, displayRequests, setDisplayRequests}) => {
+  console.log('requestedUser:', requestedUser)
   const newUserGroup = {
     userId: requestedUser.requestedUserId,
     groupId: requestedUser.requestedGroupId
   }
+
   const handleApprove = (e) => {
     console.log('it got in handleApprove')
-
     axios.post('/groupApproved', newUserGroup)
      .then((result)=>{
       console.log('client side: succeeded to post to db')
@@ -22,15 +22,17 @@ const Request = ({group, requestedUser, handleNotificationClick, requestedUsers,
   }
 
   const handleLastRequest = () =>{
-    if (requestedUsers.length === 1) {
-    handleNotificationClick()
-    }
+    if (displayRequests.length === 1) {
+    handleDeleteRequest() //delete request from requestjoin table
+   return handleNotificationClick()//show and close modal
+    // const copyRequests = displayRequests.slice()
+    // console.log('copyRequests:', copyRequests)
   }
 
   const handleDeleteRequest = () => {
     return axios.delete('/groupApproved',   { params: newUserGroup } )
       .then(()=>{
-        console.log('client side: db successfully ')
+        console.log('client side: delete data from db successfully ')
       })
       .catch((err)=>{
         console.log('client side: error deleting requestjoin table')
@@ -52,6 +54,7 @@ const Request = ({group, requestedUser, handleNotificationClick, requestedUsers,
     {/* //no need to do anything if declined */}
 </div>
   )
+}
 }
 
 export default Request;
