@@ -3,9 +3,6 @@ console.log('it got in profile.js')
 
 
 const getUserProfile = (req, res) => {
-  console.log('it got in getUserProfile')
-  console.log('req.query:', req.query)
-  console.log('req.params:', req.params)
   const userId = req.query.userId;
   // console.log('userId: ', userId)
   // const userId = request.params.userID;
@@ -19,7 +16,9 @@ const getUserProfile = (req, res) => {
       (
         'name', name,
         'bio', bio,
-        'pictureURL', pictureURL
+        'pictureURL', pictureURL,
+        'groups', (SELECT COUNT(*) FROM usergroups WHERE id_user = $1),
+        'admins', (SELECT COUNT(*) FROM groups WHERE groups.adminid = $1)
       ) AS profile
       FROM users WHERE users.id = $1
   `

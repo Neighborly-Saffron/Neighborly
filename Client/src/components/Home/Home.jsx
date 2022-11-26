@@ -25,6 +25,7 @@ function Home({ userId, userGroups }) {
   },[eventList])
 
 useEffect(getEvents, [])
+
 	return (
 		<div className="border-2 rounded-lg m-5 grid grid-cols-5  p-10 ">
 			<div className="col-span-1  p-2">
@@ -36,8 +37,8 @@ useEffect(getEvents, [])
 			<div className="col-start-4 col-span-2 flex flex-col gap-5 items-center">
 				<Map mapStart={mapStart} eventList={eventList} />
 				<div className="flex gap-2 justify-between">
-					{/* <div className="border-2">Event List</div> */}
-				<Calendar eventList={eventList}/>
+					{/* <div className="w-fit border-2">Event List</div> */}
+				<Calendar userId={userId} eventList={eventList}/>
 				</div>
 				<GroupAdmin userId={userId}/>
 			</div>
