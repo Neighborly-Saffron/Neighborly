@@ -77,9 +77,9 @@ function App() {
 			<>
 			{isLoading ?
 
-				<div class="flex h-screen w-screen justify-center items-center">
-  				<span class="animate-ping inline-flex rounded-full bg-sky-400 opacity-75 italic text-4xl mb-2">Loading...</span>
-  				<span class="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
+				<div className="flex h-screen w-screen justify-center items-center">
+  				<span className="animate-ping inline-flex rounded-full bg-sky-400 opacity-75 italic text-4xl mb-2">Loading...</span>
+  				<span className="relative inline-flex rounded-full h-3 w-3 bg-sky-500"></span>
 				</div> : null}
 			{!isLoading ? <Login onAuth={onAuth} /> : null}
 			</>

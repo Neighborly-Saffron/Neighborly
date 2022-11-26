@@ -11,6 +11,7 @@ const getHomeFeed = (request, response) => {
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'groupid', groupid,
+                    'userid', userid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
@@ -37,6 +38,7 @@ const getGroupFeed = (request, response) => {
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'groupid', groupid,
+                    'userid', userid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$2 AND id_post=post.id))
@@ -62,6 +64,7 @@ const getProfileFeed = (request, response) => {
                     'postedat', posted_at,
                     'groupname', (SELECT name FROM groups WHERE id=groupid),
                     'groupid', groupid,
+                    'userid', userid,
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
@@ -99,4 +102,26 @@ const likePost = (request, response) => {
     });
 }
 
-module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost };
+const deletePost = (request, response) => {
+  let postId = request.body.postid
+
+  let commentsQuery = `DELETE FROM comment WHERE postid = $1`
+  let likesQuery = `DELETE FROM userlikes WHERE id_post = $1`
+  let postQuery = `DELETE FROM post WHERE id = $1`
+
+  connectionPool
+    .query(likesQuery, [postId])
+    .then((res) => {
+      connectionPool.query(commentsQuery, [postId]).then((res) => {
+        connectionPool.query(postQuery, [postId]).then((res) => {
+          response.send()
+        })
+      })
+    })
+    .catch(err => {
+      console.error('Error deleting post in feed', err.stack);
+      response.status(500);
+    });
+}
+
+module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost, deletePost };

@@ -1,6 +1,7 @@
 const connectionPool = require('../../db/pool.js')
 
 const getAdminGroups = (req, res) => {
+  console.log('req.query in getAdminGroups controller:', req.query)
   const query = `SELECT json_agg (
 		              json_build_object(
                     'groupName', name,
