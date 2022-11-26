@@ -25,6 +25,13 @@ function Post({ postData, userId, removePost }) {
       }
   }
 
+  const setLikesOnLoad = () => {
+    setLikes(postData.likes)
+    setHasLiked(postData.hasliked)
+  }
+
+  useEffect(() => {setLikesOnLoad()}, [postData]);
+
   const submitComment =() => {
     if (commentText.length) {
       axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
