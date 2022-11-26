@@ -8,7 +8,7 @@ import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
 
 const { useState, useEffect } = React;
 
-function Post({ postData, userId, deletePost }) {
+function Post({ postData, userId, removePost }) {
   const [likes, setLikes] = useState(postData.likes)
   const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')
@@ -59,7 +59,7 @@ function Post({ postData, userId, deletePost }) {
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?
-        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{deletePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
+        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{removePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
         :
         null}
       </div>
