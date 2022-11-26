@@ -32,7 +32,7 @@ function CalendarComponent (props) {
   }
   useEffect(()=>console.log(eventList),[eventList])
   return (
-  <div>
+  <div className="flex gap-5 sm:flex-col">
       <EventList eventList={eventList} userId={props.userId}></EventList>
       <Calendar
         onChange={onChange}

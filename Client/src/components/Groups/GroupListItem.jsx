@@ -16,10 +16,10 @@ function GroupListItem({ group, userId, groupIds }) {
 		})
   }
 	return (
-		<div className="w-full h-fit bg-lighterblue rounded-lg ">
-			<div className="flex gap-1 px-5 items-center">
+		<div className="w-full h-fit bg-darkerblue text-white rounded-lg ">
+			<div className="flex gap-1 p-5 items-center">
 				<img
-					className="object-scale-down h-72 w-72 "
+					className="object-scale-down h-40 w-40 "
 					src={group.pictureurl}
 					alt={group.name}
 				/>
@@ -32,7 +32,7 @@ function GroupListItem({ group, userId, groupIds }) {
 			<div className="flex justify-end mr-2 mb-2">
 				{groupIds.indexOf(group.group_id) < 0 ? <button onClick={handleRequest} type="button" className="border-2 bg-white p-2 rounded-md">
 					Request to Join
-				</button> : <span className="border-2 bg-white p-2 rounded-md">
+				</button> : <span className="border-2 text-black bg-white p-2 rounded-md">
 					Member
 				</span>}
 			</div>
