@@ -11,6 +11,7 @@ const SignupButton = ({ onAuth }) => {
       onClick={() =>
         loginWithPopup({
           screen_hint: 'signup',
+          action: 'signup'
         })
       }
     >

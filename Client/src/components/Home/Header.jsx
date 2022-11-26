@@ -5,7 +5,7 @@ const { useState, useEffect } = React;
 
 function Header() {
 	return (
-		<div className="w-full flex h-fit border-b-2 p-5 items-baseline ">
+		<div className="w-full flex h-fit border-b-2 p-5 items-baseline bg-lightergreen text-white">
 			<h1 className="align-middle italic text-4xl mr-auto">
 				<Link to="/">Neighborly</Link>
 				</h1>
@@ -20,7 +20,7 @@ function Header() {
 				<li className="hover:text-darkerblue">
 					<Link to="profile">Profile</Link>
 				</li>
-				<li>
+				<li className="hover:text-darkerblue" >
 					<LogoutButton />
 				</li>
 			</ul>

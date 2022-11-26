@@ -3,17 +3,20 @@ import axios from 'axios';
 import {Link} from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faHeart} from '@fortawesome/free-solid-svg-icons';
 
 const { useState, useEffect } = React;
 
-function Post({ postData, userId }) {
+function Post({ postData, userId, deletePost }) {
   const [likes, setLikes] = useState(postData.likes)
-  const [hasLiked, setHasLiked] = useState(false)
+  const [hasLiked, setHasLiked] = useState(postData.hasliked)
   const [commentText, setCommentText] = useState('')
+  const [comments, setComments] = useState([])
 
-  const likePost = (postid) => {
+  const likePost = (postid, userid) => {
     if (!hasLiked) {
-    axios.put(`/posts`, {postid})
+    axios.put(`/posts`, {postid, userid})
       .then((res) => {
           setLikes(likes + 1)
           setHasLiked(!hasLiked)
@@ -23,31 +26,56 @@ function Post({ postData, userId }) {
   }
 
   const submitComment =() => {
-    axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
-      .then((res) => {
-        console.log('posted a comment')
-        setCommentText('')
-      })
-      .catch((err) => console.log('error posting comment'))
+    if (commentText.length) {
+      axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
+        .then((res) => {
+          console.log('posted a comment')
+          setCommentText('')
+          getComments()
+        })
+        .catch((err) => console.log('error posting comment'))
+    }
   }
 
+  const getComments = () => {
+    axios.get(`/comments/${postData.postid}`)
+      .then((res) => {
+        setComments(res.data);
+      })
+      .catch((err) => console.log('error getting comment feed data'))
+  }
+
+  useEffect(() => {getComments()}, [postData]);
+
+
   return (
-    <div className="border-2 m-2 p-2 border-black rounded bg-lighterblue">
+    <div className="m-2 p-2 rounded bg-lighterblue">
       <div className="flex">
-        <img className='object-scale-down h-20 w-20 m-1' src={postData.pictureurl} alt={postData.username}></img>
-        <div className="flex flex-col p-3">
-          <Link className="font-bold text-lg" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
-          <h3 className="italic font-bold">{postData.username}</h3>
-          <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US"/>
-          <p>{postData.message}</p>
+        <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
+        <div className="flex flex-col p-3 w-full">
+          <Link className="font-bold text-lg hover:text-darkerblue" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
+          <h3 className="italic font-bold cursor-default">{postData.username}</h3>
+          <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
+          <p className="cursor-default w-full">{postData.message}</p>
         </div>
+        {postData.userid === Number(userId) ? <div onClick={()=>{deletePost(postData.postid)}}className="w-max justify-self-end text-sm font-extrabold">X</div> : null}
       </div>
       <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
-          <button className='btn rounded border-2 bg-white p-1' onClick={() => {submitComment()}}>Comment</button>
-        <div onClick={() => {likePost(postData.postid)}} className="h-6 w-6 border-2 border-lightergreen bg-darkergreen hover:bg-lightergreen hover:border-darkergreen text-white m-1 rounded-full flex items-center justify-center cursor-default">{likes}</div>
+          <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
+        {hasLiked ?
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon icon={faHeart} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <div className="text-white">{likes}</div>
+        </div>
+        :
+        <div className="flex gap-2 items-center">
+          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeart} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <div className="text-white cursor-default">{likes}</div>
+        </div>
+        }
       </div>
-      <CommentFeed postId={postData.postid}/>
+      <CommentFeed comments={comments} postId={postData.postid}/>
     </div>
   )
 }
