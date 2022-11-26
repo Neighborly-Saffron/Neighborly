@@ -1,4 +1,4 @@
-import React from 'react';
+import React from 'react'
 import GroupEventMap from './GroupEventMap.jsx'
 import GroupEventList from './GroupEventList.jsx'
 import CreateEventModal from './CreateEventModal.jsx'
@@ -8,8 +8,8 @@ import GroupChatInput from './GroupChatInput.jsx'
 import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
 import { useParams } from 'react-router-dom'
-import socketClient  from "socket.io-client";
-import axios from 'axios';
+import socketClient from 'socket.io-client'
+import axios from 'axios'
 
 const { useState, useEffect } = React;
 
@@ -17,9 +17,6 @@ function Group ({ userId, userData }) {
   let { id } = useParams();
   const [socket, setSocket] = useState(null);
   const [eventList, setEventList] = useState({events:[]});
-
-  console.log('user id in group: ', userId)
-  console.log('user data in group: ', userData)
 
 	useEffect(() => {
     const newSocket = socketClient(`http://${window.location.hostname}:3001`);
@@ -54,10 +51,10 @@ function Group ({ userId, userData }) {
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
-          <div className="h-44">
-            <GroupChat socket={socket} />
+          <div className="h-44 border-2 border-blue-900 p-3">
+            <GroupChat socket={socket} userData={userData} groupId={id} />
             {userData &&
-              <GroupChatInput socket={socket} userData={userData} />
+              <GroupChatInput socket={socket} userData={userData} groupId={id}/>
             }
           </div>
           ) : (

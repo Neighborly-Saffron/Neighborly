@@ -2,7 +2,7 @@ import React from 'react';
 
 const { useState, useEffect } = React;
 
-function GroupChat ({ socket }) {
+function GroupChat ({ socket, userData, groupId }) {
   const [messages, setMessages] = useState({});
 
   useEffect(() => {
@@ -38,20 +38,37 @@ function GroupChat ({ socket }) {
       <div className="">
       {[...Object.values(messages)]
         .sort((a, b) => a.time - b.time)
-        .map((message) => (
-          <div
-            key={message.id}
-            className=""
-            title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-          >
-            <span className="">{new Date(message.time).toLocaleTimeString()} </span>
-            <span className="">{message.user || message.user.name}: </span>
-            <span className="">{message.value}</span>
-          </div>
-        ))
+        .map((message) => {
+          if (message.groupId === groupId) {
+            if (message.user === `${userData.given_name} ${userData.family_name}`) {
+              return (
+                <div
+                  key={message.id}
+                  className=""
+                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
+                >
+                  <span className="font-bold">You </span>
+                  <span className="">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+                  <span className="">{message.value}</span>
+                </div>
+              )
+            } else {
+              return (
+                <div
+                  key={message.id}
+                  className=""
+                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
+                >
+                  <span className="font-bold">{message.user || message.user.name} </span>
+                  <span className="text-gray-400">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+                  <span className="">{message.value}</span>
+                </div>
+              )
+            }
+          }
+        })
       }
-    </div>
-
+      </div>
     </div>
   )
 }

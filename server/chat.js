@@ -1,16 +1,5 @@
 const uuidv4 = require('uuid').v4;
 
-async function authHandler(socket, next) {
-  // const user = await oktaClient.getUser(sub);
-  // const name = socket.request.name;
-  // console.log('socket handshake: ', socket.request)
-
-  // users.set(socket, {
-  //   name: name,
-  // });
-  next();
-}
-
 const messages = new Set();
 const users = new Map();
 
@@ -43,14 +32,12 @@ class Connection {
   }
 
   handleMessage(value) {
-    console.log('message value: ', value)
-    console.log('message name: ', value.name)
-
     const message = {
       id: uuidv4(),
       user: value.name || defaultUser,
       value: value.value,
-      time: Date.now()
+      time: Date.now(),
+      groupId: value.groupId
     };
 
     messages.add(message);
@@ -72,8 +59,7 @@ class Connection {
 
 function chat(io) {
   io.on('connection', (socket) => {
-    io.use(authHandler);
-    // console.log(socket.handshake)
+    // io.use(authHandler);
     new Connection(io, socket);
   });
 };
