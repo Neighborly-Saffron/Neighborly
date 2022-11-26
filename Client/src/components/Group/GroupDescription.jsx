@@ -16,7 +16,7 @@ function GroupDescription ( { groupId }) {
   useEffect(getGroupDescription, []);
 
   return (
-    <div className='border-2 border-blue-900 m-5 p-1'>
+    <div className='m-2 p-2 rounded bg-lighterblue'>
       {groupDescription &&
       <>
         <div className='flex justify-center items-center'>

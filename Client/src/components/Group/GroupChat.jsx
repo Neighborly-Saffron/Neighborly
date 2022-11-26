@@ -10,6 +10,7 @@ function GroupChat ({ socket, userData, groupId }) {
       setMessages((prevMessages) => {
         const newMessages = {...prevMessages};
         newMessages[message.id] = message;
+        updateScroll();
         return newMessages;
       });
     };
@@ -32,10 +33,15 @@ function GroupChat ({ socket, userData, groupId }) {
     };
   }, [socket]);
 
+  const updateScroll = () => {
+    let element = document.getElementById('chatBox');
+    element.scrollTop = element.scrollHeight;
+  }
+
   return (
-    <div className="">
-      <h2>GROUP CHAT</h2>
-      <div className="">
+    <div>
+      <h2>Chat</h2>
+      <div id="chatBox" className="h-44 overflow-y-auto flex flex-col">
       {[...Object.values(messages)]
         .sort((a, b) => a.time - b.time)
         .map((message) => {
@@ -48,7 +54,7 @@ function GroupChat ({ socket, userData, groupId }) {
                   title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
                 >
                   <span className="font-bold">You </span>
-                  <span className="">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+                  <span className="text-darkgrey">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
                   <span className="">{message.value}</span>
                 </div>
               )
@@ -60,7 +66,7 @@ function GroupChat ({ socket, userData, groupId }) {
                   title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
                 >
                   <span className="font-bold">{message.user || message.user.name} </span>
-                  <span className="text-gray-400">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+                  <span className="text-lightgray">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
                   <span className="">{message.value}</span>
                 </div>
               )
