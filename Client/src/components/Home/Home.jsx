@@ -47,8 +47,12 @@ function Home({ userId, userGroups }) {
 					{/* <div className="border-2">Event List</div> */}
 					<Calendar eventList={eventList} userId={userId} />
 				</div>
-				<AdminPanel userId={userId}></AdminPanel>
+
+				<AdminPanel userId={userId} ></AdminPanel>
+			{/* <GroupAdmin userId={userId}/> */}
 			</div>
+			{/* <AdminPanel userId={userId} ></AdminPanel> */}
+
 		</div>
 	);
 }
