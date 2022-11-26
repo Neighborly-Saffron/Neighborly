@@ -43,9 +43,10 @@ useEffect(getEvents, [])
 				<Calendar eventList={eventList} userId={userId}/>
 
 				</div>
-				<GroupAdmin userId={userId}/>
+				<AdminPanel userId={userId} ></AdminPanel>
+			{/* <GroupAdmin userId={userId}/> */}
 			</div>
-			<AdminPanel userId={userId} ></AdminPanel>
+			{/* <AdminPanel userId={userId} ></AdminPanel> */}
 		</div>
 	);
 }
