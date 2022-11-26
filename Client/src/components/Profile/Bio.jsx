@@ -9,8 +9,7 @@ function Bio ({ userId }) {
   const getProfile = () => {
     axios.get(`profile/bio?userId=${userId}`)
     .then(res => {
-      console.log('client success receiving data from db');
-      console.log('userProfile.pictureurl: ', res.data.pictureURL)
+      console.log('userProfile data', res.data)
       setUserProfile(res.data)
     })
     .catch(err => {
@@ -22,16 +21,15 @@ function Bio ({ userId }) {
 
   return (
     <div className="p-3">
-      <h3 className="italic">
-        Bio
-      </h3>
       <div className='flex'>
         <div  className='flex flex-col'>
           <img className='h-20 m-1' src={userProfile.pictureURL}></img>
         </div>
         <div className='flex flex-col'>
-          <div>{userProfile.name}</div>
+          <div className='text-lg font-bold'>{userProfile.name}</div>
           <div>{userProfile.bio}</div>
+          <div>{`Member of ${userProfile.groups} groups`}</div>
+          <div>{`Administrator of ${userProfile.admins} groups`}</div>
         </div>
       </div>
     </div>

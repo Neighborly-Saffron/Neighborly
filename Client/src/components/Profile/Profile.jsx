@@ -9,9 +9,6 @@ const { useState, useEffect } = React;
 function Profile ({ userId, userGroups }) {
 
   return (<div className="border-2 border-orange-600 m-5 p-1">
-    <h2>
-      PROFILE
-    </h2>
     <div className='flex'>
       <div className='flex  w-1/3 flex-col'>
         <UserGroupList userId={userId} userGroups={userGroups}/>

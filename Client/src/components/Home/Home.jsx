@@ -25,6 +25,7 @@ function Home({ userId, userGroups }) {
   },[eventList])
 
 useEffect(getEvents, [])
+
 	return (
 		<div className="border-2 rounded-lg m-5 grid grid-cols-5  p-10 ">
 			<div className="col-span-1  p-2">
