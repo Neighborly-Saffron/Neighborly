@@ -13,7 +13,8 @@ module.exports = {
       'darkergreen': '#354e19',
       'lightergreen': '#47AA51',
       'goodgreen': '#22604E',
-      'wizardred': 'red'
+      'wizardred': 'red',
+      'lightgray': 'lightgray',
     },
 		extend: {
       height: theme => ({
