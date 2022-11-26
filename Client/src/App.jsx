@@ -13,7 +13,6 @@ import AddGroup from './components/AddGroup/AddGroup.jsx'
 import ModalTemplate from './components/Modals/ModalTemplate.jsx'
 const { useState, useEffect } = React;
 
-
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
 	const [userData, setUserData] = useState({});
@@ -25,6 +24,11 @@ function App() {
 		setUserData(data);
 	};
 
+	useEffect(() => {
+    if(isAuthenticated) {
+      onAuth(user)
+    }
+  }, [isAuthenticated])
 
   useEffect(() => {
 		if (Object.keys(userData).length) {
@@ -53,12 +57,6 @@ function App() {
 		}
 	}, [userId])
 
-	useEffect(() => {
-    if(isAuthenticated) {
-      onAuth(user)
-    }
-  }, [isAuthenticated])
-
 	return (
 		<>
 			{Boolean(userId) && isAuthenticated &&
@@ -68,9 +66,8 @@ function App() {
       <Route path="/" element={<Home userId={userId} userGroups={userGroups}/>}/>
       <Route path="/groups" element={<Groups userId={userId} userGroups={userGroups}/>}/>
       <Route path="/profile" element={<Profile userId={userId} userGroups={userGroups}/>}/>
-      <Route path="/group/:id" element={<Group userId={userId} />}/>
-      <Route path="/group/:id" element={<Group userId={userId} />}/>
-      <Route path="/groups/group/:id" element={<Group userId={userId} />}/>
+      <Route path="/group/:id" element={<Group userId={userId} userData={userData} />}/>
+      <Route path="/groups/group/:id" element={<Group userId={userId} userData={userData} />}/>
       </Routes>
 			</>}
 			{!isAuthenticated &&
