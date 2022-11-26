@@ -8,7 +8,7 @@ const AdminGroup = ({ group }) => {
 	const [notificationCount, setNotificationCount] = useState(0);
 	const [requestedUsers, setRequestedUsers] = useState([]);
 
-	console.log('group:', group);
+	// console.log('group:', group);
 
 	const handleNotificationClick = (e) => {
 		setShowModal(!showModal);
