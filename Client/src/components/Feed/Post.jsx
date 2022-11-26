@@ -59,7 +59,7 @@ function Post({ postData, userId, deletePost }) {
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?
-        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{deletePost(postData.postid)}}className="hover:text-white cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
+        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{deletePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
         :
         null}
       </div>
