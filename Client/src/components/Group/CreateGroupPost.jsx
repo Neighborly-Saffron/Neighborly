@@ -18,10 +18,7 @@ function GroupPost ({ userId, groupId, postMessage }) {
 
   return (
     <>
-    <div className="border-2 border-blue-900 m-5 p-1">
-        <h2>
-          CREATE GROUP POST
-        </h2>
+    <div className="m-2 mb-5 p-5 rounded bg-lighterblue">
         <div>
           <img></img>
         </div>
@@ -30,8 +27,8 @@ function GroupPost ({ userId, groupId, postMessage }) {
           setMessage(tempMessage);
           setTempMessage('')
           }}>
-          <textarea className='w-full rounded border-2 border-gray-200' rows='3' type='text' placeholder='Write something...' value={tempMessage} onChange={(e) => setTempMessage(e.target.value)}></textarea>
-          <input className='rounded border-2 px-1' type='submit' value='Post'></input>
+          <textarea className='w-full rounded' rows='3' type='text' placeholder='Write something...' value={tempMessage} onChange={(e) => setTempMessage(e.target.value)}></textarea>
+          <input className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1 px-2 cursor-pointer' type='submit' value='Post'></input>
         </form>
     </div>
     </>
