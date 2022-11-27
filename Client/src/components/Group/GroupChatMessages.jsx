@@ -73,7 +73,7 @@ function GroupChatMessages ({ socket, userData, groupId }) {
   return (
     <>
       <h2 className='my-2'>Chat</h2>
-      <div id='chatBox' className='h-44 p-2 overflow-y-auto flex flex-col bg-white'>
+      <div id='chatBox' className='h-44 p-2 overflow-y-auto flex flex-col bg-white rounded'>
       {messageDiv.length > 0 ? messageDiv : <div className='italic text-darkgrey'> Start a conversation </div>
       }
       </div>
