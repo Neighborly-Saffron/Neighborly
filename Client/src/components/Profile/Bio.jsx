@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-const { useState, useEffect } = React;
+import React from 'react'
+import axios from 'axios'
+const { useState, useEffect } = React
 
 function Bio ({ userId }) {
 
@@ -12,14 +12,14 @@ function Bio ({ userId }) {
       setUserProfile(res.data)
     })
     .catch(err => {
-      console.log('client failed to receive data from db', err);
+      console.log('client failed to receive data from db', err)
     })
   }
 
   useEffect(getProfile, [])
 
   return (
-    <div className="p-3">
+    <div className='flex gap-x-2 m-5 p-1'>
       <div className='flex'>
         <div  className='flex flex-col'>
           <img className='h-32 m-1' src={userProfile.pictureURL}></img>

@@ -44,14 +44,14 @@ function AddUsers({ groupId, switchModal }) {
 
   return (
     <>
-     <table>
+     <table className='table-auto'>
         <tbody>
-        <tr>
+        {/* <tr>
           <th></th>
           <th>User Name</th>
           <th>Approve</th>
           <th>Decline</th>
-        </tr>
+        </tr> */}
         {userGroupRequests.map((user, index) => {
           return <RequestRow key={index} user={user.json_build_object} approveUser={approveUser} declineUser={declineUser} groupId={groupId} />
         })}
