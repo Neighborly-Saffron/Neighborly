@@ -19,17 +19,18 @@ const getInitialGroups = (req, res) => {
 };
 
 const searchGroups = (req, res) => {
-	let searchTerm = req.body.query;
+	let searchTerm = `%${req.body.query}%`;
+  console.log(searchTerm)
 	let query = `SELECT json_build_object(
     'group_id', id,
     'name', name,
     'description', description,
     'pictureurl', pictureurl,
     'admin', (SELECT name from users where id = adminid)
-  ) FROM groups WHERE name LIKE '%${searchTerm}%'`;
+  ) FROM groups WHERE name LIKE $1`;
 
 	connectionPool
-		.query(query)
+		.query(query, [searchTerm])
 		.then((data) => {
 			res.send(data.rows);
 		})
