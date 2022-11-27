@@ -57,12 +57,20 @@ function Group ({ userId, userData }) {
     }
   }
 
+  const removePost = (postid) => {
+    axios.delete('/posts', {data:{postid}})
+      .then((res) => {
+        getPosts()
+      })
+      .catch((err) => console.log('error deleting post', err))
+  }
+
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
       <div className='flex gap-x-4'>
         <div className='flex w-2/3 flex-col'>
           <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
-          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
+          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />
           {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
         </div>
         <div className='flex flex-col gap-y-3'>
