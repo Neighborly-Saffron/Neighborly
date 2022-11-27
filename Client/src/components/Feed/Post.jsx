@@ -27,6 +27,17 @@ function Post({ postData, userId, removePost }) {
       }
   }
 
+  const unlikePost = (postid, userid) => {
+    if (hasLiked) {
+    axios.put(`/unlikepost`, {postid, userid})
+      .then((res) => {
+          setLikes(likes - 1)
+          setHasLiked(!hasLiked)
+        })
+        .catch((err) => console.log('error unliking post'))
+      }
+  }
+
   const setLikesOnLoad = () => {
     setLikes(postData.likes)
     setHasLiked(postData.hasliked)
@@ -77,7 +88,7 @@ function Post({ postData, userId, removePost }) {
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <FontAwesomeIcon onClick={() => {unlikePost(postData.postid, userId)}} icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw hover:cursor-pointer"/>
           <div className="text-black">{likes}</div>
         </div>
         :
