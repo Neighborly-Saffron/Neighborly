@@ -58,7 +58,7 @@ function Post({ postData, userId, removePost }) {
 
 
   return (
-    <div className="m-2 p-5 rounded bg-lighterblue">
+    <div className="m-2 p-5 rounded bg-lighterblue drop-shadow-md">
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col p-3 w-full">
