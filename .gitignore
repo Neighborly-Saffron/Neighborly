@@ -1,0 +1,6 @@
+node_modules/
+.env
+public/bundle.js
+etl.sql
+.DS_Store
+users.csv
