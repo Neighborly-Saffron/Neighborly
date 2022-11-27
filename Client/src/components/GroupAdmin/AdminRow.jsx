@@ -19,10 +19,18 @@ function AdminRow({ group, getAdminGroups }) {
          if (group.requests) {
           setToggleModal(!toggleModal)
         }
-      }}><img
+      }}>
+        <img
         src={group.groupPic}
-        className="h-20 w-25"
-      /></td>
+        className="h-20 w-25 ">
+    
+        </img>
+
+      {/* <span class="flex h-3 w-3 pointer-events-none"> */}
+      {/* <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-lightergreen-400 opacity-75"></span>
+      <span class="relative inline-flex rounded-full h-3 w-3 bg-lightergreen-500"></span>
+    </span></td> */}
+    </td>
       <td className="px-4 py-2" onClick={()=>{
         if (group.requests) {
           setToggleModal(!toggleModal)
