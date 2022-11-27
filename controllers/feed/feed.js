@@ -15,7 +15,7 @@ const getHomeFeed = (request, response) => {
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
-                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = $1) ORDER BY posted_at DESC`;
+                                        )FROM post WHERE groupid = ANY(SELECT id_group FROM usergroups WHERE id_user = $1) ORDER BY posted_at DESC LIMIT 100`;
 
   connectionPool
     .query(query, [userId])
@@ -42,7 +42,7 @@ const getGroupFeed = (request, response) => {
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$2 AND id_post=post.id))
-                                        )FROM post WHERE groupid = $1 ORDER BY posted_at DESC`;
+                                        )FROM post WHERE groupid = $1 ORDER BY posted_at DESC LIMIT 100`;
 //GROUP ID IS WRITTEN AS ONE AS A PROP, WILL NEED TO BE UPDATED WHEN IT IS PASSED TO GROUP
   connectionPool
     .query(query, [groupId, userId])
@@ -68,7 +68,7 @@ const getProfileFeed = (request, response) => {
                     'username', (SELECT name FROM users WHERE id=userid),
                     'pictureurl', (SELECT pictureurl FROM users WHERE id=userid),
                     'hasliked', (SELECT EXISTS(SELECT 1 FROM userlikes WHERE id_user=$1 AND id_post=post.id))
-                                        )FROM post WHERE userid = $1 ORDER BY posted_at DESC`;
+                                        )FROM post WHERE userid = $1 ORDER BY posted_at DESC LIMIT 100`;
 
   connectionPool
     .query(query, [userId])
