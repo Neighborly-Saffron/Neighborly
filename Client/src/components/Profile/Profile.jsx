@@ -10,7 +10,7 @@ const { useState, useEffect } = React
 function Profile ({ userId, userGroups }) {
 
   return (
-  <div className='border-2 rounded-lg grid grid-cols-5 m-5 p-10'>
+  <div className='rounded-lg grid grid-cols-5 mt-6 p-10'>
     <div className='col-span-1'>
         <UserGroupList userId={userId} userGroups={userGroups}/>
       </div>
