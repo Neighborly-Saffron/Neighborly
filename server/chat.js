@@ -8,7 +8,7 @@ const defaultUser = {
   name: 'Anonymous',
 };
 
-const messageExpirationTimeMS = 5*60 * 2000; // 10 min
+const messageExpirationTimeMS = 3.6 * (10**6) * 24; // 24 hr
 
 class Connection {
   constructor(io, socket) {

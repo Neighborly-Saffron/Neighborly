@@ -41,6 +41,7 @@ app.get('/posts/home/:userId/:groupId', feed.getHomeFeed);
 app.get('/posts/profile/:userId/:groupId', feed.getProfileFeed);
 app.get('/posts/group/:userId/:groupId', feed.getGroupFeed);
 app.put('/posts', feed.likePost);
+app.put('/unlikepost', feed.unlikePost);
 app.get('/comments/:postId', comments.getComments);
 app.post('/comment', comments.addComment);
 app.delete('/posts', feed.deletePost);
