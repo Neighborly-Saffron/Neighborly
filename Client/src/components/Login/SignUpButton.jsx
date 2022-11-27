@@ -7,8 +7,8 @@ const SignupButton = ({ onAuth }) => {
 
   return (
     <button
-    className="border-2 bg-lightergreen hover:bg-darkerblue
-    hover:border-black hover:border-2 text-white text-lg
+    className="border-2 bg-lightergreen hover:bg-white
+    hover:border-lightergreen hover:border-2 hover:text-lightergreen hover:ease-in duration-300 text-white text-lg
     mx-auto rounded m-5 p-2" type="button"
       onClick={() =>
         loginWithPopup({
