@@ -57,24 +57,29 @@ function Group ({ userId, userData }) {
     }
   }
 
+  const removePost = (postid) => {
+    axios.delete('/posts', {data:{postid}})
+      .then((res) => {
+        getPosts()
+      })
+      .catch((err) => console.log('error deleting post', err))
+  }
+
   return (
     <div className="border-2 border-blue-900 m-5 p-1">
-      <h2>
-        GROUP
-      </h2>
-      <div className='flex'>
+      <div className='flex gap-x-4'>
         <div className='flex w-2/3 flex-col'>
           <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
-          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
+          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />
           {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
         </div>
-        <div className='flex flex-col'>
+        <div className='flex flex-col gap-y-3'>
           <GroupDescription groupId={id} />
           <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
-          <div className="h-44 border-2 border-blue-900 p-3">
+          <div className="border-2 border-blue-900 p-3 my-3">
             <GroupChat socket={socket} userData={userData} groupId={id} />
             {userData &&
               <GroupChatInput socket={socket} userData={userData} groupId={id}/>

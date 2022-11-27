@@ -8,28 +8,31 @@ const AdminGroup = ({ group }) => {
 	const [notificationCount, setNotificationCount] = useState(0);
 	const [requestedUsers, setRequestedUsers] = useState([]);
 
-	console.log('group:', group);
+	// console.log('group:', group);
 
 	const handleNotificationClick = (e) => {
 		setShowModal(!showModal);
 	};
+
+  const increaseNotificationCount = (data) => {
+    data.forEach((requestObj) => {
+      if (requestObj.groupName === group.groupName) {
+        setNotificationCount((prevCount) => prevCount + 1);
+      }
+    });
+  }
+
+  const decreaseNotificationCount = (data) => {
+    setNotificationCount(prevCount => prevCount - 1);
+  }
 
 	const getRequestedGroups = () => {
 		return axios
 			.get('/requestedGroups')
 			.then((res) => {
 				setRequestedUsers(res.data);
-				res.data.forEach((requestObj) => {
-					// console.log('requestObj inside forEach', requestObj)
-					if (requestObj.groupName === group.groupName) {
-						// console.log('requestObj.groupName:', requestObj.groupName)
-						// console.log('group.groupName:', group.groupName)
-						setNotificationCount((prevCount) => prevCount + 1);
-						//   console.log('requestedUsers:', requestedUsers)
-					}
-				});
+        increaseNotificationCount(res.data);
 			})
-
 			.catch((err) => {
 				console.log('err in getRequestedGroups:', err);
 			});
@@ -48,6 +51,8 @@ const AdminGroup = ({ group }) => {
 					group={group}
 					requestedUsers={requestedUsers}
 					handleNotificationClick={handleNotificationClick}
+          decreaseNotificationCount={decreaseNotificationCount}
+          getRequestedGroups={getRequestedGroups}
 				></RequestList>
 			)}
 
