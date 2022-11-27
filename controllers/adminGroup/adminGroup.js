@@ -103,12 +103,12 @@ const userApprove = (req, res) => {
   let userId = req.body.userid
   let groupId = req.body.groupid
 
-  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1`
+  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1 AND id_group = $2`
 
   let addUserQuery = `INSERT INTO usergroups (id_user, id_group) VALUES ($1, $2)`
 
   connectionPool
-    .query(removeRequestQuery, [userId])
+    .query(removeRequestQuery, [userId, groupId])
     .then((data) => {
       connectionPool.query(addUserQuery, [userId, groupId]).then((data) => {
         res.send()
@@ -122,11 +122,12 @@ const userApprove = (req, res) => {
 
 const userDecline = (req, res) => {
   let userId = req.body.userid
+  let groupId = req.body.groupid
 
-  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1`
+  let removeRequestQuery = `DELETE FROM requestjoin WHERE id_user = $1 AND id_group = $2`
 
   connectionPool
-    .query(removeRequestQuery, [userId])
+    .query(removeRequestQuery, [userId, groupId])
     .then((data) => {
         res.send()
     })
