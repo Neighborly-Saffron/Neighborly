@@ -54,17 +54,27 @@ const getEvents = (request, response) => {
 const addEvent = (req, res) => {
 
 
-
   const addressToSend = `${req.body.address} ${req.body.city} ${req.body.state} ${req.body.zipCode}`.replace(/ /g, '+')
-  console.log(req.body)
+
 
   axios.get(`https://maps.googleapis.com/maps/api/geocode/json?address=${addressToSend}&key=${process.env.googleAPI}`)
     .then((data) => {
 
-      let query = `INSERT INTO event (name, location, lat, lng, date, time, description, pictureUrl, groupID, adminID)
-      VALUES ('${req.body.name}', '${data.data.results[0].formatted_address}', '${data.data.results[0].geometry.location.lat}', '${data.data.results[0].geometry.location.lng}', '${req.body.date}', '${req.body.time}', '${req.body.description}', '${req.body.pictureUrl}', '${req.body.groupId}', '${req.body.adminId}')`
+      const name = req.body.name;
+      const address = data.data.results[0].formatted_address
+      const lat = data.data.results[0].geometry.location.lat
+      const lng = data.data.results[0].geometry.location.lng
+      const date = req.body.date
+      const time = req.body.time
+      const description = req.body.description
+      const pictureUrl = req.body.pictureUrl
+      const groupId = req.body.groupId
+      const adminId = req.body.adminId
 
-      connectionPool.query(query)
+      let query = `INSERT INTO event (name, location, lat, lng, date, time, description, pictureUrl, groupID, adminID)
+      VALUES ($1, $2, $3, $4, $5, $6, $7, $8, $9, $10)`
+
+      connectionPool.query(query, [name, address, lat, lng, date, time, description, pictureUrl, groupId, adminId])
         .then((data) => {
           console.log('added to event table');
           res.status(200).end();

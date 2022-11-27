@@ -38,7 +38,6 @@ const AddEvent = ({ toggleModal, userId, groupId, getEvents }) => {
         toggleModal()
       })
     }
-console.log(picUrl)
   return (
     <div className="flex z-50 items-center h-fit w-96">
       <div className="w-full border-2 border-black bg-lighterblue rounded shadow-lg p-8 m-1">
