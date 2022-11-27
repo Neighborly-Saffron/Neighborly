@@ -7,7 +7,17 @@ import UserGroupList from '../Home/UserGroupList.jsx'
 
 const { useState, useEffect } = React
 
-function Profile ({ userId, userGroups }) {
+function Profile ({ userId, userGroups, setUserGroups }) {
+
+  useEffect (() => {
+		if (userId) {
+			axios.get(`/usergroups/${userId}`)
+			.then((res) => {
+				setUserGroups(res.data);
+			})
+			.catch((err) => console.log('error getting user groups data'))
+		}
+	}, [userGroups])
 
   return (
   <div className='border-2 rounded-lg grid grid-cols-5 m-5 p-10'>
