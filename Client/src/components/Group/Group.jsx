@@ -66,7 +66,7 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className="border-2 border-blue-900 m-5 p-1">
+    <div className="m-5 p-1">
       <div className='flex gap-x-4'>
         <div className='flex w-2/3 flex-col'>
           <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />

@@ -40,7 +40,7 @@ function App() {
 			})
 			.then((response) => {
 				axios.get(`/user?authId=${userData.sub}`)
-				.then((data) => {setUserId(data.data.rows[0].id) })
+				.then((data) => setUserId(data.data.rows[0].id))
 			})
 			.catch((err) => console.log(err));
 		}
