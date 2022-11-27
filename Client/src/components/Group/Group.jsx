@@ -1,30 +1,21 @@
 import React from 'react'
+import { useParams } from 'react-router-dom'
+import axios from 'axios'
 import GroupEventMap from './GroupEventMap.jsx'
 import GroupEventList from './GroupEventList.jsx'
 import CreateEventModal from './CreateEventModal.jsx'
 import CreateGroupPost from './CreateGroupPost.jsx'
 import GroupChat from './GroupChat.jsx'
-import GroupChatInput from './GroupChatInput.jsx'
 import GroupDescription from './GroupDescription.jsx'
 import Feed from '../Feed/Feed.jsx'
 import GroupFeed from '../Feed/GroupFeed.jsx'
-import { useParams } from 'react-router-dom'
-import socketClient from 'socket.io-client'
-import axios from 'axios'
 
 const { useState, useEffect } = React;
 
 function Group ({ userId, userData }) {
   let { id } = useParams();
-  const [socket, setSocket] = useState(null);
   const [eventList, setEventList] = useState({events:[]});
   const [posts, setPosts] = useState([]);
-
-	useEffect(() => {
-    const newSocket = socketClient(`http://${window.location.hostname}:3001`);
-    setSocket(newSocket);
-    return () => newSocket.close();
-  }, [setSocket]);
 
   const getEvents = () => {
     axios.get(`/mapEvents/${userId}/${id}`)
@@ -58,28 +49,18 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className="m-5 p-1">
-      <div className='flex gap-x-4'>
-        <div className='flex w-2/3 flex-col'>
-          <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
-          <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
-          {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
-        </div>
-        <div className='flex flex-col gap-y-3'>
-          <GroupDescription groupId={id} />
-          <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
-          <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
-          <GroupEventList userId={userId} eventList={eventList}/>
-          { socket ? (
-          <div className="p-5 my-3 rounded bg-lighterblue drop-shadow-md">
-            <GroupChat socket={socket} userData={userData} groupId={id} />
-            <GroupChatInput socket={socket} userData={userData} groupId={id}/>
-          </div>
-          ) : (
-            <div>Not Connected</div>
-          )}
-
-        </div>
+    <div className='flex gap-x-4 m-5 p-1'>
+      <div className='flex w-2/3 flex-col'>
+        <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
+        <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
+        {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
+      </div>
+      <div className='flex flex-col gap-y-3'>
+        <GroupDescription groupId={id} />
+        <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
+        <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
+        <GroupEventList userId={userId} eventList={eventList}/>
+        <GroupChat userData={userData} groupId={id}/>
       </div>
     </div>
   )
