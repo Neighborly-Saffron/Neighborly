@@ -19,7 +19,6 @@ function App() {
 	const [userId, setUserId] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [userGroups, setUserGroups] = useState([]);
-
 	const onAuth = (data) => {
 		setUserData(data);
 	};
@@ -40,7 +39,7 @@ function App() {
 			})
 			.then((response) => {
 				axios.get(`/user?authId=${userData.sub}`)
-				.then((data) => {setUserId(data.data.rows[0].id) })
+				.then((data) => setUserId(data.data.rows[0].id))
 			})
 			.catch((err) => console.log(err));
 		}
