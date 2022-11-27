@@ -12,7 +12,7 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
     <>
       <form onSubmit={submitForm}>
         <input
-          className='w-full'
+          className='w-full border-2 border-lighterblue p-1'
           autoFocus
           value={value}
           placeholder="Type your message"

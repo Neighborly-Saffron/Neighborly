@@ -72,7 +72,7 @@ function Post({ postData, userId, removePost }) {
         :
         null}
       </div>
-      <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
+      <textarea className='w-full rounded p-1' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
