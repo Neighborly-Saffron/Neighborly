@@ -71,11 +71,9 @@ function Group ({ userId, userData }) {
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
-          <div className="p-3 my-3 rounded bg-lighterblue">
+          <div className="p-3 my-3 rounded bg-lighterblue drop-shadow-md">
             <GroupChat socket={socket} userData={userData} groupId={id} />
-            {userData &&
-              <GroupChatInput socket={socket} userData={userData} groupId={id}/>
-            }
+            <GroupChatInput socket={socket} userData={userData} groupId={id}/>
           </div>
           ) : (
             <div>Not Connected</div>

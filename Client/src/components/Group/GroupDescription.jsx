@@ -16,19 +16,18 @@ function GroupDescription ( { groupId }) {
   useEffect(getGroupDescription, []);
 
   return (
-    <div className='m-2 p-2 rounded bg-lighterblue'>
+    <div className='m-2 p-2 rounded bg-lighterblue drop-shadow-md'>
       {groupDescription &&
       <>
         <div className='flex justify-center items-center'>
           <div className='w-96 flex flex-col p-5'>
-            <img className='object-scale-down' src={groupDescription.pictureURL}></img>
+            <img className='object-scale-down mb-2' src={groupDescription.pictureURL}></img>
             <div className='font-bold text-lg capitalize'>
               {groupDescription.name}
             </div>
             <div className="normal-case">
               {groupDescription.description}
             </div>
-
           </div>
           <div className='flex flex-col'>
           </div>
