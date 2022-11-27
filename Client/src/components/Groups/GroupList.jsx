@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import GroupListItem from './GroupListItem.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 const { useState, useEffect, useRef } = React;
 
 function GroupList({userId, groupIds}) {
@@ -41,12 +43,12 @@ function GroupList({userId, groupIds}) {
 	}, []);
 	return (
 		<div>
-			<form className="p-2 flex justify-center" onSubmit={handleSubmit}>
+			<form className="p-2 flex gap-2 items-center" onSubmit={handleSubmit}>
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 					type="text"
-					className="w-7/12 h-5 p-5 mb-5 border-2 outline-none"
+					className="w-7/12 h-5 p-7 mb-5 border-2 border-lightergreen rounded-lg outline-none"
 					placeholder="Search for a group..."
 				/>
 			</form>

@@ -40,7 +40,7 @@ function GroupListItem({ group, userId, groupIds }) {
 						<button
 							onClick={handleRequest}
 							type="button"
-							className="border-2 bg-white p-2 rounded-md"
+							className="border-2 bg-lighterblue p-2 rounded-md"
 						>
 							Request to Join
 						</button>
