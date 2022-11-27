@@ -19,7 +19,6 @@ function App() {
 	const [userId, setUserId] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [userGroups, setUserGroups] = useState([]);
-
 	const onAuth = (data) => {
 		setUserData(data);
 	};
