@@ -47,24 +47,22 @@ function GroupChatMessages ({ socket, userData, groupId }) {
           return (
             <div
               key={message.id}
-              className=""
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <span className="text-darkgrey text-sm">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-              <span className="font-bold">You: </span>
-              <span className="text-darkgrey">{message.value}</span>
+              <span className='text-darkgrey text-sm'>{new Date(message.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </span>
+              <span className='font-bold'>You: </span>
+              <span className='text-darkgrey'>{message.value}</span>
             </div>
           )
         } else {
           return (
             <div
               key={message.id}
-              className=""
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <span className="text-darkgrey text-sm">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-              <span className="font-bold capitalize">{message.user || message.user.name}: </span>
-              <span className="">{message.value}</span>
+              <span className='text-darkgrey text-sm'>{new Date(message.time).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })} </span>
+              <span className='font-bold capitalize'>{message.user || message.user.name}: </span>
+              <span>{message.value}</span>
             </div>
           )
         }
@@ -74,9 +72,9 @@ function GroupChatMessages ({ socket, userData, groupId }) {
 
   return (
     <>
-      <h2 className="my-2">Chat</h2>
-      <div id="chatBox" className="h-44 p-2 overflow-y-auto flex flex-col bg-white">
-      {messageDiv.length > 0 ? messageDiv : <div className="italic text-darkgrey"> Start a conversation </div>
+      <h2 className='my-2'>Chat</h2>
+      <div id='chatBox' className='h-44 p-2 overflow-y-auto flex flex-col bg-white'>
+      {messageDiv.length > 0 ? messageDiv : <div className='italic text-darkgrey'> Start a conversation </div>
       }
       </div>
     </>

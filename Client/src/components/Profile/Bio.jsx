@@ -1,6 +1,6 @@
-import React from 'react';
-import axios from 'axios';
-const { useState, useEffect } = React;
+import React from 'react'
+import axios from 'axios'
+const { useState, useEffect } = React
 
 function Bio ({ userId }) {
 
@@ -13,7 +13,7 @@ function Bio ({ userId }) {
       setUserProfile(res.data)
     })
     .catch(err => {
-      console.log('client failed to receive data from db', err);
+      console.log('client failed to receive data from db', err)
     })
   }
 
