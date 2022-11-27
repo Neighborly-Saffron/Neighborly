@@ -36,7 +36,7 @@ function AdminRow({ group, getAdminGroups }) {
      }
    }}><img
      src={group.groupPic}
-     className="h-20 w-25 max-w-full object-cover rounded-full"
+     className=" h-20 w-20 max-w-full object-cover rounded"
    /></th>
     </>}
     {group.requests ? <>
