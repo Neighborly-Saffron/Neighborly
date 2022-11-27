@@ -5,13 +5,11 @@ const { useState, useEffect } = React;
 
 function EventItem({ event, userId }) {
   const [attending, setAttending] = useState(false)
-
   let eventID = event.eventid
   let userID = userId || -1
   let formatted = new Date((event.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, '')).toString()
   let time = event.time.slice(0, 5)
   let hours = time.slice(0, 2)
-
   const checkAttending = () => {
     axios.get(`/events/attending/${eventID}/${userID}`)
       .then((res) => {
@@ -42,18 +40,17 @@ function EventItem({ event, userId }) {
 
   useEffect(()=>{if(userId !== -1)checkAttending()}, [])
 
-  console.log(formatted)
   return (
-    <div className="border-2 m-2 p-1 border-black rounded bg-lighterblue">
+    <div className="m-2 p-1 rounded bg-lighterblue">
       <div className="flex justify-between">
         <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
 
       {
       userId !== -1 ?
       attending ?
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{cancelAttend()}}>Cancel</button>
+      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold p-3 rounded m-2" onClick={()=>{cancelAttend()}}>Cancel</button>
       :
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10 mr-1 mt-2" onClick={()=>{attendEvent()}}>Attend</button>
+      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold p-3 rounded m-2" onClick={()=>{attendEvent()}}>Attend</button>
       :
       null
       }
@@ -64,9 +61,9 @@ function EventItem({ event, userId }) {
     <div>{event.description}</div>
     <br/>
     <small><div className="font-bold">When?</div></small>
-    <div className="flex flex-col w-24">
-      <div className="bg-darkergreen flex justify-center text-white font-bold">{formatted.slice(4, 8)}</div>
-      <div className="w-24 h-calendar bg-white flex flex-col items-center justify-evenly">
+    <div className="flex flex-col w-24 rounded">
+      <div className="bg-darkergreen flex justify-center rounded-t text-white font-bold">{formatted.slice(4, 8)}</div>
+      <div className="w-24 h-calendar bg-white flex flex-col items-center rounded-b justify-evenly">
         <div className="italic">{formatted.slice(0, 3)}</div>
         <div className="text-2xl font-bold">{formatted.slice(7, 10)}</div>
       </div>
