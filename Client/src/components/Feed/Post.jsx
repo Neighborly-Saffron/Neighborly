@@ -27,6 +27,17 @@ function Post({ postData, userId, removePost }) {
       }
   }
 
+  const unlikePost = (postid, userid) => {
+    if (hasLiked) {
+    axios.put(`/unlikepost`, {postid, userid})
+      .then((res) => {
+          setLikes(likes - 1)
+          setHasLiked(!hasLiked)
+        })
+        .catch((err) => console.log('error unliking post'))
+      }
+  }
+
   const setLikesOnLoad = () => {
     setLikes(postData.likes)
     setHasLiked(postData.hasliked)
@@ -58,26 +69,26 @@ function Post({ postData, userId, removePost }) {
 
 
   return (
-    <div className="m-2 p-2 rounded bg-lighterblue">
+    <div className="m-2 p-5 rounded bg-lighterblue drop-shadow-md">
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col p-3 w-full">
-          <Link className="font-bold text-lg hover:text-darkerblue" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
-          <h3 className="italic font-bold cursor-default">{postData.username}</h3>
+          <Link className="font-bold text-lg hover:text-darkerblue capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
+          <h3 className="italic font-bold cursor-default capitalize">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?
-        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{removePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold">X</FontAwesomeIcon>
+        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{removePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold"></FontAwesomeIcon>
         :
         null}
       </div>
-      <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
+      <textarea className='w-full rounded p-1 resize-none' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw"/>
+          <FontAwesomeIcon onClick={() => {unlikePost(postData.postid, userId)}} icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw hover:cursor-pointer"/>
           <div className="text-black">{likes}</div>
         </div>
         :

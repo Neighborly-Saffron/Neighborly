@@ -1,75 +1,27 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
+import socketClient from 'socket.io-client'
+import GroupChatMessages from './GroupChatMessages.jsx'
+import GroupChatInput from './GroupChatInput.jsx'
 
-const { useState, useEffect } = React;
-
-function GroupChat ({ socket, userData, groupId }) {
-  const [messages, setMessages] = useState({});
+function GroupChat ({ userData, groupId }) {
+  const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const messageListener = (message) => {
-      setMessages((prevMessages) => {
-        const newMessages = {...prevMessages};
-        newMessages[message.id] = message;
-        return newMessages;
-      });
-    };
-
-    const deleteMessageListener = (messageID) => {
-      setMessages((prevMessages) => {
-        const newMessages = {...prevMessages};
-        delete newMessages[messageID];
-        return newMessages;
-      });
-    };
-
-    socket.on('message', messageListener);
-    socket.on('deleteMessage', deleteMessageListener);
-    socket.emit('getMessages');
-
-    return () => {
-      socket.off('message', messageListener);
-      socket.off('deleteMessage', deleteMessageListener);
-    };
-  }, [socket]);
+    const newSocket = socketClient(`http://${window.location.hostname}:3001`);
+    setSocket(newSocket);
+    return () => newSocket.close();
+  }, [setSocket]);
 
   return (
-    <div className="">
-      <h2>GROUP CHAT</h2>
-      <div className="">
-      {[...Object.values(messages)]
-        .sort((a, b) => a.time - b.time)
-        .map((message) => {
-          if (message.groupId === groupId) {
-            if (message.user === `${userData.given_name} ${userData.family_name}`) {
-              return (
-                <div
-                  key={message.id}
-                  className=""
-                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-                >
-                  <span className="font-bold">You </span>
-                  <span className="">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-                  <span className="">{message.value}</span>
-                </div>
-              )
-            } else {
-              return (
-                <div
-                  key={message.id}
-                  className=""
-                  title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
-                >
-                  <span className="font-bold">{message.user || message.user.name} </span>
-                  <span className="text-gray-400">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-                  <span className="">{message.value}</span>
-                </div>
-              )
-            }
-          }
-        })
-      }
+    <>
+    {socket ?
+      <div className="p-5 my-3 rounded bg-lighterblue drop-shadow-md">
+        <GroupChatMessages socket={socket} userData={userData} groupId={groupId} />
+        <GroupChatInput socket={socket} userData={userData} groupId={groupId}/>
       </div>
-    </div>
+      : <div>Not Connected</div>
+    }
+    </>
   )
 }
 

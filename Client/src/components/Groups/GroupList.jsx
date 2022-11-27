@@ -1,6 +1,8 @@
 import axios from 'axios';
 import React from 'react';
 import GroupListItem from './GroupListItem.jsx';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {faMagnifyingGlass} from '@fortawesome/free-solid-svg-icons';
 const { useState, useEffect, useRef } = React;
 
 function GroupList({userId, groupIds}) {
@@ -12,15 +14,15 @@ function GroupList({userId, groupIds}) {
     if (query.length === 0) {
       initialGroupFetch();
     } else {
-		axios
-			.post('/searchGroups', { query: query })
-			.then((res) => {
-				console.log(res.data);
-				setGroups(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+			axios
+				.post('/searchGroups', { query: query })
+				.then((res) => {
+					console.log(res.data);
+					setGroups(res.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
     }
 	};
 
@@ -41,16 +43,16 @@ function GroupList({userId, groupIds}) {
 	}, []);
 	return (
 		<div>
-			<form className="p-2 flex justify-center" onSubmit={handleSubmit}>
+			<form className="p-2 flex gap-2  justify-center items-center" onSubmit={handleSubmit}>
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
 					type="text"
-					className="w-7/12 h-5 p-5 mb-5 border-2 outline-none"
+					className="w-7/12 h-5 p-7 mb-5 border-2 border-lightergreen rounded-lg outline-none"
 					placeholder="Search for a group..."
 				/>
 			</form>
-			<div className="flex flex-col gap-4 items-center mb-3 p-2">
+			<div className="flex flex-wrap justify-center gap-4 mb-3 p-2">
 				{groups.map((group, i) => {
 					return <GroupListItem groupIds={groupIds} userId={userId} key={i} group={group.json_build_object} />;
 				})}

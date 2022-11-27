@@ -1,6 +1,6 @@
 import React from 'react'
 import Calendar from 'react-calendar'
-import 'react-calendar/dist/Calendar.css'
+import '../../../Assets/reactCalendar.css'
 import EventList from '../Group/GroupEventList.jsx'
 
 const { useState, useEffect } = React;
@@ -19,31 +19,55 @@ function CalendarComponent (props) {
   },[date])
   useEffect(()=> {
     checkEvents();
+    tileClassName({date:date,view:'month'});
   },[props.eventList])
   let checkEvents = () => {
     var dateEvents = []
     props.eventList.events.forEach(event =>{
-      let eventDate = new Date(event.json_build_object.date);
-      if(
-        date.getDate() === eventDate.getDate() &&
-        date.getMonth() === eventDate.getMonth() &&
-        date.getFullYear() === eventDate.getFullYear()
-      ) {
-        dateEvents.push(event);
+      let eventDate = new Date((event.json_build_object.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, ''))
+      console.log('eventDate',eventDate)
+      if(checkDate(date, eventDate)) {
+          dateEvents.push(event);
+        }
+      })
+      setEventList({events: dateEvents})
+    }
+    function tileClassName({ date, view }) {
+      // Add class to tiles in month view only
+      if (view === 'month') {
+        // Check if a date React-Calendar wants to check is on the list of dates to add class to
+        if (props.eventList.events.find(event => {
+          let eventDate = new Date((event.json_build_object.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, ''))
+          console.log('eventDate',eventDate)
+          return checkDate(date, eventDate);
+          }))
+          {
+            return 'hasEvent';
+          }
       }
+    }
+    let checkDate = ((checkDate, eventDate) => {
+      if(checkDate.getDate() === eventDate.getDate() &&
+        checkDate.getMonth() === eventDate.getMonth() &&
+        checkDate.getFullYear() === eventDate.getFullYear()
+      ) {return true}
+      return false
     })
-    setEventList({events: dateEvents})
-  }
 
-  return (
-  <div>
+    return (
+      <div className='flex gap-2 sm:flex-col'>
       <Calendar
         onChange={onChange}
         value= {date}
-      >
+        tileClassName={tileClassName}
+        calendarType={'US'}
+        >
       </Calendar>
-      <h3 className='italic'> Events for {monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</h3>
-      <EventList eventList={eventList}></EventList>
+      <div>
+        <h3 className='italic'> Events for {monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</h3>
+        <EventList eventList={eventList}></EventList>
+
+      </div>
   </div>
   )
 }

@@ -27,19 +27,21 @@ function AdminPanel({ userId }) {
 
   return (
     <>
-      <table>
-        <tbody>
+      <table className='table-layout: auto'>
+        <thead>
         <tr>
-          <th></th>
-          <th>Group Name</th>
-          <th>Join Requests</th>
+          <th className="px-4 py-2"></th>
+          <th className="px-4 py-2">Group</th>
+          <th className="px-4 py-2">Requests</th>
         </tr>
+        </thead>
+        <tbody>
         {adminGroups ? adminGroups.map((group, index) => {
           return <AdminRow key={index} group={group} getAdminGroups={getAdminGroups} />
         }) : null}
         </tbody>
       </table>
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-4 rounded-full h-10" onClick={() => {setToggleModal(!toggleModal)}}>Add A Group</button>
+      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-2 pt-1.5 rounded-full h-10 text-align:center" onClick={() => {setToggleModal(!toggleModal)}}>Add A Group</button>
       {toggleModal ? <AddGroupModal switchModal={switchModal} userId={userId}/> : null }
     </>
   )

@@ -13,9 +13,6 @@ function CreateEventModal ({ userId, groupId, getEvents }) {
 
   return (
     <>
-      <h3 className="italic">
-        Create Event modal
-      </h3>
       <button
         onClick={() => toggleModal()}
         className="block border-2 bg-darkerblue hover:bg-lighterblue
