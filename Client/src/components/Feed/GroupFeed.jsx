@@ -4,7 +4,7 @@ import Post from './Post.jsx'
 
 const { useState, useEffect } = React;
 
-function GroupFeed ({ userId, path, groupId, posts }) {
+function GroupFeed ({ userId, path, groupId, posts, removePost }) {
   const [groupPosts, setGroupPosts] = useState(posts)
 
   useEffect(() => {
@@ -13,7 +13,7 @@ function GroupFeed ({ userId, path, groupId, posts }) {
 
   return (<div>
     {groupPosts.map((item, index) => {
-      return <Post key={index} postData={item.json_build_object} userId={userId} />
+      return <Post key={index} postData={item.json_build_object} userId={userId} removePost={removePost} />
     })}
   </div>)
 }

@@ -20,7 +20,6 @@ function Group ({ userId, userData }) {
   const getEvents = () => {
     axios.get(`/mapEvents/${userId}/${id}`)
       .then((res) => {
-        // console.log(res)
         setEventList({events:res.data});
       })
       .catch((err) => console.log('error getting group event data'))
@@ -48,12 +47,19 @@ function Group ({ userId, userData }) {
     }
   }
 
+  const removePost = (postid) => {
+    axios.delete('/posts', {data:{postid}})
+      .then((res) => {
+        getPosts()
+      })
+      .catch((err) => console.log('error deleting post', err))
+  }
+
   return (
     <div className='flex gap-x-4 m-5 p-1'>
       <div className='flex w-2/3 flex-col'>
         <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
-        <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} />
-        {/* <Feed userId={userId} groupId={id} path={'group'} /> */}
+        <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />
       </div>
       <div className='flex flex-col gap-y-3'>
         <GroupDescription groupId={id} />
