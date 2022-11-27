@@ -8,7 +8,7 @@ function EventItem({ event, userId }) {
 
   let eventID = event.eventid
   let userID = userId || -1
-  let formatted = new Date(event.date).toString()
+  let formatted = new Date((event.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, '')).toString()
   let time = event.time.slice(0, 5)
   let hours = time.slice(0, 2)
 
