@@ -20,18 +20,23 @@ function AdminRow({ group, getAdminGroups }) {
          if (group.requests) {
           setToggleModal(!toggleModal)
         }
-      }}><img
+      }}>
+        <div className='relative'>
+        <img
       src={group.groupPic}
-      className="h-full w-full max-w-full object-cover rounded-lg"
-    /></th>
+      className="h-20 w-20 max-w-full object-cover rounded"
+        />
+        {group.requests? <span class="top-0 left-16 absolute  w-3.5 h-3.5 bg-wizardred border-2 border-white dark:border-gray-800 rounded-full"></span>: null}
+        </div>
+    </th>
     </>:<>
-    <th className="cursor-default" onClick={()=>{
+    <th className="cursor-default px-4 py-2" onClick={()=>{
       if (group.requests) {
        setToggleModal(!toggleModal)
      }
    }}><img
      src={group.groupPic}
-     className="h-full w-full max-w-full object-cover rounded-lg"
+     className=" h-20 w-20 max-w-full object-cover rounded"
    /></th>
     </>}
     {group.requests ? <>
