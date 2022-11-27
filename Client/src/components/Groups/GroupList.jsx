@@ -43,7 +43,7 @@ function GroupList({userId, groupIds}) {
 	}, []);
 	return (
 		<div>
-			<form className="p-2 flex gap-2 items-center" onSubmit={handleSubmit}>
+			<form className="p-2 flex gap-2  justify-center items-center" onSubmit={handleSubmit}>
 				<input
 					value={query}
 					onChange={(e) => setQuery(e.target.value)}
@@ -52,7 +52,7 @@ function GroupList({userId, groupIds}) {
 					placeholder="Search for a group..."
 				/>
 			</form>
-			<div className="flex gap-4 mb-3 p-2">
+			<div className="flex flex-wrap justify-center gap-4 mb-3 p-2">
 				{groups.map((group, i) => {
 					return <GroupListItem groupIds={groupIds} userId={userId} key={i} group={group.json_build_object} />;
 				})}

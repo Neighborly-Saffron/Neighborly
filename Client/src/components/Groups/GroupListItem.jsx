@@ -19,8 +19,8 @@ function GroupListItem({ group, userId, groupIds }) {
 			});
 	};
 	return (
-		<>
-			<div className="w-72 h-fit bg-darkerblue text-white rounded-lg drop-shadow-md">
+		<div className="flex flex-col items-center gap-3">
+			<div className="w-72 h-fit max-h-72 overflow-hidden overflow-y-scroll bg-darkerblue text-white rounded-lg drop-shadow-md">
 				<div className="flex flex-col gap-1 p-5 items-center">
 					<img
 						className="object-scale-down h-40 w-40 "
@@ -35,7 +35,9 @@ function GroupListItem({ group, userId, groupIds }) {
 						<li className="normal-case">{group.description}</li>
 					</ul>
 				</div>
-				<div className="flex justify-end mr-2 mb-2">
+
+			</div>
+			<div className="flex justify-end mr-2 mb-2">
 					{groupIds.indexOf(group.group_id) < 0 ? (
 						<button
 							onClick={handleRequest}
@@ -50,8 +52,7 @@ function GroupListItem({ group, userId, groupIds }) {
 						</span>
 					)}
 				</div>
-			</div>
-		</>
+		</div>
 	);
 }
 
