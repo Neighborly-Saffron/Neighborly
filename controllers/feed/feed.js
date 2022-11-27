@@ -102,6 +102,29 @@ const likePost = (request, response) => {
     });
 }
 
+const unlikePost = (request, response) => {
+  let postId = request.body.postid;
+  let userId = request.body.userid;
+
+  let postQuery = `UPDATE post
+               SET likes = likes - 1
+               WHERE id = $1`;
+
+  let userLikesQuery = `DELETE FROM userlikes WHERE id_user = $1 AND id_post = $2`
+
+  connectionPool
+    .query(postQuery, [postId])
+    .then((res) => {
+      connectionPool.query(userLikesQuery, [userId, postId]).then((res) => {
+        response.send(res.rows)
+      })
+    })
+    .catch(err => {
+      console.error('Error unliking post in feed', err.stack);
+      response.status(500);
+    });
+}
+
 const deletePost = (request, response) => {
   let postId = request.body.postid
 
@@ -124,4 +147,4 @@ const deletePost = (request, response) => {
     });
 }
 
-module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost, deletePost };
+module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost, unlikePost, deletePost };
