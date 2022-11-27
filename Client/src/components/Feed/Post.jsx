@@ -58,7 +58,7 @@ function Post({ postData, userId, removePost }) {
 
 
   return (
-    <div className="m-2 p-5 rounded bg-lighterblue">
+    <div className="m-2 p-5 rounded bg-lighterblue drop-shadow-md">
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col p-3 w-full">
@@ -72,7 +72,7 @@ function Post({ postData, userId, removePost }) {
         :
         null}
       </div>
-      <textarea className='w-full rounded' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
+      <textarea className='w-full rounded p-1 resize-none' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?

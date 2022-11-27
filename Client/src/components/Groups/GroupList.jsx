@@ -12,15 +12,15 @@ function GroupList({userId, groupIds}) {
     if (query.length === 0) {
       initialGroupFetch();
     } else {
-		axios
-			.post('/searchGroups', { query: query })
-			.then((res) => {
-				console.log(res.data);
-				setGroups(res.data);
-			})
-			.catch((err) => {
-				console.log(err);
-			});
+			axios
+				.post('/searchGroups', { query: query })
+				.then((res) => {
+					console.log(res.data);
+					setGroups(res.data);
+				})
+				.catch((err) => {
+					console.log(err);
+				});
     }
 	};
 
