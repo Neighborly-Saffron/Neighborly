@@ -11,16 +11,17 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
   return (
     <>
       <div>
-        <form onSubmit={submitForm}>
+        <form className='w-full space-x-2' onSubmit={submitForm}>
           <input
-            className='w-full p-1 my-2'
+            className='w-4/5 p-1 my-2'
             autoFocus
             value={value}
-            placeholder="Type your message"
+            placeholder='Type your message'
             onChange={(e) => {
               setValue(e.currentTarget.value);
             }}
           />
+          <button className="border-2 bg-darkerblue hover:bg-lighterblue text-white rounded p-1 px-2 cursor-pointer">SEND</button>
         </form>
       </div>
     </>
