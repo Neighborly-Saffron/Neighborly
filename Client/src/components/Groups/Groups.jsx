@@ -19,11 +19,11 @@ function Groups({userId, userGroups}) {
 	}, [userGroups])
 	return (
 		<div className="mt-5 border-t-2">
-			<div className="grid grid-cols-5 gap-4 p-5 overflow-y-scroll">
-				<div className="col-span-1 border-r-2 p-2 mt-6">
+			<div className="flex gap-5">
+				<div className=" w-1/5 border-r-2 p-2 mt-6">
 				<UserGroupList userId={userId} userGroups={userGroups} />
 				</div>
-				<div className="col-start-2 col-span-3 ">
+				<div className="flex flex-col w-2/5">
 					<GroupList groupIds={groupIds} userId={userId} />
 				</div>
 			</div>

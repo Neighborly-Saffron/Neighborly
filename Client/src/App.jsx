@@ -19,9 +19,20 @@ function App() {
 	const [userId, setUserId] = useState(0);
 	const [loading, setLoading] = useState(true);
 	const [userGroups, setUserGroups] = useState([]);
+	const [eventList, setEvents] = useState({ events: [] });
+	const [mapStart, setMapStart] = useState({ latlng: [] });
 
 	const onAuth = (data) => {
 		setUserData(data);
+	};
+
+	const getEvents = () => {
+		axios
+			.get(`/mapEvents/${userId}/-1`)
+			.then((res) => {
+				setEvents({ events: res.data });
+			})
+			.catch((err) => console.log('error getting group event data'));
 	};
 
 	useEffect(() => {
@@ -52,10 +63,26 @@ function App() {
 			.then((res) => {
 				setUserGroups(res.data);
 			})
+			.then((res) => {
+				getEvents();
+			})
 			.then((res) => setLoading(false))
 			.catch((err) => console.log('error getting user groups data'))
 		}
 	}, [userId])
+
+	useEffect(() => {
+		if (eventList.events.length) {
+			setMapStart({
+				latlng: [
+					eventList.events[0].json_build_object.lat,
+					eventList.events[0].json_build_object.lng,
+				],
+			});
+		}
+	}, [eventList]);
+
+
 
 	return (
 		<>
@@ -63,7 +90,7 @@ function App() {
 			<>
 			<Header />
       <Routes>
-      <Route path="/" element={<Home userId={userId} userGroups={userGroups}/>}/>
+      <Route path="/" element={<Home userId={userId} mapStart={mapStart} eventList={eventList} userGroups={userGroups}/>}/>
       <Route path="/groups" element={<Groups userId={userId} userGroups={userGroups}/>}/>
       <Route path="/profile" element={<Profile userId={userId} userGroups={userGroups}/>}/>
       <Route path="/group/:id" element={<Group userId={userId} userData={userData} />}/>

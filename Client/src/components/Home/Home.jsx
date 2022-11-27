@@ -9,29 +9,8 @@ import AdminPanel from '../GroupAdmin/AdminPanel.jsx';
 
 const { useState, useEffect } = React;
 
-function Home({ userId, userGroups }) {
-	const [eventList, setEvents] = useState({ events: [] });
-	const [mapStart, setMapStart] = useState({ latlng: [] });
-	const getEvents = () => {
-		axios
-			.get(`/mapEvents/${userId}/-1`)
-			.then((res) => {
-				setEvents({ events: res.data });
-			})
-			.catch((err) => console.log('error getting group event data'));
-	};
-	useEffect(() => {
-		if (eventList.events.length) {
-			setMapStart({
-				latlng: [
-					eventList.events[0].json_build_object.lat,
-					eventList.events[0].json_build_object.lng,
-				],
-			});
-		}
-	}, [eventList]);
+function Home({ userId, userGroups, mapStart, eventList }) {
 
-	useEffect(getEvents, []);
 
 	return (
 		<div className="border-2 rounded-lg m-5 grid grid-cols-5  p-10 ">
