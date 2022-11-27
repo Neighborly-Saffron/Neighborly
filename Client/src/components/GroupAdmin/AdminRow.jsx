@@ -15,20 +15,20 @@ function AdminRow({ group, getAdminGroups }) {
   return (
     <>
     <tr>
-      <th onClick={()=>{
+      <td className ="px-4 py-2" onClick={()=>{
          if (group.requests) {
           setToggleModal(!toggleModal)
         }
       }}><img
         src={group.groupPic}
-        className="h-full w-full max-w-full object-cover rounded-lg"
-      /></th>
-      <th onClick={()=>{
+        className="h-20 w-25"
+      /></td>
+      <td className="px-4 py-2" onClick={()=>{
         if (group.requests) {
           setToggleModal(!toggleModal)
         }
-        }}>{group.groupName}</th>
-      <th>{group.requests}</th>
+        }}>{group.groupName}</td>
+      <td className="px-4 py-2">{group.requests}</td>
     </tr>
     {toggleModal ? <AdminGroupModal switchModal={switchModal} groupId={group.groupid}/> : null }
     </>

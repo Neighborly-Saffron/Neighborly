@@ -21,13 +21,15 @@ function AdminPanel({ userId }) {
 
   return (
     <>
-      <table>
-        <tbody>
+      <table className='table-layout: auto'>
+        <thead>
         <tr>
-          <th></th>
-          <th>Group Name</th>
-          <th>Join Requests</th>
+          <th className="px-4 py-2"></th>
+          <th className="px-4 py-2">Name</th>
+          <th className="px-4 py-2">Requests</th>
         </tr>
+        </thead>
+        <tbody>
         {adminGroups ? adminGroups.map((group, index) => {
           return <AdminRow key={index} group={group} getAdminGroups={getAdminGroups} />
         }) : null}
