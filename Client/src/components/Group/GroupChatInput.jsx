@@ -21,7 +21,7 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
               setValue(e.currentTarget.value);
             }}
           />
-          <button className="border-2 bg-darkerblue hover:bg-lighterblue text-white rounded p-1 px-2 cursor-pointer">SEND</button>
+          <button className="border-2 bg-darkerblue hover:bg-lighterblue text-white rounded p-1 px-2 cursor-pointer">Send</button>
         </form>
       </div>
     </>
