@@ -20,7 +20,7 @@ function GroupListItem({ group, userId, groupIds }) {
 	};
 	return (
 		<>
-			<div className="w-full h-fit bg-darkerblue text-white rounded-lg ">
+			<div className="w-72 h-fit bg-darkerblue text-white rounded-lg drop-shadow-md">
 				<div className="flex flex-col gap-1 p-5 items-center">
 					<img
 						className="object-scale-down h-40 w-40 "
@@ -32,7 +32,7 @@ function GroupListItem({ group, userId, groupIds }) {
 							{group.name}
 						</li>
 						<li className="italic capitalize">{group.admin}</li>
-						<li className="">{group.description}</li>
+						<li className="normal-case">{group.description}</li>
 					</ul>
 				</div>
 				<div className="flex justify-end mr-2 mb-2">

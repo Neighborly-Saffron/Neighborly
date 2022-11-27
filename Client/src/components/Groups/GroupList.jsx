@@ -50,7 +50,7 @@ function GroupList({userId, groupIds}) {
 					placeholder="Search for a group..."
 				/>
 			</form>
-			<div className="flex flex-col gap-4 items-center mb-3 p-2">
+			<div className="flex gap-4 mb-3 p-2">
 				{groups.map((group, i) => {
 					return <GroupListItem groupIds={groupIds} userId={userId} key={i} group={group.json_build_object} />;
 				})}
