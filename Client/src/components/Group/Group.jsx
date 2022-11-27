@@ -58,7 +58,7 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className="border-2 border-blue-900 m-5 p-1">
+    <div className=" m-5 p-1">
       <div className='flex gap-x-4'>
         <div className='flex w-2/3 flex-col'>
           <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
@@ -71,7 +71,7 @@ function Group ({ userId, userData }) {
           <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>
           <GroupEventList userId={userId} eventList={eventList}/>
           { socket ? (
-          <div className="border-2 border-blue-900 p-3 my-3">
+          <div className="p-3 my-3 rounded bg-lighterblue">
             <GroupChat socket={socket} userData={userData} groupId={id} />
             {userData &&
               <GroupChatInput socket={socket} userData={userData} groupId={id}/>

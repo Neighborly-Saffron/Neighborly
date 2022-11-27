@@ -50,9 +50,9 @@ function GroupChat ({ socket, userData, groupId }) {
               className=""
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <span className="font-bold">You </span>
-              <span className="text-darkgrey">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
-              <span className="">{message.value}</span>
+              <span className="text-darkgrey text-sm">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+              <span className="font-bold">You: </span>
+              <span className="text-darkgrey">{message.value}</span>
             </div>
           )
         } else {
@@ -62,8 +62,8 @@ function GroupChat ({ socket, userData, groupId }) {
               className=""
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
-              <span className="font-bold">{message.user || message.user.name} </span>
-              <span className="text-lightgray">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+              <span className="text-darkgrey text-sm">{new Date(message.time).toLocaleTimeString([], { hour: "2-digit", minute: "2-digit" })} </span>
+              <span className="font-bold capitalize">{message.user || message.user.name}: </span>
               <span className="">{message.value}</span>
             </div>
           )
@@ -74,8 +74,8 @@ function GroupChat ({ socket, userData, groupId }) {
 
   return (
     <>
-      <h2 className="bg-lighterblue p-1">Chat</h2>
-      <div id="chatBox" className="h-44 overflow-y-auto flex flex-col">
+      <h2 className="my-2">Chat</h2>
+      <div id="chatBox" className="h-44 p-2 overflow-y-auto flex flex-col bg-white">
       {messageDiv.length > 0 ? messageDiv : <div className="italic text-darkgrey"> Start a conversation </div>
       }
       </div>

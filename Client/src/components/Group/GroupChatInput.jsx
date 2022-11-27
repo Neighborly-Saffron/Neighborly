@@ -10,17 +10,19 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
 
   return (
     <>
-      <form onSubmit={submitForm}>
-        <input
-          className='w-full border-2 border-lighterblue p-1'
-          autoFocus
-          value={value}
-          placeholder="Type your message"
-          onChange={(e) => {
-            setValue(e.currentTarget.value);
-          }}
-        />
-      </form>
+      <div>
+        <form onSubmit={submitForm}>
+          <input
+            className='w-full p-1 my-2'
+            autoFocus
+            value={value}
+            placeholder="Type your message"
+            onChange={(e) => {
+              setValue(e.currentTarget.value);
+            }}
+          />
+        </form>
+      </div>
     </>
   );
 };
