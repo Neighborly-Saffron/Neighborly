@@ -18,7 +18,7 @@ function GroupPost ({ userId, groupId, postMessage }) {
 
   return (
     <>
-    <div className="m-2 mb-5 p-5 rounded bg-lighterblue">
+    <div className="m-2 mb-5 p-5 rounded bg-lighterblue drop-shadow-md">
         <div>
           <img></img>
         </div>
