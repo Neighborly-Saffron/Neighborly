@@ -24,7 +24,7 @@ function AdminRow({ group, getAdminGroups }) {
         <div className='relative'>
         <img
       src={group.groupPic}
-      className="h-20 w-25 max-w-full object-cover rounded-full"
+      className="h-20 w-20 max-w-full object-cover rounded"
         />
         {group.requests? <span class="top-0 left-16 absolute  w-3.5 h-3.5 bg-wizardred border-2 border-white dark:border-gray-800 rounded-full"></span>: null}
         </div>
