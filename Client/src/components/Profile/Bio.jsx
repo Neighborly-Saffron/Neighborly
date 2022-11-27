@@ -9,7 +9,6 @@ function Bio ({ userId }) {
   const getProfile = () => {
     axios.get(`profile/bio?userId=${userId}`)
     .then(res => {
-      console.log('userProfile data', res.data)
       setUserProfile(res.data)
     })
     .catch(err => {
@@ -29,8 +28,22 @@ function Bio ({ userId }) {
           <div className='text-3xl font-bold capitalize'>{userProfile.name}</div>
           <div className='text-xl normal-case'>{userProfile.bio}</div>
           <br></br>
+          {userProfile.groups ?
+          userProfile.groups > 1 ?
           <div>{`Member of ${userProfile.groups} groups`}</div>
+          :
+          <div>{`Member of ${userProfile.groups} group`}</div>
+          :
+          null
+          }
+          {userProfile.admins ?
+          userProfile.admins > 1 ?
           <div>{`Administrator of ${userProfile.admins} groups`}</div>
+          :
+          <div>{`Administrator of ${userProfile.admins} group`}</div>
+          :
+          null
+          }
         </div>
       </div>
     </div>
