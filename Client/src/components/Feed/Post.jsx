@@ -44,12 +44,11 @@ function Post({ postData, userId, removePost }) {
   }
 
   useEffect(() => {setLikesOnLoad()}, [postData]);
-  console.log(('date:',postData.postedat+ ''))
+
   const submitComment =() => {
     if (commentText.length) {
       axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
         .then((res) => {
-          console.log('posted a comment')
           setCommentText('')
           getComments()
         })
