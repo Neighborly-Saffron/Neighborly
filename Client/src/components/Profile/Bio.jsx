@@ -19,8 +19,8 @@ function Bio ({ userId }) {
   useEffect(getProfile, [])
 
   return (
-    <div className='flex gap-x-2 m-5 p-1'>
-      <div className='flex'>
+    <div className='flex gap-2 m-5 p-1'>
+      <div className='flex gap-2 items-center'>
         <div  className='flex flex-col'>
           <img className='h-32 m-1 rounded' src={userProfile.pictureURL}></img>
         </div>

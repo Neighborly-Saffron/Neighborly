@@ -41,22 +41,22 @@ function EventItem({ event, userId }) {
   useEffect(()=>{if(userId !== -1)checkAttending()}, [])
 
   return (
-    <div className="m-2 p-1 rounded bg-lighterblue">
+    <div className="my-3 rounded bg-lighterblue p-5 drop-shadow-md">
       <div className="flex justify-between">
         <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
 
       {
       userId !== -1 ?
       attending ?
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold p-3 rounded m-2" onClick={()=>{cancelAttend()}}>Cancel</button>
+      <button className="bg-darkerblue hover:bg-white border-2 hover:border-2 hover:border-lighterblue  hover:text-lighterblue text-white font-bold px-1.5 hover:ease-in duration-300 rounded" onClick={()=>{cancelAttend()}}>Cancel</button>
       :
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold p-3 rounded m-2" onClick={()=>{attendEvent()}}>Attend</button>
+      <button className="bg-darkerblue hover:bg-white border-2 hover:border-2 hover:border-lighterblue  hover:text-lighterblue text-white hover:ease-in duration-300 font-bold px-1.5 rounded" onClick={()=>{attendEvent()}}>Attend</button>
       :
       null
       }
     </div>
 
-    <div className="font-bold text-lg">{event.name}</div>
+    <div className="font-bold text-lg capitalize">{event.name}</div>
     <br/>
     <div>{event.description}</div>
     <br/>

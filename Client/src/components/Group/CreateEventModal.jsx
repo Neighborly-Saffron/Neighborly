@@ -15,8 +15,8 @@ function CreateEventModal ({ userId, groupId, getEvents }) {
     <>
       <button
         onClick={() => toggleModal()}
-        className="block border-2 bg-darkerblue hover:bg-lighterblue
-        hover:border-black hover:border-2 text-white text-lg
+        className="block border-2 bg-darkerblue hover:bg-white
+        hover:border-darkerblue hover:border-2 text-white hover:text-darkerblue hover:ease-in duration-300 text-lg
         mx-auto p-4 rounded" type="button">
         Create Event
       </button>
