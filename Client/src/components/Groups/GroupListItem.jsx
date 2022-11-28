@@ -14,7 +14,6 @@ function GroupListItem({ group, userId, groupIds }) {
 				},
 			})
 			.then((res) => {
-				console.log(res.data);
 				setRequested(true);
 			})
 			.catch((err) => {

@@ -5,7 +5,6 @@ const { useState, useEffect } = React;
 
 function Groups({userId, userGroups}) {
 	const [groupIds, setGroupIds] = useState([]);
-
 	const getGroupIds = () => {
 		let temp = [];
 		userGroups.forEach(group => {
