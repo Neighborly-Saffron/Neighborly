@@ -5,3 +5,7 @@ public/bundle.js.gz
 etl.sql
 .DS_Store
 users.csv
+cert.pem
+key.pem
+csr.pem
+

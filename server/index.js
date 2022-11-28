@@ -1,9 +1,10 @@
 const path = require('path');
 const socketIo = require('socket.io')
-const http = require('http')
+const https = require('https')
 const chat = require('./chat.js')
 const express = require('express')
-
+const cors = require('cors');
+const fs = require('fs');
 const groups = require('../controllers/group/groups.js')
 const groupSearch = require('../controllers/group/groupSearch.js')
 const groupPage = require('../controllers/group/groupPage.js')
@@ -17,13 +18,21 @@ const mapEvents = require('../controllers/map/events.js')
 const comments = require('../controllers/feed/comment.js')
 
 const app = express()
-const server = http.createServer(app)
+const port = 3001;
+const server = https
+  .createServer({
+    key: fs.readFileSync('key.pem'),
+    cert: fs.readFileSync('cert.pem'),
+  }, app)
+  .listen(port, () => {
+    console.log(`App running on port ${port}.`)
+  })
 
 app.use(express.json())
+app.use(cors())
 
-const port = 3001
 
-const io = socketIo(server, {
+ const io = socketIo(server, {
   cors: {
     origin: '*',
     methods: ['GET', 'POST']
@@ -101,6 +110,6 @@ app.get('/*', function(req, res) {
   })
 })
 
-server.listen(port, () => {
+/*server.listen(port, () => {
   console.log(`App running on port ${port}.`)
-})
+})*/
