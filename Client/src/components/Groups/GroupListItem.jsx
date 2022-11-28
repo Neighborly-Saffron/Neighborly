@@ -3,6 +3,8 @@ import axios from 'axios';
 const { useState, useEffect } = React;
 
 function GroupListItem({ group, userId, groupIds }) {
+
+	const [requested, setRequested] = useState(false);
 	const handleRequest = () => {
 		axios
 			.post('/requestJoin', {
@@ -12,7 +14,7 @@ function GroupListItem({ group, userId, groupIds }) {
 				},
 			})
 			.then((res) => {
-				console.log(res.data);
+				setRequested(true);
 			})
 			.catch((err) => {
 				console.log(err);
@@ -38,16 +40,19 @@ function GroupListItem({ group, userId, groupIds }) {
 
 			</div>
 			<div className="flex justify-end mr-2 mb-2">
-					{groupIds.indexOf(group.group_id) < 0 ? (
+					{groupIds.indexOf(group.group_id) < 0 ? !requested ?
 						<button
 							onClick={handleRequest}
 							type="button"
-							className="border-2 bg-lighterblue p-2 rounded-md"
+							className="bg-darkerblue p-2 rounded-md text-white border-2 border-darkerblue hover:bg-white hover:text-lighterblue hover:border-2 hover:border-darkerblue hover:ease-in duration-300"
 						>
 							Request to Join
-						</button>
-					) : (
-						<span className="border-2 text-black bg-white p-2 rounded-md">
+						</button> :
+						<span className="border-2 border-darkerblue text-white bg-darkerblue p-2 rounded-md">
+						Requested
+					</span>
+					 : (
+						<span className="border-2 border-lightergreen text-white bg-lightergreen p-2 rounded-md">
 							Member
 						</span>
 					)}

@@ -25,7 +25,6 @@ function CalendarComponent (props) {
     var dateEvents = []
     props.eventList.events.forEach(event =>{
       let eventDate = new Date((event.json_build_object.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, ''))
-      console.log('eventDate',eventDate)
       if(checkDate(date, eventDate)) {
           dateEvents.push(event);
         }
@@ -38,7 +37,6 @@ function CalendarComponent (props) {
         // Check if a date React-Calendar wants to check is on the list of dates to add class to
         if (props.eventList.events.find(event => {
           let eventDate = new Date((event.json_build_object.date + 'T00:00:00').replace(/-/g, '\/').replace(/T.+/, ''))
-          console.log('eventDate',eventDate)
           return checkDate(date, eventDate);
           }))
           {

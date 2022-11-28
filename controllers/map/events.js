@@ -67,7 +67,7 @@ const addEvent = (req, res) => {
       const date = req.body.date
       const time = req.body.time
       const description = req.body.description
-      const pictureUrl = req.body.pictureUrl
+      const pictureUrl = req.body.picUrl
       const groupId = req.body.groupId
       const adminId = req.body.adminId
 

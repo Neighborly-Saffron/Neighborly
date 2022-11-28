@@ -46,6 +46,7 @@ function GroupChatMessages ({ socket, userData, groupId }) {
         if (message.user === `${userData.given_name} ${userData.family_name}`) {
           return (
             <div
+              className='break-all'
               key={message.id}
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
@@ -57,6 +58,7 @@ function GroupChatMessages ({ socket, userData, groupId }) {
         } else {
           return (
             <div
+              className='break-all'
               key={message.id}
               title={`Sent at ${new Date(message.time).toLocaleTimeString()}`}
             >
