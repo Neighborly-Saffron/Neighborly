@@ -44,7 +44,7 @@ function Post({ postData, userId, removePost }) {
   }
 
   useEffect(() => {setLikesOnLoad()}, [postData]);
-
+  console.log(('date:',postData.postedat+ ''))
   const submitComment =() => {
     if (commentText.length) {
       axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
@@ -75,7 +75,7 @@ function Post({ postData, userId, removePost }) {
         <div className="flex flex-col p-3 w-full">
           <Link className="font-bold text-lg hover:text-lightergreen capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
           <h3 className="italic font-bold cursor-default capitalize">{postData.username}</h3>
-          <ReactTimeAgo date={Date.parse(postData.postedat)} locale="en-US" className="italic text-sm cursor-default"/>
+          <ReactTimeAgo date={Date.parse((postData.postedat+ 'Z'))} locale="en-US" className="italic text-sm cursor-default"/>
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?

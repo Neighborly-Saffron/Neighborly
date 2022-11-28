@@ -32,8 +32,9 @@ function AddUsers({ groupId, switchModal }) {
       })
   }
 
-  const declineUser = (userId) => {
-    axios.post('/userDecline', {userid: userId})
+  const declineUser = (userId, groupId) => {
+    console.log("DECLINE USER", userId, groupId)
+    axios.post('/userDecline', {userid: userId, groupid: groupId})
       .then((data) => {
         getUserRequests()
       })
