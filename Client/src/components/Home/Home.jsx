@@ -51,7 +51,7 @@ function Home({ userId, userGroups, setUserGroups }) {
 			<div className="col-start-2  col-span-2 ">
 				<Feed userId={userId} path={'home'} />
 			</div>
-			<div className="col-start-4 col-span-2 flex flex-col gap-5 items-center">
+			<div className="mt-3 col-start-4 col-span-2 flex flex-col gap-5 items-center">
 				<Map mapStart={mapStart} eventList={eventList} />
 				<div className="flex gap-2 justify-between">
 					<Calendar eventList={eventList} userId={userId} />
