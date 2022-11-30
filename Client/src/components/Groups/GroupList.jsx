@@ -1,8 +1,6 @@
 import axios from 'axios';
 import React from 'react';
 import GroupListItem from './GroupListItem.jsx';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faMagnifyingGlass } from '@fortawesome/free-solid-svg-icons';
 const { useState, useEffect, useRef } = React;
 
 function GroupList({ userId, groupIds }) {
