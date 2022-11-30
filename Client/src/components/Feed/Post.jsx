@@ -1,8 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
+import circleX from '../../../../public/circle-xmark.svg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
 import { faHeart as faHeartActive } from '@fortawesome/free-solid-svg-icons';
@@ -78,7 +79,7 @@ function Post({ postData, userId, removePost }) {
           <p className="cursor-default w-full">{postData.message}</p>
         </div>
         {postData.userid === Number(userId) ?
-        <FontAwesomeIcon icon={faCircleXmark} onClick={()=>{removePost(postData.postid)}}className="hover:text-darkerblue cursor-pointer w-max justify-self-end text-sm font-extrabold"></FontAwesomeIcon>
+        <img src={circleX} className="hover:bg-darkerblue cursor-pointer justify-self-end w-4 h-4 rounded-full" onClick={()=>{removePost(postData.postid)}}></img>
         :
         null}
       </div>
