@@ -17,27 +17,27 @@ const adminGroup = require('../controllers/adminGroup/adminGroup.js')
 const mapEvents = require('../controllers/map/events.js')
 const comments = require('../controllers/feed/comment.js')
 
+const port = 3001
 const app = express()
-const server = http.createServer(app)
+
+const server = http
+  .createServer(app)
+  .listen(port, () => {
+    console.log(`App running on port ${port}.`)
+  });
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+}) //in case server and client run on different urls
+
+chat(io);
+
 
 app.use(compression({level:6, threshold: 0}))
-
 app.use(express.json())
-
-function shouldCompress (req, res) {
-  if (req.headers['x-no-compression']) {
-    // don't compress responses with this request header
-    return false
-  }
-
-  // fallback to standard filter function
-  return compression.filter(req, res)
-}
-
-
-const port = 3001
-
-
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('/usergroups/:userId', groups.getUserGroups);
@@ -112,17 +112,3 @@ app.get('/*', function(req, res) {
     }
   })
 })
-
-server.listen(port, () => {
-  console.log(`App running on port ${port}.`)
-})
-
-const io = socketIo(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-}) //in case server and client run on different urls
-
-chat(io);
-
