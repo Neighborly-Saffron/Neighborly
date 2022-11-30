@@ -4,10 +4,6 @@ import { Link } from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
 import CommentFeed from './CommentFeed.jsx'
 import circleX from '../../../../public/circle-xmark.svg';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import {faHeart, faCircleXmark} from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartActive } from '@fortawesome/free-solid-svg-icons';
-import { faHeart as faHeartInactive } from '@fortawesome/free-regular-svg-icons';
 
 const { useState, useEffect } = React;
 
@@ -88,12 +84,16 @@ function Post({ postData, userId, removePost }) {
           <button className='border-2 bg-darkerblue hover:bg-white hover:text-darkerblue hover:ease-in duration-300 hover:border-darkerblue hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon onClick={() => {unlikePost(postData.postid, userId)}} icon={faHeartActive} transform="grow-8" color="red" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="red" viewBox="0 0 24 24" className="w-6 h-6 hover:cursor-pointer" onClick={() => {unlikePost(postData.postid, userId)}}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
           <div className="text-black">{likes}</div>
         </div>
         :
         <div className="flex gap-2 items-center">
-          <FontAwesomeIcon onClick={() => {likePost(postData.postid, userId)}} icon={faHeartInactive} transform="grow-8" color="black" className="fa-layers fa-fw hover:cursor-pointer"/>
+          <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" className="w-6 h-6 hover:cursor-pointer" onClick={() => {likePost(postData.postid, userId)}}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M21 8.25c0-2.485-2.099-4.5-4.688-4.5-1.935 0-3.597 1.126-4.312 2.733-.715-1.607-2.377-2.733-4.313-2.733C5.1 3.75 3 5.765 3 8.25c0 7.22 9 12 9 12s9-4.78 9-12z" />
+          </svg>
           <div className="text-black cursor-default">{likes}</div>
         </div>
         }
