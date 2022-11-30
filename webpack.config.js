@@ -1,8 +1,10 @@
 const path = require("path");
 const Dotenv = require("dotenv-webpack");
+const BundleAnalyzerPlugin = require('webpack-bundle-analyzer').BundleAnalyzerPlugin;
+const CompressionPlugin = require("compression-webpack-plugin");
 
 module.exports = {
-  mode: "development",
+  mode: "production",
   entry: "./Client/src/index.jsx",
   output: {
     path: path.join(__dirname, 'public'),
@@ -35,8 +37,12 @@ module.exports = {
 		],
 	},
 	plugins: [
-    new Dotenv({
-    systemvars: true}),
+    new Dotenv({systemvars: true}),
+    new BundleAnalyzerPlugin(),
+    new CompressionPlugin({
+      algorithm: 'gzip',
+      test: /.js$|.css$|.jsx/
+    })
   ],
   // [devtool] this is an additional source map that will let the browser know what files are running our code.
   // Helps with error tracing. Without it we will not know where our errors are coming from because it will state that everything inside the bundle file.

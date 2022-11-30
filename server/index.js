@@ -3,6 +3,7 @@ const socketIo = require('socket.io')
 const http = require('http')
 const chat = require('./chat.js')
 const express = require('express')
+const compression = require('compression')
 
 const groups = require('../controllers/group/groups.js')
 const groupSearch = require('../controllers/group/groupSearch.js')
@@ -19,18 +20,23 @@ const comments = require('../controllers/feed/comment.js')
 const app = express()
 const server = http.createServer(app)
 
+app.use(compression({level:6, threshold: 0}))
+
 app.use(express.json())
+
+function shouldCompress (req, res) {
+  if (req.headers['x-no-compression']) {
+    // don't compress responses with this request header
+    return false
+  }
+
+  // fallback to standard filter function
+  return compression.filter(req, res)
+}
+
 
 const port = 3001
 
-const io = socketIo(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
-}) //in case server and client run on different urls
-
-chat(io);
 
 app.use(express.static(path.join(__dirname, '../public')));
 
@@ -92,6 +98,12 @@ app.get('/user', addNewUser.getNewUser);
 //add event
 app.post('/newEvent', mapEvents.addEvent);
 
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  next();
+});
+
 //MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
@@ -104,3 +116,13 @@ app.get('/*', function(req, res) {
 server.listen(port, () => {
   console.log(`App running on port ${port}.`)
 })
+
+const io = socketIo(server, {
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  }
+}) //in case server and client run on different urls
+
+chat(io);
+
