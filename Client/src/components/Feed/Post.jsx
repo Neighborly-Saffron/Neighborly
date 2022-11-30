@@ -1,9 +1,9 @@
 import React from 'react';
 import axios from 'axios';
-import { Link } from 'react-router-dom'
 import ReactTimeAgo from 'react-time-ago'
-import CommentFeed from './CommentFeed.jsx'
+import { Link } from 'react-router-dom'
 import circleX from '../../../../public/circle-xmark.svg';
+import CommentFeed from './CommentFeed.jsx'
 
 const { useState, useEffect } = React;
 
