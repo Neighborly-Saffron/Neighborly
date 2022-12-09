@@ -1,6 +1,5 @@
 import React from 'react';
 import Feed from '../Feed/Feed.jsx';
-import GroupAdmin from './GroupAdmin.jsx';
 import Map from './Map.jsx';
 import UserGroupList from './UserGroupList.jsx';
 import Calendar from './Calendar.jsx';
