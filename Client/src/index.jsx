@@ -5,7 +5,6 @@ import Auth0ProviderWithHistory from './auth0Provider.jsx';
 import '../Assets/style.css';
 import TimeAgo from 'javascript-time-ago';
 import en from 'javascript-time-ago/locale/en.json';
-import App from './App.jsx';
 
 const App = lazy(() => import('./App.jsx'));
 

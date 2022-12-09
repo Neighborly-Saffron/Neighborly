@@ -5,3 +5,4 @@ public/bundle.js.gz
 etl.sql
 .DS_Store
 users.csv
+dist/
