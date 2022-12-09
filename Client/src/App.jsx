@@ -10,7 +10,6 @@ import Groups from './components/Groups/Groups.jsx';
 import Header from './components/Home/Header.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import AddGroup from './components/AddGroup/AddGroup.jsx'
-import ModalTemplate from './components/Modals/ModalTemplate.jsx' // remove?
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();

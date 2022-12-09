@@ -35,7 +35,6 @@ const io = socketIo(server, {
 
 chat(io);
 
-
 app.use(compression({level:6, threshold: 0}))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')));
