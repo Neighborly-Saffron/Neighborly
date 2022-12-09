@@ -40,6 +40,13 @@ app.use(compression({level:6, threshold: 0}))
 app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')));
 
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
+  next();
+});
+
 app.get('/usergroups/:userId', groups.getUserGroups);
 
 //feed routes
@@ -97,12 +104,6 @@ app.get('/user', addNewUser.getNewUser);
 
 //add event
 app.post('/newEvent', mapEvents.addEvent);
-
-app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  next();
-});
 
 //MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
