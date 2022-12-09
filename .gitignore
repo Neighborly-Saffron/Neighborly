@@ -1,7 +1,5 @@
 node_modules/
 .env
-public/bundle.js
-public/bundle.js.gz
 etl.sql
 .DS_Store
 users.csv
