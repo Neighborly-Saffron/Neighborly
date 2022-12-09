@@ -30,7 +30,7 @@ function AdminRow({ group, getAdminGroups }) {
         </div>
     </th>
     </>:<>
-    <th className="cursor-default px-4 py-2" onClick={()=>{
+    <th className="cursor-default px-3 py-3" onClick={()=>{
       if (group.requests) {
        setToggleModal(!toggleModal)
      }
@@ -40,19 +40,19 @@ function AdminRow({ group, getAdminGroups }) {
    /></th>
     </>}
     {group.requests ? <>
-    <th className="cursor-default px-4 py-2 hover:text-darkerblue hover:cursor-pointer" onClick={()=>{
+    <th className="cursor-default px-10 py-3 hover:text-darkerblue hover:cursor-pointer capitalize" onClick={()=>{
       if (group.requests) {
         setToggleModal(!toggleModal)
       }
       }}>{group.groupName}</th>
-    <th className="cursor-default px-4 py-2">{group.requests}</th>
+    <th className="cursor-default px-10 py-3">{group.requests}</th>
     </>:<>
-    <th className="cursor-default px-4 py-2" onClick={()=>{
+    <th className="cursor-default px-10 py-3 capitalize" onClick={()=>{
   if (group.requests) {
     setToggleModal(!toggleModal)
   }
   }}>{group.groupName}</th>
-  <th className="cursor-default px-4 py-2">{group.requests}</th>
+  <th className="cursor-default px-10 py-3">{group.requests}</th>
   </>}
   </tr>
     {toggleModal ? <AdminGroupModal switchModal={switchModal} groupId={group.groupid}/> : null }
