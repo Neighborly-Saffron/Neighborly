@@ -3,6 +3,7 @@ const socketIo = require('socket.io')
 const http = require('http')
 const chat = require('./chat.js')
 const express = require('express')
+const compression = require('compression')
 
 const groups = require('../controllers/group/groups.js')
 const groupSearch = require('../controllers/group/groupSearch.js')
@@ -16,12 +17,14 @@ const adminGroup = require('../controllers/adminGroup/adminGroup.js')
 const mapEvents = require('../controllers/map/events.js')
 const comments = require('../controllers/feed/comment.js')
 
-const app = express()
-const server = http.createServer(app)
-
-app.use(express.json())
-
 const port = 3001
+const app = express()
+
+const server = http
+  .createServer(app)
+  .listen(port, () => {
+    console.log(`App running on port ${port}.`)
+  });
 
 const io = socketIo(server, {
   cors: {
@@ -32,7 +35,16 @@ const io = socketIo(server, {
 
 chat(io);
 
+app.use(compression({level:6, threshold: 0}))
+app.use(express.json())
 app.use(express.static(path.join(__dirname, '../public')));
+
+app.get('*.js', function (req, res, next) {
+  req.url = req.url + '.gz';
+  res.set('Content-Encoding', 'gzip');
+  res.set('Content-Type', 'text/javascript');
+  next();
+});
 
 app.get('/usergroups/:userId', groups.getUserGroups);
 
@@ -99,8 +111,4 @@ app.get('/*', function(req, res) {
       res.status(500).send(err)
     }
   })
-})
-
-server.listen(port, () => {
-  console.log(`App running on port ${port}.`)
 })
