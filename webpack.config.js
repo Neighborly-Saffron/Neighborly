@@ -8,7 +8,9 @@ module.exports = {
   entry: './Client/src/index.jsx',
   output: {
     path: path.join(__dirname, 'public' + '/dist'),
-    filename: '[name].bundle.js'
+    filename: 'bundle.js',
+    chunkFilename: '[name].bundle.js',
+    publicPath: 'dist/'
   },
   module: {
 		rules: [
