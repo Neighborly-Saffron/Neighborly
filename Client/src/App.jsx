@@ -1,17 +1,15 @@
-import React from 'react';
+import React, { useState, useEffect, lazy } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useAuth0 } from '@auth0/auth0-react';
 import axios from 'axios';
+import Login from './components/Login/Login.jsx';
+import Home from './components/Home/Home.jsx';
 import Feed from './components/Feed/Feed.jsx';
 import Group from './components/Group/Group.jsx';
 import Groups from './components/Groups/Groups.jsx';
 import Header from './components/Home/Header.jsx';
-import Home from './components/Home/Home.jsx';
-import Login from './components/Login/Login.jsx';
 import Profile from './components/Profile/Profile.jsx';
 import AddGroup from './components/AddGroup/AddGroup.jsx'
-import ModalTemplate from './components/Modals/ModalTemplate.jsx'
-const { useState, useEffect } = React;
 
 function App() {
   const { isLoading, isAuthenticated, user } = useAuth0();
