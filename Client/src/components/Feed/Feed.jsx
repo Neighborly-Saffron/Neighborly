@@ -25,7 +25,7 @@ function Feed ({ userId, path, groupId }) {
       .catch((err) => console.log('error deleting post'))
   }
 
-  return (<div className="m-5 mt-0 p-1 pt-0 bg-white">
+  return (<div className="m-5 mt-0 p-1 pt-0">
     {posts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object} userId={userId} removePost={removePost} />
     })}

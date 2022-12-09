@@ -57,7 +57,7 @@ function App() {
 	}, [userId])
 
 	return (
-		<>
+		<div className="bg-lightlighterblue">
 			{Boolean(userId) && isAuthenticated &&
 			<>
 			<Header />
@@ -80,7 +80,7 @@ function App() {
 			{!isLoading ? <Login onAuth={onAuth} /> : null}
 			</>
 }
-		</>
+		</div>
 	);
 }
 
