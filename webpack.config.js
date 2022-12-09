@@ -8,7 +8,7 @@ module.exports = {
   entry: "./Client/src/index.jsx",
   output: {
     path: path.join(__dirname, 'public'),
-    filename: "bundle.js"
+    filename: "[name].bundle.js"
   },
   module: {
 		rules: [
