@@ -33,19 +33,19 @@ function Home({ userId, userGroups, setUserGroups }) {
 	useEffect(getEvents, []);
 
 	return (
-		<div className="rounded-lg m-5 grid grid-cols-5  p-10 ">
-			<div className="col-span-1 p-2">
+		<div className="rounded-lg m-5 p-10 grid grid-cols-5 gap-6">
+			<div className="col-span-1 h-full">
 				<UserGroupList userId={userId} userGroups={userGroups} />
 			</div>
-			<div className="col-start-2 col-span-2 ">
+			<div className="col-start-2 col-span-2">
 				<Feed userId={userId} path={'home'} />
 			</div>
-			<div className="mt-2 col-start-4 col-span-2 flex flex-col gap-5 items-center">
+			<div className="col-start-4 col-span-2 flex flex-col items-center gap-5">
 				<Map mapStart={mapStart} eventList={eventList} />
-				<div className="flex gap-2 justify-between">
+				<div className="flex justify-between">
 					<Calendar eventList={eventList} userId={userId} />
 				</div>
-				<AdminPanel userId={userId} ></AdminPanel>
+				<AdminPanel userId={userId}></AdminPanel>
 			</div>
 		</div>
 	);

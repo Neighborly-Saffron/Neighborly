@@ -11,7 +11,7 @@ function GroupFeed ({ userId, path, groupId, posts, removePost }) {
     setGroupPosts(posts)
   }, [posts])
 
-  return (<div>
+  return (<div className="flex flex-col gap-3">
     {groupPosts.map((item, index) => {
       return <Post key={index} postData={item.json_build_object} userId={userId} removePost={removePost} />
     })}

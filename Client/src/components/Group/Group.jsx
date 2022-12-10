@@ -56,12 +56,12 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className='flex gap-x-4 m-5 p-1'>
-      <div className='flex w-2/3 flex-col'>
+    <div className='flex m-5 p-10 gap-6'>
+      <div className='flex w-2/3 flex-col gap-3'>
         <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
         <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />
       </div>
-      <div className='flex flex-col gap-y-3'>
+      <div className='flex w-1/3 flex-col gap-y-3'>
         <GroupDescription groupId={id} />
         <GroupEventMap userId={userId} groupId={id} getEvents={getEvents} eventList={eventList}/>
         <CreateEventModal userId={userId} groupId={id} getEvents={getEvents}/>

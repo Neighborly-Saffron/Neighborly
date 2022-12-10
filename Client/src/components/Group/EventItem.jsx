@@ -41,7 +41,7 @@ function EventItem({ event, userId }) {
   useEffect(()=>{if(userId !== -1)checkAttending()}, [])
 
   return (
-    <div className="my-3 rounded bg-lighterblue p-5 drop-shadow-md">
+    <div className="rounded bg-lighterblue p-5 drop-shadow-md">
       <div className="flex justify-between">
         <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
 

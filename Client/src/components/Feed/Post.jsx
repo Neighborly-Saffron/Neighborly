@@ -65,10 +65,10 @@ function Post({ postData, userId, removePost }) {
 
 
   return (
-    <div className="m-2 p-5 rounded bg-lighterblue drop-shadow-md">
-      <div className="flex">
+    <div className="p-5 rounded bg-lighterblue drop-shadow-md">
+      <div className="flex gap-2">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
-        <div className="flex flex-col p-3 w-full">
+        <div className="flex flex-col w-full">
           <Link className="font-bold text-lg hover:text-lightlighterblue capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
           <h3 className="italic font-bold cursor-default capitalize">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse((postData.postedat+ 'Z'))} locale="en-US" className="italic text-sm cursor-default"/>
