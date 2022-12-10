@@ -69,7 +69,7 @@ function Post({ postData, userId, removePost }) {
       <div className="flex">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col p-3 w-full">
-          <Link className="font-bold text-lg hover:text-lightergreen capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
+          <Link className="font-bold text-lg hover:text-lightlighterblue capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>
           <h3 className="italic font-bold cursor-default capitalize">{postData.username}</h3>
           <ReactTimeAgo date={Date.parse((postData.postedat+ 'Z'))} locale="en-US" className="italic text-sm cursor-default"/>
           <p className="cursor-default w-full">{postData.message}</p>
@@ -79,7 +79,7 @@ function Post({ postData, userId, removePost }) {
         :
         null}
       </div>
-      <textarea className='w-full rounded p-1 resize-none' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
+      <textarea className='w-full rounded p-1 resize-none border-2 border-lightgray' rows='3' type='text' placeholder='Comment...' value={commentText} onChange={(e) => setCommentText(e.target.value)}></textarea>
       <div className="flex justify-between">
           <button className='border-2 bg-darkerblue hover:bg-white hover:text-darkerblue hover:ease-in duration-300 hover:border-darkerblue hover:border-2 text-white rounded p-1' onClick={() => {submitComment()}}>Comment</button>
         {hasLiked ?

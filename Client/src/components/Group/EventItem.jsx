@@ -48,9 +48,9 @@ function EventItem({ event, userId }) {
       {
       userId !== -1 ?
       attending ?
-      <button className="bg-darkerblue hover:bg-white border-2 hover:border-2 hover:border-lighterblue  hover:text-lighterblue text-white font-bold px-1.5 hover:ease-in duration-300 rounded" onClick={()=>{cancelAttend()}}>Cancel</button>
+      <button className="bg-darkerblue hover:bg-white border-2 h-10 hover:border-2 hover:border-darkerblue hover:text-darkerblue  text-white font-bold hover:ease-in duration-300 rounded px-2 py-1" onClick={()=>{cancelAttend()}} type="button">Cancel</button>
       :
-      <button className="bg-darkerblue hover:bg-white border-2 hover:border-2 hover:border-lighterblue  hover:text-lighterblue text-white hover:ease-in duration-300 font-bold px-1.5 rounded" onClick={()=>{attendEvent()}}>Attend</button>
+      <button className="bg-darkerblue hover:bg-white border-2 h-10 hover:border-2 hover:border-darkerblue hover:text-darkerblue  text-white hover:ease-in duration-300 font-bold rounded px-2 py-1" onClick={()=>{attendEvent()}} type="button">Attend</button>
       :
       null
       }
@@ -61,9 +61,9 @@ function EventItem({ event, userId }) {
     <div>{event.description}</div>
     <br/>
     <small><div className="font-bold">When?</div></small>
-    <div className="flex flex-col w-24 rounded">
-      <div className="bg-darkergreen flex justify-center rounded-t text-white font-bold">{formatted.slice(4, 8)}</div>
-      <div className="w-24 h-calendar bg-white flex flex-col items-center rounded-b justify-evenly">
+    <div className="flex flex-col w-24 rounded ">
+      <div className="bg-lightlighterblue flex justify-center rounded-t text-white font-bold">{formatted.slice(4, 8)}</div>
+      <div className="w-24 h-calendar bg-white border-2 border-lightlighterblue flex flex-col items-center rounded-b justify-evenly">
         <div className="italic">{formatted.slice(0, 3)}</div>
         <div className="text-2xl font-bold">{formatted.slice(7, 10)}</div>
       </div>

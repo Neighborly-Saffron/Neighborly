@@ -7,7 +7,7 @@ const { useState, useEffect } = React;
 function Comment({ commentData }) {
 
   return (
-    <div className="m-2 rounded bg-white text-darkgrey">
+    <div className="m-2 rounded bg-white border-2 border-lightlighterblue">
       <div className="flex">
         <img className='object-scale-down h-10 w-10 m-1 rounded' src={commentData.pictureurl} alt={commentData.username}></img>
         <div className="flex flex-col p-3">

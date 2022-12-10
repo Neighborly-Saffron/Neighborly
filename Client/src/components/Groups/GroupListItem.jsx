@@ -44,7 +44,7 @@ function GroupListItem({ group, userId, groupIds }) {
 						<button
 							onClick={handleRequest}
 							type="button"
-							className="bg-darkerblue p-2 rounded-md text-white border-2 border-darkerblue hover:bg-white hover:text-lighterblue hover:border-2 hover:border-darkerblue hover:ease-in duration-300"
+							className="bg-darkerblue p-2 rounded-md text-white border-2 border-darkerblue hover:bg-white hover:text-darkerblue hover:border-2 hover:border-darkerblue hover:ease-in duration-300"
 						>
 							Request to Join
 						</button> :
@@ -52,7 +52,7 @@ function GroupListItem({ group, userId, groupIds }) {
 						Requested
 					</span>
 					 : (
-						<span className="border-2 border-lightergreen text-white bg-lightergreen p-2 rounded-md">
+						<span className="border-2 border-darkerblue text-darkerblue bg-lightergreen p-2 rounded-md">
 							Member
 						</span>
 					)}

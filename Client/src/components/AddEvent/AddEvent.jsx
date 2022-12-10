@@ -92,7 +92,7 @@ const AddEvent = ({ toggleModal, userId, groupId, getEvents }) => {
             <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={picUrl} onChange={(e) => { setPicUrl(e.target.value) }} />
           </div>
 
-          <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white uppercase text-lg mx-auto p-4 rounded-full" type="submit">Create Event</button>
+          <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-darkerblue hover:text-darkerblue hover:ease-in duration-300 hover:border-2 text-white uppercase text-lg mx-auto px-4 py-2 rounded" type="submit">Create Event</button>
         </form>
       </div>
     </div>
