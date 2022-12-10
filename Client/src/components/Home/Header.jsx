@@ -6,7 +6,7 @@ const { useState, useEffect } = React;
 
 function Header() {
 	return (
-		<div className="w-full flex h-fit border-b-2 p-5 items-baseline bg-white text-lightlighterblue fixed z-10">
+		<div className="w-full flex h-fit border-b-2 p-5 items-baseline bg-white text-lightlighterblue sticky z-10">
 			<h1 className="align-middle italic text-4xl mr-auto">
 				<Link className="flex gap-3 items-center" to="/">Neighborly
 				<img src={GreenLogo} />
