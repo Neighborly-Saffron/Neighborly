@@ -41,7 +41,7 @@ function EventItem({ event, userId }) {
   useEffect(()=>{if(userId !== -1)checkAttending()}, [])
 
   return (
-    <div className="rounded bg-lighterblue p-5 drop-shadow-md">
+    <div className="rounded bg-lighterblue p-10 drop-shadow-md">
       <div className="flex justify-between">
         <img className='object-scale-down h-12 w-12 m-1' src={event.pictureURL} alt={event.name}></img>
 
@@ -61,17 +61,22 @@ function EventItem({ event, userId }) {
     <div>{event.description}</div>
     <br/>
     <small><div className="font-bold">When?</div></small>
-    <div className="flex flex-col w-24 rounded ">
-      <div className="bg-lightlighterblue flex justify-center rounded-t text-white font-bold">{formatted.slice(4, 8)}</div>
-      <div className="w-24 h-calendar bg-white border-2 border-lightlighterblue flex flex-col items-center rounded-b justify-evenly">
-        <div className="italic">{formatted.slice(0, 3)}</div>
-        <div className="text-2xl font-bold">{formatted.slice(7, 10)}</div>
+    <div className="flex gap-5">
+      <div className="flex flex-col w-24 rounded ">
+        <div className="bg-lightlighterblue flex justify-center rounded-t text-white font-bold">{formatted.slice(4, 8)}</div>
+        <div className="w-24 h-calendar bg-white border-2 border-lightlighterblue flex flex-col items-center rounded-b justify-evenly">
+          <div className="italic">{formatted.slice(0, 3)}</div>
+          <div className="text-2xl font-bold">{formatted.slice(7, 10)}</div>
+        </div>
       </div>
+      <div className="flex flex-col justify-center text-5xl font-thin">
+        {hours == 12 && <>{time + ' PM'}</>}
+        {hours > 12 && <>{`${time.slice(0,2) - 12}:${time.slice(3,5)} PM`}</>}
+        {hours == 0 && <>{`${Number(time.slice(0,2)) + 12}:${time.slice(3,5)} AM`}</>}
+        {hours < 12 && hours != 0 && <>{time + ' AM'}</>}
+      </div>
+
     </div>
-    {hours == 12 && <div>{time + ' PM'}</div>}
-    {hours > 12 && <div>{`${time.slice(0,2) - 12}:${time.slice(3,5)} PM`}</div>}
-    {hours == 0 && <div>{`${Number(time.slice(0,2)) + 12}:${time.slice(3,5)} AM`}</div>}
-    {hours < 12 && hours != 0 && <div>{time + ' AM'}</div>}
 
     <br/>
     <small><div className="font-bold">Where?</div></small>

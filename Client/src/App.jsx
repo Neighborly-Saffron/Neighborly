@@ -77,7 +77,7 @@ function App() {
 				</div> : null}
 			{!isLoading ? <Login onAuth={onAuth} /> : null}
 			</>
-}
+		}
 		</div>
 	);
 }

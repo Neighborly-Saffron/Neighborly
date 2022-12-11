@@ -56,7 +56,7 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className='flex m-5 p-10 gap-6'>
+    <div className='flex m-5 mb-0 p-10 gap-5'>
       <div className='flex w-2/3 flex-col gap-3'>
         <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
         <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />

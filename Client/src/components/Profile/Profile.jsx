@@ -20,7 +20,7 @@ function Profile ({ userId, userGroups, setUserGroups }) {
 	}, [userGroups])
 
   return (
-  <div className='rounded-lg m-5 p-10 grid grid-cols-5 gap-6'>
+  <div className='rounded-lg m-5 mb-0 p-10 grid grid-cols-5 gap-5'>
     <div className='col-span-1'>
         <UserGroupList userId={userId} userGroups={userGroups}/>
       </div>

@@ -66,7 +66,7 @@ function Post({ postData, userId, removePost }) {
 
   return (
     <div className="p-5 rounded bg-lighterblue drop-shadow-md">
-      <div className="flex gap-2">
+      <div className="flex gap-2 mb-2">
         <img className='object-scale-down h-20 w-20 m-1 rounded' src={postData.pictureurl} alt={postData.username}></img>
         <div className="flex flex-col w-full">
           <Link className="font-bold text-lg hover:text-lightlighterblue capitalize" to={`/group/${postData.groupid}`}>{postData.groupname}</Link>

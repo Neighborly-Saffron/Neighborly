@@ -53,20 +53,21 @@ function CalendarComponent (props) {
     })
 
     return (
-      <div className='flex gap-2 sm:flex-col'>
-      <Calendar
-        onChange={onChange}
-        value= {date}
-        tileClassName={tileClassName}
-        calendarType={'US'}
-        >
-      </Calendar>
-      <div>
-        <h3 className='italic'> Events for {monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</h3>
-        <EventList eventList={eventList}></EventList>
-
+      <>
+      <div className='bg-lighterblue rounded w-full flex flex-col items-center gap-2 sm:flex-col p-5'>
+        <Calendar
+          onChange={onChange}
+          value= {date}
+          tileClassName={tileClassName}
+          calendarType={'US'}
+          >
+        </Calendar>
       </div>
-  </div>
+      <div className='w-full'>
+          <h3 className='italic underline'> Events for {monthNames[date.getMonth()]} {date.getDate()}, {date.getFullYear()}</h3>
+        <EventList eventList={eventList}></EventList>
+      </div>
+      </>
   )
 }
 
