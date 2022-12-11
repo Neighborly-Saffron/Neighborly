@@ -1,4 +1,4 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 //the most recent posts from all of the user’s letious groups
 const getHomeFeed = (request, response) => {
@@ -125,6 +125,18 @@ const unlikePost = (request, response) => {
     });
 }
 
+const addPost = (request, response) => {
+  var query = `INSERT INTO post (message, likes, userID, groupID) VALUES ($1, $2, $3, $4)`
+
+  connectionPool
+    .query(query, [request.body.post, request.body.likes, request.body.userId, request.body.groupId])
+    .then(res => response.send(res.rows))
+    .catch(err => {
+      console.error('Error executing to add post', err.stack);
+      response.status(500);
+    });
+}
+
 const deletePost = (request, response) => {
   let postId = request.body.postid
 
@@ -147,4 +159,4 @@ const deletePost = (request, response) => {
     });
 }
 
-module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost, unlikePost, deletePost };
+module.exports = { getHomeFeed, getGroupFeed, getProfileFeed, likePost, unlikePost, addPost, deletePost };

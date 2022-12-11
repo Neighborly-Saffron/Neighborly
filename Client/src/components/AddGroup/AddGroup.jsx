@@ -10,7 +10,7 @@ function AddGroup({ switchModal, userId }) {
 
   const newGroupSubmit = (e) => {
     e.preventDefault()
-    axios.post('/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
+    axios.post('/group/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
       let newGroupId = data.data[0].id
       addCreatorToGroup(userId, newGroupId)
       switchModal()
@@ -21,7 +21,7 @@ function AddGroup({ switchModal, userId }) {
   }
 
   const addCreatorToGroup = (userId, newGroupId) => {
-    axios.post('/addtoGroup', {userId, newGroupId})
+    axios.post('/group/addToGroup', {userId, newGroupId})
       .then(() =>{
         console.log('added to new group')
       })

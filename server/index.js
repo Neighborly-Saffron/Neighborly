@@ -1,24 +1,20 @@
 const path = require('path');
-const socketIo = require('socket.io')
-const http = require('http')
-const chat = require('./chat.js')
-const express = require('express')
-const compression = require('compression')
+const socketIo = require('socket.io');
+const http = require('http');
+const chat = require('./chat.js');
+const express = require('express');
+const compression = require('compression');
 
-const groups = require('../controllers/group/groups.js')
-const groupSearch = require('../controllers/group/groupSearch.js')
-const groupPage = require('../controllers/group/groupPage.js')
-const feed = require('../controllers/feed/feed.js')
-const profile = require('../controllers/profile/profile.js')
-const addGroup = require('../controllers/addGroup/addGroup.js')
-const groupEvent = require('../controllers/group/eventlist.js')
-const addNewUser = require('../controllers/user/user.js')
-const adminGroup = require('../controllers/adminGroup/adminGroup.js')
-const mapEvents = require('../controllers/map/events.js')
-const comments = require('../controllers/feed/comment.js')
+const userRoutes = require('./routes/user.js');
+const feedRoutes = require('./routes/feed.js');
+const groupRoutes = require('./routes/group.js');
+const groupsRoutes = require('./routes/groups.js');
+const adminRoutes = require('./routes/admin.js');
+const profileRoutes = require('./routes/profile.js');
+const eventRoutes = require('./routes/event.js');
 
-const port = 3001
-const app = express()
+const port = 3001;
+const app = express();
 
 const server = http
   .createServer(app)
@@ -31,12 +27,12 @@ const io = socketIo(server, {
     origin: '*',
     methods: ['GET', 'POST']
   }
-}) //in case server and client run on different urls
+}); //in case server and client run on different urls
 
 chat(io);
 
-app.use(compression({level:6, threshold: 0}))
-app.use(express.json())
+app.use(compression({level:6, threshold: 0}));
+app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*.js', function (req, res, next) {
@@ -46,69 +42,18 @@ app.get('*.js', function (req, res, next) {
   next();
 });
 
-app.get('/usergroups/:userId', groups.getUserGroups);
+app.use('/user', userRoutes);
+app.use('/feed', feedRoutes);
+app.use('/group', groupRoutes);
+app.use('/groups', groupsRoutes);
+app.use('/admin', adminRoutes);
+app.use('/profile', profileRoutes);
+app.use('/event', eventRoutes);
 
-//feed routes
-app.get('/posts/home/:userId/:groupId', feed.getHomeFeed);
-app.get('/posts/profile/:userId/:groupId', feed.getProfileFeed);
-app.get('/posts/group/:userId/:groupId', feed.getGroupFeed);
-app.put('/posts', feed.likePost);
-app.put('/unlikepost', feed.unlikePost);
-app.get('/comments/:postId', comments.getComments);
-app.post('/comment', comments.addComment);
-app.delete('/posts', feed.deletePost);
-
-//add group
-app.post('/newGroup', addGroup.insertGroup)
-app.post('/addtoGroup', addGroup.addToGroup)
-
-//detailed group list/search routes
-app.get('/getGroups', groupSearch.getInitialGroups);
-app.post('/searchGroups', groupSearch.searchGroups);
-app.post('/requestJoin', groupSearch.requestGroup);
-
-//profile route
-app.get('/profile/bio', profile.getUserProfile)
-
-//admin group route
-app.get('/GroupAdmin', adminGroup.getAdminGroups)
-
-//request-to-join groups route
-app.get('/requestedGroups', adminGroup.getRequestedGroups)
-//approve-to-join groups route
-app.post('/groupApproved', adminGroup.approveJoin)
-//remove a user from requestjoin
-app.delete('/groupApproved', adminGroup.removeJoinRequest)
-app.get('/userRequests/:groupId', adminGroup.userRequests)
-app.post('/userApprove', adminGroup.userApprove)
-app.post('/userDecline', adminGroup.userDecline)
-
-
-// individual group page routes
-app.get('/groupDescription/:groupId', groupPage.getGroupDescription)
-app.post('/addPost', groupPage.addPost)
-
-//map routes
-app.get('/mapEvents/:userId/:groupId',mapEvents.getEvents);
-
-//group event
-app.get('/events/getlist/:groupid', groupEvent.getGroupEvents)
-app.get('/events/attending/:eventid/:userid', groupEvent.checkAttending)
-app.post('/events/attend', groupEvent.attendEvent)
-app.post('/events/cancel', groupEvent.cancelAttend)
-
-//add new user
-app.post('/user', addNewUser.addNewUser);
-app.get('/user', addNewUser.getNewUser);
-
-//add event
-app.post('/newEvent', mapEvents.addEvent);
-
-//MUST BE FINAL ROUTES, NO ROUTES BELOW THE STAR
 app.get('/*', function(req, res) {
   res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
     if (err) {
-      res.status(500).send(err)
+      res.status(500).send(err);
     }
   })
 })

@@ -8,7 +8,7 @@ function Feed ({ userId, path, groupId }) {
   const [posts, setPosts] = useState([])
 
   const getPosts = () => {
-    axios.get(`/posts/${path}/${userId}/${groupId}`)
+    axios.get(`/feed/posts/${path}/${userId}/${groupId}`)
       .then((res) => {
         setPosts(res.data);
       })
@@ -18,7 +18,7 @@ function Feed ({ userId, path, groupId }) {
   useEffect(getPosts, []);
 
   const removePost = (postid) => {
-    axios.delete('/posts', {data:{postid}})
+    axios.delete('/feed/posts', {data:{postid}})
       .then((res) => {
         getPosts()
       })

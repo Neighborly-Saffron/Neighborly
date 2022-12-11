@@ -13,7 +13,7 @@ function GroupList({ userId, groupIds }) {
 			initialGroupFetch();
 		} else {
 			axios
-				.post('/searchGroups', { query: query })
+				.post('/groups/search', { query: query })
 				.then((res) => {
 					console.log(res.data);
 					setGroups(res.data);
@@ -26,7 +26,7 @@ function GroupList({ userId, groupIds }) {
 
 	const initialGroupFetch = () => {
 		axios
-			.get('/getGroups')
+			.get('/groups/getGroups')
 			.then((res) => {
 				console.log(res.data);
 				setGroups(res.data);

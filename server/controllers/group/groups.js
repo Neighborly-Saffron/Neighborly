@@ -1,8 +1,7 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 const getUserGroups = (request, response) => {
   var userId = request.params.userId;
-  // console.log('userId: ', userId)
   var query = `
     SELECT json_build_object
       (

@@ -1,4 +1,4 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 const getGroupEvents = (request, response) => {
   let groupId = request.params.groupid

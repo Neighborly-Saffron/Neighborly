@@ -1,4 +1,5 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
+
 const axios = require('axios');
 require('dotenv').config();
 

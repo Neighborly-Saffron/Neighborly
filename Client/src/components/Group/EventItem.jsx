@@ -11,7 +11,7 @@ function EventItem({ event, userId }) {
   let time = event.time.slice(0, 5)
   let hours = time.slice(0, 2)
   const checkAttending = () => {
-    axios.get(`/events/attending/${eventID}/${userID}`)
+    axios.get(`/event/attending/${eventID}/${userID}`)
       .then((res) => {
         if (res.data[0].exists) {
           setAttending(true)
@@ -23,7 +23,7 @@ function EventItem({ event, userId }) {
   }
 
   const attendEvent = () => {
-    axios.post('/events/attend', { userID, eventID})
+    axios.post('/event/attend', { userID, eventID})
       .then((res) => {
         setAttending(true)
       })
@@ -31,7 +31,7 @@ function EventItem({ event, userId }) {
   }
 
   const cancelAttend = () => {
-    axios.post('/events/cancel', { userID, eventID})
+    axios.post('/event/cancel', { userID, eventID})
     .then((res) => {
       setAttending(false)
     })

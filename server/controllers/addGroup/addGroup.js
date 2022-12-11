@@ -1,4 +1,4 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 const insertGroup = (request, response) => {
   var query = `INSERT INTO groups (name, description, pictureurl, adminid) VALUES ($1, $2, $3, $4) RETURNING id`

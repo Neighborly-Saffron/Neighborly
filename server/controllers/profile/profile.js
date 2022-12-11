@@ -1,16 +1,7 @@
-const connectionPool = require('../../db/pool.js')
-console.log('it got in profile.js')
-
+const connectionPool = require('../../../db/pool.js')
 
 const getUserProfile = (req, res) => {
   const userId = req.query.userId;
-  // console.log('userId: ', userId)
-  // const userId = request.params.userID;
-  // console.log('it got in getUserProfile')
-  // console.log('userID: ', userID)
-  // res.sendStatus(201)
-
-  // console.log('userId: ', userId)
   var query = `
     SELECT json_build_object
       (
@@ -26,7 +17,6 @@ const getUserProfile = (req, res) => {
   connectionPool
     .query(query, [userId])
       .then(result => {
-        // console.log('result:', result)
         res.send(result.rows[0].profile)
       })
       .catch(err => {

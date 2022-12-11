@@ -1,4 +1,4 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 const getInitialGroups = (req, res) => {
 	let query = `SELECT json_build_object(

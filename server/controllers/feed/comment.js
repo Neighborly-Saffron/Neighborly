@@ -1,4 +1,4 @@
-const connectionPool = require('../../db/pool.js')
+const connectionPool = require('../../../db/pool.js')
 
 //the most recent posts from all of the user’s various groups
 const getComments = (request, response) => {
