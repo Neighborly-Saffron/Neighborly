@@ -9,16 +9,6 @@ const { useState, useEffect } = React
 
 function Profile ({ userId, userGroups, setUserGroups }) {
 
-  useEffect (() => {
-		if (userId) {
-			axios.get(`/usergroups/${userId}`)
-			.then((res) => {
-				setUserGroups(res.data);
-			})
-			.catch((err) => console.log('error getting user groups data'))
-		}
-	}, [userGroups])
-
   return (
   <div className='rounded-lg grid grid-cols-5 mt-6 p-10'>
     <div className='col-span-1'>
