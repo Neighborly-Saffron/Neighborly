@@ -15,7 +15,6 @@ function GroupList({ userId, groupIds }) {
 			axios
 				.post('/groups/search', { query: query })
 				.then((res) => {
-					console.log(res.data);
 					setGroups(res.data);
 				})
 				.catch((err) => {
