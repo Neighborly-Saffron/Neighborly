@@ -7,7 +7,7 @@ function GroupDescription ( { groupId }) {
   const [groupDescription, setGroupDescription] = useState()
 
   const getGroupDescription = () => {
-    axios.get(`/groupDescription/${groupId}`)
+    axios.get(`/group/description/${groupId}`)
       .then((res) => {
         setGroupDescription(res.data);
       })
