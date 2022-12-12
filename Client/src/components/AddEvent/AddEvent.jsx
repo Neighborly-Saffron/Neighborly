@@ -16,7 +16,7 @@ const AddEvent = ({ toggleModal, userId, groupId, getEvents }) => {
     const newEventSubmit = (e) => {
       e.preventDefault()
 
-      axios.post('/newEvent', {
+      axios.post('/event/newEvent', {
         name,
         description,
         date,

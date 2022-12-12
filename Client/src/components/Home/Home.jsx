@@ -13,7 +13,7 @@ function Home({ userId, userGroups, setUserGroups }) {
 	const [mapStart, setMapStart] = useState({ latlng: [] });
 	const getEvents = () => {
 		axios
-			.get(`/mapEvents/${userId}/-1`)
+			.get(`/event/map/${userId}/-1`)
 			.then((res) => {
 				setEvents({ events: res.data });
 			})

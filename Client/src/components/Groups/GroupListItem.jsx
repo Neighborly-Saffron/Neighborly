@@ -7,7 +7,7 @@ function GroupListItem({ group, userId, groupIds }) {
 	const [requested, setRequested] = useState(false);
 	const handleRequest = () => {
 		axios
-			.post('/requestJoin', {
+			.post('/groups/requestJoin', {
 				info: {
 					user: userId,
 					group: group.group_id,

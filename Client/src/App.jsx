@@ -45,7 +45,7 @@ function App() {
 
 	useEffect (() => {
 		if (userId) {
-			axios.get(`/usergroups/${userId}`)
+			axios.get(`/group/${userId}`)
 			.then((res) => {
 				setUserGroups(res.data);
 			})

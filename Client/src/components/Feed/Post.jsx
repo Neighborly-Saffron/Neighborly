@@ -15,7 +15,7 @@ function Post({ postData, userId, removePost }) {
 
   const likePost = (postid, userid) => {
     if (!hasLiked) {
-    axios.put(`/posts`, {postid, userid})
+    axios.put(`/feed/posts`, {postid, userid})
       .then((res) => {
           setLikes(likes + 1)
           setHasLiked(!hasLiked)
@@ -26,7 +26,7 @@ function Post({ postData, userId, removePost }) {
 
   const unlikePost = (postid, userid) => {
     if (hasLiked) {
-    axios.put(`/unlikepost`, {postid, userid})
+    axios.put(`/feed/unlikepost`, {postid, userid})
       .then((res) => {
           setLikes(likes - 1)
           setHasLiked(!hasLiked)
@@ -44,7 +44,7 @@ function Post({ postData, userId, removePost }) {
 
   const submitComment =() => {
     if (commentText.length) {
-      axios.post('/comment', { commentText, likes: 0, userId, postId: postData.postid })
+      axios.post('/feed/comment', { commentText, likes: 0, userId, postId: postData.postid })
         .then((res) => {
           setCommentText('')
           getComments()
@@ -54,7 +54,7 @@ function Post({ postData, userId, removePost }) {
   }
 
   const getComments = () => {
-    axios.get(`/comments/${postData.postid}`)
+    axios.get(`/feed/comments/${postData.postid}`)
       .then((res) => {
         setComments(res.data);
       })

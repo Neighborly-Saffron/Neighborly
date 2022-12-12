@@ -14,7 +14,7 @@ function AdminPanel({ userId }) {
   }
 
   const getAdminGroups = () => {
-    axios.get(`/GroupAdmin/?userId=${userId}`)
+    axios.get(`/admin/groupAdmin/?userId=${userId}`)
       .then((data) => {
         setAdminGroups(data.data[0].admingroup)
       })
