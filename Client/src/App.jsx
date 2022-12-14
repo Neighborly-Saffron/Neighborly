@@ -45,7 +45,7 @@ function App() {
 
 	useEffect (() => {
 		if (userId) {
-			axios.get(`/group/${userId}`)
+			axios.get(`/group/user/${userId}`)
 			.then((res) => {
 				setUserGroups(res.data);
 			})
@@ -77,7 +77,7 @@ function App() {
 				</div> : null}
 			{!isLoading ? <Login onAuth={onAuth} /> : null}
 			</>
-}
+		}
 		</div>
 	);
 }

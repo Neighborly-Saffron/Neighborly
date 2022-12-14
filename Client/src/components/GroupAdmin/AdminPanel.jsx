@@ -27,7 +27,7 @@ function AdminPanel({ userId }) {
 
   return (
     <>
-      <table className='table-layout: auto bg-white rounded'>
+      <table className='w-full table-layout: auto bg-white rounded'>
         <thead>
         <tr>
           {/* <th className="px-4 py-2"></th>
