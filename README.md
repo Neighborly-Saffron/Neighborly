@@ -122,21 +122,6 @@ npm run start
 
 #### Hosting
 
-> Configuring the server
-
-After you have built the project you may host locally or externally on a third-party hosting service.
-
-The server, by default, is hosted locally on port 3000. Be sure that this port is available or configure it in the server/index.js file.
-
-Additionally you will need to provide a github access token in order to request data from the API. This is stored in a config.js file in the main directory. The format to the config.js file should look something like the one below.
-
-module.exports = { TOKEN: 'MyGitHubAPItoken' }
-
-To run this locally simply run the follow command
-
-```
-npm run dev
-```
 
 
 ### Requirements
