@@ -15,7 +15,7 @@ function GroupPost ({ userId, groupId, postMessage }) {
 
   return (
     <>
-    <div className='m-2 mb-5 p-5 rounded bg-lighterblue drop-shadow-md'>
+    <div className='p-5 rounded bg-lighterblue drop-shadow-md'>
       <form onSubmit={(e) => {
         e.preventDefault()
         setMessage(tempMessage)

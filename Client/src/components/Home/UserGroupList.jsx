@@ -16,7 +16,7 @@ function UserGroupList ({ userId, userGroups }) {
       {/* <h3 className='text-2xl mx-auto mb-2 w-fit italic text-center border-b-4'>
       Your Groups
       </h3> */}
-      <div className='h-full flex flex-col items-center gap-5'>
+      <div className='h-full flex flex-col items-center gap-3'>
         {userGroups && groups}
       </div>
 

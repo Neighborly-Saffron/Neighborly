@@ -45,7 +45,7 @@ function AdminRow({ group, getAdminGroups }) {
         setToggleModal(!toggleModal)
       }
       }}>{group.groupName}</th>
-    <th className="cursor-default px-10 py-3">{group.requests}</th>
+    <th className="cursor-default px-10 py-3">{group.requests} Request(s)</th>
     </>:<>
     <th className="cursor-default px-10 py-3 capitalize" onClick={()=>{
   if (group.requests) {
