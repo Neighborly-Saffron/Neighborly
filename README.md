@@ -1,1 +1,139 @@
 # Neighborly
+
+
+## Overview
+
+
+## Table of Contents
+* [Team]()
+* [Tech Stack]()  
+* [Product Features]()
+* [Installation]()  
+
+
+## Team
+* Andrew Dye
+* Andrew Fuller
+* Lei Liang
+* Huong Nguyen
+* Parker Sturtevant
+* Gabe Yamartino
+
+
+## Tech Stack
+![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB)
+![Webpack](https://img.shields.io/badge/webpack-%238DD6F9.svg?style=for-the-badge&logo=webpack&logoColor=black)
+![Babel](https://img.shields.io/badge/Babel-F9DC3e?style=for-the-badge&logo=babel&logoColor=black)
+![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
+![TailwindCSS](https://img.shields.io/badge/tailwindcss-%2338B2AC.svg?style=for-the-badge&logo=tailwind-css&logoColor=white)
+![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
+
+## Product Features
+
+### Website Overview
+![]()
+
+## Login
+
+Login authentication with Auth0
+![]()
+
+## Home Page
+
+### Navigation Bar
+![]()
+
+### User's Group List
+![]()
+
+### Feed
+![]()
+
+### Map
+![]()
+
+### Calendar
+![]()
+
+### Group Administration Panel
+![]()
+
+### Create A Group
+![]()
+
+## Groups Page
+
+### User's Group List
+![]()
+
+### Group Search
+![]()
+
+### Available Group’s List
+![]()
+
+## Group Page
+
+### Map
+![]()
+
+### Create Event
+![]()
+
+### Chat
+![]()
+
+## Profile
+
+### User's Group List
+![]()
+
+### User Description
+![]()
+
+### User Feed
+![]()
+
+## Getting Started
+
+### Installation
+
+Ensure that you have node working on version 16.8.2 or higher. If you do not you can install it here https://nodejs.org/en/download/
+
+
+#### Running in Production
+>To run the build package in production mode run the following
+
+```
+npm run build
+```
+#### Running in Development
+>To run the build package in development mode run the following commands npm start
+
+```
+npm run start
+```
+
+
+#### Hosting
+
+> Configuring the server
+
+After you have built the project you may host locally or externally on a third-party hosting service.
+
+The server, by default, is hosted locally on port 3000. Be sure that this port is available or configure it in the server/index.js file.
+
+Additionally you will need to provide a github access token in order to request data from the API. This is stored in a config.js file in the main directory. The format to the config.js file should look something like the one below.
+
+module.exports = { TOKEN: 'MyGitHubAPItoken' }
+
+To run this locally simply run the follow command
+
+```
+npm run dev
+```
+
+
+### Requirements
+(https://nodejs.org/en/download/)
