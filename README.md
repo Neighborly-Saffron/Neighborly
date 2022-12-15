@@ -5,10 +5,16 @@
 
 
 ## Table of Contents
-* [Team]()
-* [Tech Stack]()  
-* [Product Features]()
-* [Installation]()  
+* [Team](https://github.com/Neighborly-Saffron/Neighborly/tree/main#team)
+* [Tech Stack](https://github.com/Neighborly-Saffron/Neighborly/tree/main#tech-stack)  
+* [Product Features](https://github.com/Neighborly-Saffron/Neighborly/tree/main#product-features)
+  * [Login](https://github.com/Neighborly-Saffron/Neighborly/tree/main#login)
+  * [Home Page](https://github.com/Neighborly-Saffron/Neighborly/tree/main#home-page)
+  * [Groups Page](https://github.com/Neighborly-Saffron/Neighborly/tree/main#groups-page)
+  * [Group Page](https://github.com/Neighborly-Saffron/Neighborly/tree/main#group-page)
+  * [Profile](https://github.com/Neighborly-Saffron/Neighborly/tree/main#profile)
+* [Getting Started](https://github.com/Neighborly-Saffron/Neighborly/tree/main#product-features)  
+* [Contributors](https://github.com/Neighborly-Saffron/Neighborly/tree/main#contributors)
 
 
 ## Team
@@ -75,7 +81,7 @@ This section displays the groups the user is a member of
 ### Group Search
 ![]()
 
-### Available Group’s List
+### Available Groups List
 ![]()
 
 ## Group Page
@@ -129,3 +135,9 @@ npm run start
 
 ### Requirements
 (https://nodejs.org/en/download/)
+
+
+## Contributors
+<a href="https://github.com/Neighborly-Saffron/Neighborly/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=Neighborly-Saffron/Neighborly" />
+</a>
