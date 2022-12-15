@@ -81,7 +81,7 @@ This section displays the groups the user is a member of
 ### Group Search
 ![]()
 
-### Available Group’s List
+### Available Groups List
 ![]()
 
 ## Group Page
