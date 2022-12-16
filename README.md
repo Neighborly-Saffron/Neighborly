@@ -89,6 +89,9 @@ This section displays the groups the user is a member of
 ### Map
 ![](./readMeAssets/groupMap.gif)
 
+### Calendar
+![](./readMeAssets/groupCalendar.gif)
+
 ### Create Event
 ![](./readMeAssets/createEvent.gif)
 
