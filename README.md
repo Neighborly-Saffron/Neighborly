@@ -41,36 +41,36 @@
 ## Product Features
 
 ### Website Overview
-![]()
+![](./readMeAssets/overview.gif)
 
 ## Login
 
 Login authentication with Auth0
-![]()
+![](./readMeAssets/authentication.gif)
 
 ## Home Page
 
 ### Navigation Bar
-![]()
+![](./readMeAssets/navbar.gif)
 
 ### User's Group List
 This section displays the groups the user is a member of
-![]()
+![](./readMeAssets/userGroups.png)
 
 ### Feed
-![]()
+![](./readMeAssets/homeFeed.gif)
 
 ### Map
-![]()
+![](./readMeAssets/homeMap.gif)
 
 ### Calendar
-![]()
+![](./readMeAssets/homeCalendar.gif)
 
 ### Group Administration Panel
-![]()
+![](./readMeAssets/groupAdminModal.gif)
 
 ### Create A Group
-![]()
+![](./readMeAssets/createGroup.gif)
 
 ## Groups Page
 
@@ -79,22 +79,22 @@ This section displays the groups the user is a member of
 ![]()
 
 ### Group Search
-![]()
+![](./readMeAssets/searchAvailableGroups.gif)
 
 ### Available Groups List
-![]()
+![](./readMeAssets/availableGroups.gif)
 
 ## Group Page
 
 ### Map
-![]()
+![](./readMeAssets/groupMap.gif)
 
 ### Create Event
-![]()
+![](./readMeAssets/createEvent.gif)
 
 ### Chat
 The chat is available for users in the group to have real-time communication with other group members
-![]()
+![](./readMeAssets/groupChat.gif)
 
 ## Profile
 
@@ -103,10 +103,10 @@ This section displays the groups the user is a member of
 ![]()
 
 ### User Description
-![]()
+![](./readMeAssets/profileOverview.gif)
 
 ### User Feed
-![]()
+![](./readMeAssets/profileFeed.gif)
 
 ## Getting Started
 
@@ -116,13 +116,14 @@ Ensure that you have node working on version 16.8.2 or higher. If you do not you
 
 
 #### Running in Production
->To run the build package in production mode run the following
+>To run the build package in production mode run the following:
 
 ```
 npm run build
 ```
+
 #### Running in Development
->To run the build package in development mode run the following commands npm start
+>To run the build package in development mode run the following commands:
 
 ```
 npm run start
