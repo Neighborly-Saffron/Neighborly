@@ -114,7 +114,7 @@ This section displays the groups the user is a member of
 ![]()
 
 ### User Description
-![](./readMeAssets/profileOverview.gif)
+![](./readMeAssets/profile.png)
 
 ### User Feed
 ![](./readMeAssets/profileFeed.gif)
