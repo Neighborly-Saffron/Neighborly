@@ -2,6 +2,7 @@
 
 
 ## Overview
+Neighborly is a private social media platform that’s safe for families and communities. Members can create groups and post events to strengthen community bonds.
 
 
 ## Table of Contents
