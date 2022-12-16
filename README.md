@@ -127,27 +127,25 @@ Ensure that you have node working on version 16.8.2 or higher. If you do not you
 
 
 #### Running in Production
+In webpack.config.js, ensure mode is set to production. This will ensure the application is properly bundled for optimization.
+```
+module.exports = {
+  mode: "production",
+```
 >To run the build package in production mode run the following:
-1. 
-```
-npm run build
-```
-2. 
-```
-npm run server
-```
+1. ` npm run build `
+2. ` npm run server `
 3. Open http://localhost:3001 in your browser
 
 #### Running in Development
+In webpack.config.js, ensure mode is set to development. This will ensure webpack re-bundles the application when changes are made.
+```
+module.exports = {
+  mode: "development",
+```
 >To run the build package in development mode run the following commands:
-1. 
-```
-npm run start
-```
-2. 
-```
-npm run server
-```
+1. ` npm run start `
+2. ` npm run server `
 3. Open http://localhost:3001 in your browser
 
 #### Hosting
