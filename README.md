@@ -38,15 +38,19 @@
 ![Socket.io](https://img.shields.io/badge/Socket.io-black?style=for-the-badge&logo=socket.io&badgeColor=010101)
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=for-the-badge&logo=amazon-aws&logoColor=white)
 
+
 ## Product Features
+
 
 ### Website Overview
 ![](./readMeAssets/overview.gif)
+
 
 ## Login
 
 Login authentication with Auth0
 ![](./readMeAssets/authentication.gif)
+
 
 ## Home Page
 
@@ -72,6 +76,7 @@ This section displays the groups the user is a member of
 ### Create A Group
 ![](./readMeAssets/createGroup.gif)
 
+
 ## Groups Page
 
 ### User's Group List
@@ -84,6 +89,7 @@ This section displays the groups the user is a member of
 ### Available Groups List
 ![](./readMeAssets/availableGroups.gif)
 
+
 ## Group Page
 
 ### Map
@@ -94,6 +100,11 @@ This section displays the groups the user is a member of
 
 ### Create Event
 ![](./readMeAssets/createEvent.gif)
+
+### Chat
+The chat is available for users in the group to have real-time communication with other group members
+![](./readMeAssets/groupChat.gif)
+
 
 ## Profile
 
@@ -107,6 +118,7 @@ This section displays the groups the user is a member of
 ### User Feed
 ![](./readMeAssets/profileFeed.gif)
 
+
 ## Getting Started
 
 ### Installation
@@ -116,18 +128,27 @@ Ensure that you have node working on version 16.8.2 or higher. If you do not you
 
 #### Running in Production
 >To run the build package in production mode run the following:
-
+1. 
 ```
 npm run build
 ```
+2. 
+```
+npm run server
+```
+3. Open http://localhost:3001 in your browser
 
 #### Running in Development
 >To run the build package in development mode run the following commands:
-
+1. 
 ```
 npm run start
 ```
-
+2. 
+```
+npm run server
+```
+3. Open http://localhost:3001 in your browser
 
 #### Hosting
 
