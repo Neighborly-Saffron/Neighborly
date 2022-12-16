@@ -4,3 +4,4 @@ etl.sql
 .DS_Store
 users.csv
 dist/
+bundle.js
