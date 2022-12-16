@@ -101,10 +101,6 @@ This section displays the groups the user is a member of
 ### Create Event
 ![](./readMeAssets/createEvent.gif)
 
-### Chat
-The chat is available for users in the group to have real-time communication with other group members
-![](./readMeAssets/groupChat.gif)
-
 
 ## Profile
 
