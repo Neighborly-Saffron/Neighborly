@@ -2,6 +2,7 @@
 
 
 ## Overview
+Neighborly is a private social media platform that’s safe for families and communities. Members can create groups and post events to strengthen community bonds.
 
 
 ## Table of Contents
@@ -101,6 +102,10 @@ This section displays the groups the user is a member of
 ### Create Event
 ![](./readMeAssets/createEvent.gif)
 
+### Chat
+The chat is available for users in the group to have real-time communication with other group members
+![](./readMeAssets/groupChat.gif)
+
 
 ## Profile
 
@@ -127,6 +132,8 @@ In webpack.config.js, ensure mode is set to production. This will ensure the app
 ```
 module.exports = {
   mode: "production",
+  ...
+ }
 ```
 >To run the build package in production mode run the following:
 1. ` npm run build `
@@ -138,11 +145,14 @@ In webpack.config.js, ensure mode is set to development. This will ensure webpac
 ```
 module.exports = {
   mode: "development",
+  ...
+ }
 ```
 >To run the build package in development mode run the following commands:
-1. ` npm run start `
+1. ` npm start `
 2. ` npm run server `
 3. Open http://localhost:3001 in your browser
+
 
 #### Hosting
 
