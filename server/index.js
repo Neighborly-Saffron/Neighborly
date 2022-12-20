@@ -1,10 +1,10 @@
 const path = require('path');
 const socketIo = require('socket.io');
-const https = require('https');
+const http = require('https');
 const chat = require('./chat.js');
 const express = require('express');
 const compression = require('compression');
-const fs = require('fs');
+// const fs = require('fs');
 const userRoutes = require('./routes/user.js');
 const feedRoutes = require('./routes/feed.js');
 const groupRoutes = require('./routes/group.js');
@@ -16,12 +16,12 @@ const eventRoutes = require('./routes/event.js');
 const port = 3001;
 const app = express();
 
-const server = https
+const server = http
 	.createServer(
-		{
-			key: fs.readFileSync('key.pem'),
-			cert: fs.readFileSync('cert.pem'),
-		},
+		// {
+		// 	key: fs.readFileSync('key.pem'),
+		// 	cert: fs.readFileSync('cert.pem'),
+		// },
 		app
 	)
 	.listen(port, () => {
