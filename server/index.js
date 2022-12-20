@@ -1,6 +1,6 @@
 const path = require('path');
 const socketIo = require('socket.io');
-const http = require('http');
+const https = require('https');
 const chat = require('./chat.js');
 const express = require('express');
 const compression = require('compression');
@@ -16,30 +16,36 @@ const eventRoutes = require('./routes/event.js');
 const port = 3001;
 const app = express();
 
-const server = http
-  .createServer(app)
-  .listen(port, () => {
-    console.log(`App running on port ${port}.`)
-  });
+const server = https
+	.createServer(
+		{
+			key: fs.readFileSync('key.pem'),
+			cert: fs.readFileSync('cert.pem'),
+		},
+		app
+	)
+	.listen(port, () => {
+		console.log(`App running on port ${port}.`);
+	});
 
 const io = socketIo(server, {
-  cors: {
-    origin: '*',
-    methods: ['GET', 'POST']
-  }
+	cors: {
+		origin: '*',
+		methods: ['GET', 'POST'],
+	},
 }); //in case server and client run on different urls
 
 chat(io);
 
-app.use(compression({level:6, threshold: 0}));
+app.use(compression({ level: 6, threshold: 0 }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, '../public')));
 
 app.get('*.js', function (req, res, next) {
-  req.url = req.url + '.gz';
-  res.set('Content-Encoding', 'gzip');
-  res.set('Content-Type', 'text/javascript');
-  next();
+	req.url = req.url + '.gz';
+	res.set('Content-Encoding', 'gzip');
+	res.set('Content-Type', 'text/javascript');
+	next();
 });
 
 app.use('/user', userRoutes);
@@ -50,10 +56,10 @@ app.use('/admin', adminRoutes);
 app.use('/profile', profileRoutes);
 app.use('/event', eventRoutes);
 
-app.get('/*', function(req, res) {
-  res.sendFile(path.join(__dirname, '../public/index.html'), function(err) {
-    if (err) {
-      res.status(500).send(err);
-    }
-  })
-})
+app.get('/*', function (req, res) {
+	res.sendFile(path.join(__dirname, '../public/index.html'), function (err) {
+		if (err) {
+			res.status(500).send(err);
+		}
+	});
+});

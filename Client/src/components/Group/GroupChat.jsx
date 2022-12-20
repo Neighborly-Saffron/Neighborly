@@ -7,7 +7,7 @@ function GroupChat ({ userData, groupId }) {
   const [socket, setSocket] = useState(null);
 
   useEffect(() => {
-    const newSocket = socketClient(`http://${window.location.hostname}:3001`);
+    const newSocket = socketClient(`https://${window.location.hostname}:3001`);
     setSocket(newSocket);
     return () => newSocket.close();
   }, [setSocket]);
