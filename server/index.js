@@ -4,7 +4,7 @@ const https = require('https');
 const chat = require('./chat.js');
 const express = require('express');
 const compression = require('compression');
-
+const fs = require('fs');
 const userRoutes = require('./routes/user.js');
 const feedRoutes = require('./routes/feed.js');
 const groupRoutes = require('./routes/group.js');
