@@ -15,7 +15,7 @@ function GroupChat ({ userData, groupId }) {
   return (
     <>
     {socket ?
-      <div className="p-5 my-3 rounded bg-lighterblue drop-shadow-md">
+      <div className="p-5 rounded bg-lighterblue drop-shadow-md">
         <GroupChatMessages socket={socket} userData={userData} groupId={groupId} />
         <GroupChatInput socket={socket} userData={userData} groupId={groupId}/>
       </div>

@@ -8,7 +8,6 @@ function GroupEventMap (props) {
   const [mapStart, setMapStart] = useState({latlng:[]})
 
   useEffect(()=>{
-    console.log(props)
     if(props.eventList.events.length) {
       setMapStart({latlng:[props.eventList.events[0].json_build_object.lat, props.eventList.events[0].json_build_object.lng]})
     }

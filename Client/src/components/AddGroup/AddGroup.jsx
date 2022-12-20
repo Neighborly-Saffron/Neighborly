@@ -10,7 +10,7 @@ function AddGroup({ switchModal, userId }) {
 
   const newGroupSubmit = (e) => {
     e.preventDefault()
-    axios.post('/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
+    axios.post('/group/newGroup', { name, description, picURL, adminid: userId }).then((data) => {
       let newGroupId = data.data[0].id
       addCreatorToGroup(userId, newGroupId)
       switchModal()
@@ -21,7 +21,7 @@ function AddGroup({ switchModal, userId }) {
   }
 
   const addCreatorToGroup = (userId, newGroupId) => {
-    axios.post('/addtoGroup', {userId, newGroupId})
+    axios.post('/group/addToGroup', {userId, newGroupId})
       .then(() =>{
         console.log('added to new group')
       })
@@ -47,7 +47,7 @@ function AddGroup({ switchModal, userId }) {
             <label className="mb-2 font-bold text-lg text-grey-darkest">Photo URL</label>
             <input className="border py-2 px-3 text-grey-darkest" required={"required"} value={picURL} onChange={(e) => { setPicURL(e.target.value) }} />
           </div>
-          <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-black hover:border-2 text-white uppercase text-lg mx-auto p-4 rounded-full" type="submit">Create Group</button>
+          <button className="block border-2 bg-darkerblue hover:bg-lighterblue hover:border-darkerblue hover:border-2 hover:text-darkerblue text-white uppercase text-lg mx-auto p-4 rounded-full" type="submit">Create Group</button>
         </form>
       </div>
     </div>

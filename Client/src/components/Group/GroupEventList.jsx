@@ -8,7 +8,7 @@ function GroupEventList({ userId, eventList }) {
 
 
   return (
-    <div className="max-h-screen/2 overflow-hidden overflow-y-scroll">
+    <div className="w-full max-h-screen/2 overflow-hidden overflow-y-scroll flex flex-col gap-3">
       {eventList.events.map((event, index) => {
         return <EventItem event={event.json_build_object} key={index} userId={userId} />
       })}

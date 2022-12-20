@@ -8,7 +8,7 @@ function AddUsers({ groupId, switchModal }) {
   const [userGroupRequests, setUserGroupRequests] = useState([])
 
   const getUserRequests = () => {
-    axios.get(`/userRequests/${groupId}`)
+    axios.get(`/admin/userRequests/${groupId}`)
       .then((data) => {
         if (data.data.length === 0) {
           switchModal(false)
@@ -23,7 +23,7 @@ function AddUsers({ groupId, switchModal }) {
   useEffect(getUserRequests, [])
 
   const approveUser = (userId, groupId) => {
-    axios.post('/userApprove', {userid: userId, groupid: groupId})
+    axios.post('/admin/userApprove', {userid: userId, groupid: groupId})
       .then((data) => {
         getUserRequests()
       })
@@ -33,8 +33,7 @@ function AddUsers({ groupId, switchModal }) {
   }
 
   const declineUser = (userId, groupId) => {
-    console.log("DECLINE USER", userId, groupId)
-    axios.post('/userDecline', {userid: userId, groupid: groupId})
+    axios.post('/admin/userDecline', {userid: userId, groupid: groupId})
       .then((data) => {
         getUserRequests()
       })

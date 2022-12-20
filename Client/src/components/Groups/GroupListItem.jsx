@@ -3,11 +3,10 @@ import axios from 'axios';
 const { useState, useEffect } = React;
 
 function GroupListItem({ group, userId, groupIds }) {
-
 	const [requested, setRequested] = useState(false);
 	const handleRequest = () => {
 		axios
-			.post('/requestJoin', {
+			.post('/groups/requestJoin', {
 				info: {
 					user: userId,
 					group: group.group_id,
@@ -30,33 +29,35 @@ function GroupListItem({ group, userId, groupIds }) {
 						alt={group.name}
 					/>
 					<ul className="flex flex-col items-center">
-						<li className="text-4xl font font-semibold capitalize">
+						<li className="text-4xl font font-semibold capitalize text-center">
 							{group.name}
 						</li>
 						<li className="italic capitalize">{group.admin}</li>
 						<li className="normal-case">{group.description}</li>
 					</ul>
 				</div>
-
 			</div>
 			<div className="flex justify-end mr-2 mb-2">
-					{groupIds.indexOf(group.group_id) < 0 ? !requested ?
+				{groupIds.indexOf(group.group_id) < 0 ? (
+					!requested ? (
 						<button
 							onClick={handleRequest}
 							type="button"
-							className="bg-darkerblue p-2 rounded-md text-white border-2 border-darkerblue hover:bg-white hover:text-lighterblue hover:border-2 hover:border-darkerblue hover:ease-in duration-300"
+							className="bg-darkerblue p-2 rounded-md text-white border-2 border-darkerblue hover:bg-white hover:text-darkerblue hover:border-2 hover:border-darkerblue hover:ease-in duration-300"
 						>
 							Request to Join
-						</button> :
+						</button>
+					) : (
 						<span className="border-2 border-darkerblue text-white bg-darkerblue p-2 rounded-md">
-						Requested
-					</span>
-					 : (
-						<span className="border-2 border-lightergreen text-white bg-lightergreen p-2 rounded-md">
-							Member
+							Requested
 						</span>
-					)}
-				</div>
+					)
+				) : (
+					<span className="border-2 border-darkerblue text-darkerblue bg-lightergreen p-2 rounded-md">
+						Member
+					</span>
+				)}
+			</div>
 		</div>
 	);
 }

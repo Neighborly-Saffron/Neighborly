@@ -14,7 +14,7 @@ function AdminPanel({ userId }) {
   }
 
   const getAdminGroups = () => {
-    axios.get(`/GroupAdmin/?userId=${userId}`)
+    axios.get(`/admin/groupAdmin/?userId=${userId}`)
       .then((data) => {
         setAdminGroups(data.data[0].admingroup)
       })
@@ -27,12 +27,12 @@ function AdminPanel({ userId }) {
 
   return (
     <>
-      <table className='table-layout: auto'>
+      <table className='w-full p-3 table-layout: auto bg-white rounded'>
         <thead>
         <tr>
-          <th className="px-4 py-2"></th>
+          {/* <th className="px-4 py-2"></th>
           <th className="px-4 py-2">Group</th>
-          <th className="px-4 py-2">Requests</th>
+          <th className="px-4 py-2">Requests</th> */}
         </tr>
         </thead>
         <tbody>
@@ -41,7 +41,7 @@ function AdminPanel({ userId }) {
         }) : null}
         </tbody>
       </table>
-      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-black text-white font-bold py-2 px-2 pt-1.5 rounded-full h-10 text-align:center" onClick={() => {setToggleModal(!toggleModal)}}>Add A Group</button>
+      <button className="bg-darkerblue hover:bg-lighterblue border-2 hover:border-2 hover:border-darkerblue hover:text-darkerblue text-white font-bold py-2 px-2 pt-1.5 rounded h-10 text-align:center" onClick={() => {setToggleModal(!toggleModal)}}>Add A Group</button>
       {toggleModal ? <AddGroupModal switchModal={switchModal} userId={userId}/> : null }
     </>
   )

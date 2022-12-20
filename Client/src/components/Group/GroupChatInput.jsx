@@ -10,9 +10,9 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
 
   return (
     <>
-      <form className='w-full space-x-3' onSubmit={submitForm}>
+      <form className='w-full space-x-3 flex justify-between' onSubmit={submitForm}>
         <input
-          className='w-4/5 p-1 my-2 rounded'
+          className='w-full p-1 my-2 rounded border-2 border-lightgray'
           autoFocus
           value={value}
           placeholder='Type your message'
@@ -20,7 +20,7 @@ const GroupChatInput = ({ socket, userData, groupId }) => {
             setValue(e.currentTarget.value);
           }}
         />
-        <button className="border-2 bg-darkerblue hover:bg-lighterblue text-white rounded px-1.5 cursor-pointer">Send</button>
+        <button className="mt-1.5 border-2 bg-darkerblue hover:bg-lighterblue text-white hover:text-darkerblue hover:border-darkerblue h-10 px-2 rounded cursor-pointer">Send</button>
       </form>
     </>
   );

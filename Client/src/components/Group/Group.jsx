@@ -18,7 +18,7 @@ function Group ({ userId, userData }) {
   const [posts, setPosts] = useState([]);
 
   const getEvents = () => {
-    axios.get(`/mapEvents/${userId}/${id}`)
+    axios.get(`event/map/${userId}/${id}`)
       .then((res) => {
         setEventList({events:res.data});
       })
@@ -28,7 +28,7 @@ function Group ({ userId, userData }) {
   useEffect(getEvents, []);
 
   const getPosts = () => {
-    axios.get(`/posts/group/${userId}/${id}`)
+    axios.get(`/feed/posts/group/${userId}/${id}`)
       .then((res) => {
         setPosts(res.data);
       })
@@ -39,7 +39,7 @@ function Group ({ userId, userData }) {
 
   const postMessage = (message) => {
     if (message.length > 0) {
-      axios.post('/addPost', {post: message, likes: 0, userId: userId, groupId: id})
+      axios.post('/feed/addPost', {post: message, likes: 0, userId: userId, groupId: id})
         .then((res) => {
           getPosts()
         })
@@ -48,7 +48,7 @@ function Group ({ userId, userData }) {
   }
 
   const removePost = (postid) => {
-    axios.delete('/posts', {data:{postid}})
+    axios.delete('/feed/posts', {data:{postid}})
       .then((res) => {
         getPosts()
       })
@@ -56,8 +56,8 @@ function Group ({ userId, userData }) {
   }
 
   return (
-    <div className='flex gap-x-4 m-5 p-1'>
-      <div className='flex w-2/3 flex-col'>
+    <div className='flex m-5 mb-0 p-10 gap-5'>
+      <div className='flex w-2/3 flex-col gap-3'>
         <CreateGroupPost postMessage={postMessage} userId={userId} groupId={id} />
         <GroupFeed posts={posts} userId={userId} groupId={id} path={'group'} removePost={removePost} />
       </div>
