@@ -16,26 +16,30 @@ const eventRoutes = require('./routes/event.js');
 const port = 3001;
 const app = express();
 
-const server = http
-	.createServer(
-		// {
-		// 	key: fs.readFileSync('key.pem'),
-		// 	cert: fs.readFileSync('cert.pem'),
-		// },
-		app
-	)
-	.listen(port, () => {
-		console.log(`App running on port ${port}.`);
-	});
+app.listen(port, () => {
+			console.log(`App running on port ${port}.`);
+		})
 
-const io = socketIo(server, {
-	cors: {
-		origin: '*',
-		methods: ['GET', 'POST'],
-	},
-}); //in case server and client run on different urls
+// const server = http
+// 	.createServer(
+// 		// {
+// 		// 	key: fs.readFileSync('key.pem'),
+// 		// 	cert: fs.readFileSync('cert.pem'),
+// 		// },
+// 		app
+// 	)
+// 	.listen(port, () => {
+// 		console.log(`App running on port ${port}.`);
+// 	});
 
-chat(io);
+// const io = socketIo(server, {
+// 	cors: {
+// 		origin: '*',
+// 		methods: ['GET', 'POST'],
+// 	},
+// }); //in case server and client run on different urls
+
+// chat(io);
 
 app.use(compression({ level: 6, threshold: 0 }));
 app.use(express.json());
